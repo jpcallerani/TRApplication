@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainPage" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+   <children>
+      <ImageView fx:id="background" fitHeight="611.0" fitWidth="944.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/background.png" />
+         </image>
+         <effect>
+            <BoxBlur iterations="3" />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="btnCmLogScripts" fitHeight="150.0" fitWidth="200.0" layoutX="507.0" layoutY="108.0" onMouseClicked="#frmCmLogScripts" onMouseEntered="#btnCmLogScriptsMouseEntered" onMouseExited="#btnCmLogScriptsMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/btnCmLogScripts.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
