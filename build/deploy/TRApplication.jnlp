@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="TRApplication.jnlp">
+  <information>
+    <title>TRApplication</title>
+    <vendor>jpcallerani</vendor>
+    <description>TRApplication</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="TRApplication.jar" size="2208803" download="eager" />
+    <jar href="libs\AnimateFX-1.2.0.jar" size="85823" download="eager" />
+    <jar href="libs\TRApplication-preloader.jar" size="333" download="eager" />
+    <jar href="libs\activation-1.1.1.jar" size="69409" download="eager" />
+    <jar href="libs\antlr-2.7.7.jar" size="445288" download="eager" />
+    <jar href="libs\aspectjrt-1.9.1.jar" size="119892" download="eager" />
+    <jar href="libs\byte-buddy-1.6.14.jar" size="2795939" download="eager" />
+    <jar href="libs\c3p0-0.9.5.2.jar" size="497865" download="eager" />
+    <jar href="libs\classmate-1.3.0.jar" size="64110" download="eager" />
+    <jar href="libs\commons-io-1.3.2.jar" size="87776" download="eager" />
+    <jar href="libs\dom4j-1.6.1.jar" size="313898" download="eager" />
+    <jar href="libs\fontawesomefx-8.1.jar" size="179086" download="eager" />
+    <jar href="libs\hibernate-commons-annotations-5.0.1.Final.jar" size="75288" download="eager" />
+    <jar href="libs\hibernate-core-5.2.16.Final.jar" size="6728526" download="eager" />
+    <jar href="libs\hibernate-entitymanager-5.2.16.Final.jar" size="591" download="eager" />
+    <jar href="libs\hibernate-jpa-2.1-api-1.0.0.Final.jar" size="113371" download="eager" />
+    <jar href="libs\jandex-2.0.3.Final.jar" size="186741" download="eager" />
+    <jar href="libs\javafx-base-11-win.jar" size="750040" download="eager" />
+    <jar href="libs\javafx-base-11.jar" size="302" download="eager" />
+    <jar href="libs\javafx-controls-11-win.jar" size="2511103" download="eager" />
+    <jar href="libs\javafx-controls-11.jar" size="306" download="eager" />
+    <jar href="libs\javafx-fxml-11-win.jar" size="127394" download="eager" />
+    <jar href="libs\javafx-fxml-11.jar" size="302" download="eager" />
+    <jar href="libs\javafx-graphics-11-win.jar" size="6016908" download="eager" />
+    <jar href="libs\javafx-graphics-11.jar" size="306" download="eager" />
+    <jar href="libs\javafx-swt.jar" size="36806" download="eager" />
+    <jar href="libs\javafx.base.jar" size="749889" download="eager" />
+    <jar href="libs\javafx.controls.jar" size="2511136" download="eager" />
+    <jar href="libs\javafx.fxml.jar" size="127394" download="eager" />
+    <jar href="libs\javafx.graphics.jar" size="4295252" download="eager" />
+    <jar href="libs\javafx.media.jar" size="270594" download="eager" />
+    <jar href="libs\javafx.swing.jar" size="119848" download="eager" />
+    <jar href="libs\javafx.web.jar" size="712659" download="eager" />
+    <jar href="libs\javassist-3.24.0-GA.jar" size="777669" download="eager" />
+    <jar href="libs\jaxb-api-2.2.11.jar" size="102244" download="eager" />
+    <jar href="libs\jaxb-core-2.2.11.jar" size="252336" download="eager" />
+    <jar href="libs\jaxb-impl-2.2.11.jar" size="1047863" download="eager" />
+    <jar href="libs\jboss-logging-3.3.1.Final.jar" size="66023" download="eager" />
+    <jar href="libs\jboss-transaction-api_1.2_spec-1.0.1.Final.jar" size="28352" download="eager" />
+    <jar href="libs\jfoenix-9.0.8.jar" size="2419463" download="eager" />
+    <jar href="libs\jfxrt.jar" size="18238074" download="eager" />
+    <jar href="libs\mchange-commons-java-0.2.11.jar" size="606472" download="eager" />
+    <jar href="libs\mysql-connector-java-5.1.45.jar" size="999808" download="eager" />
+    <jar href="libs\ojdbc6.jar" size="2152137" download="eager" />
+    <jar href="libs\slf4j-api-1.7.25.jar" size="41203" download="eager" />
+    <jar href="libs\spring-aop-5.1.3.RELEASE.jar" size="368971" download="eager" />
+    <jar href="libs\spring-beans-5.1.3.RELEASE.jar" size="671676" download="eager" />
+    <jar href="libs\spring-context-5.1.3.RELEASE.jar" size="1099288" download="eager" />
+    <jar href="libs\spring-core-5.1.3.RELEASE.jar" size="1289362" download="eager" />
+    <jar href="libs\spring-data-commons-2.1.3.RELEASE.jar" size="1162545" download="eager" />
+    <jar href="libs\spring-data-jpa-2.1.3.RELEASE.jar" size="347618" download="eager" />
+    <jar href="libs\spring-expression-5.1.3.RELEASE.jar" size="280322" download="eager" />
+    <jar href="libs\spring-jcl-5.1.3.RELEASE.jar" size="23624" download="eager" />
+    <jar href="libs\spring-jdbc-5.1.3.RELEASE.jar" size="404662" download="eager" />
+    <jar href="libs\spring-orm-5.1.3.RELEASE.jar" size="199365" download="eager" />
+    <jar href="libs\spring-tx-5.1.3.RELEASE.jar" size="256335" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="application.main.main"  name="TRApplication"  preloader-class=""/>
+  <update check="background"/>
+</jnlp>

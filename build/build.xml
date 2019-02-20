@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="TRApplication" default="do-deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="C:\Program Files\Java\jdk1.8.0_191\lib\ant-javafx.jar"/>
+				<file name="C:\Program Files\Java\jre1.8.0_191\lib\ext\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+	<target name="setup-staging-area">
+		<delete dir="externalLibs" />
+		<delete dir="project" />
+		<delete dir="projectRefs" />
+	
+		<mkdir dir="externalLibs" />
+	
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\data\spring-data-commons\2.1.3.RELEASE">
+				<filename name="spring-data-commons-2.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-expression\5.1.3.RELEASE">
+				<filename name="spring-expression-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-fxml\11">
+				<filename name="javafx-fxml-11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\mchange\c3p0\0.9.5.2">
+				<filename name="c3p0-0.9.5.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\sun\xml\bind\jaxb-core\2.2.11">
+				<filename name="jaxb-core-2.2.11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\slf4j\slf4j-api\1.7.25">
+				<filename name="slf4j-api-1.7.25.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\jboss\jandex\2.0.3.Final">
+				<filename name="jandex-2.0.3.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\sun\xml\bind\jaxb-impl\2.2.11">
+				<filename name="jaxb-impl-2.2.11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-context\5.1.3.RELEASE">
+				<filename name="spring-context-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-jdbc\5.1.3.RELEASE">
+				<filename name="spring-jdbc-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\javax\xml\bind\jaxb-api\2.2.11">
+				<filename name="jaxb-api-2.2.11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-orm\5.1.3.RELEASE">
+				<filename name="spring-orm-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\antlr\antlr\2.7.7">
+				<filename name="antlr-2.7.7.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\net\bytebuddy\byte-buddy\1.6.14">
+				<filename name="byte-buddy-1.6.14.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-controls\11">
+				<filename name="javafx-controls-11-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final">
+				<filename name="hibernate-commons-annotations-5.0.1.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final">
+				<filename name="hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\data\spring-data-jpa\2.1.3.RELEASE">
+				<filename name="spring-data-jpa-2.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\fasterxml\classmate\1.3.0">
+				<filename name="classmate-1.3.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\javax\activation\activation\1.1.1">
+				<filename name="activation-1.1.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\mchange\mchange-commons-java\0.2.11">
+				<filename name="mchange-commons-java-0.2.11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-tx\5.1.3.RELEASE">
+				<filename name="spring-tx-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-jcl\5.1.3.RELEASE">
+				<filename name="spring-jcl-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\jfoenix\jfoenix\9.0.8">
+				<filename name="jfoenix-9.0.8.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\hibernate\hibernate-entitymanager\5.2.16.Final">
+				<filename name="hibernate-entitymanager-5.2.16.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-fxml\11">
+				<filename name="javafx-fxml-11-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\jboss\logging\jboss-logging\3.3.1.Final">
+				<filename name="jboss-logging-3.3.1.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-beans\5.1.3.RELEASE">
+				<filename name="spring-beans-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-graphics\11">
+				<filename name="javafx-graphics-11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\hibernate\hibernate-core\5.2.16.Final">
+				<filename name="hibernate-core-5.2.16.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-aop\5.1.3.RELEASE">
+				<filename name="spring-aop-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-base\11">
+				<filename name="javafx-base-11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\de\jensd\fontawesomefx\8.1">
+				<filename name="fontawesomefx-8.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-base\11">
+				<filename name="javafx-base-11-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-graphics\11">
+				<filename name="javafx-graphics-11-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.0.1.Final">
+				<filename name="jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\commons-io\commons-io\1.3.2">
+				<filename name="commons-io-1.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\javassist\javassist\3.24.0-GA">
+				<filename name="javassist-3.24.0-GA.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-core\5.1.3.RELEASE">
+				<filename name="spring-core-5.1.3.RELEASE.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-controls\11">
+				<filename name="javafx-controls-11.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\mysql\mysql-connector-java\5.1.45">
+				<filename name="mysql-connector-java-5.1.45.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\aspectj\aspectjrt\1.9.1">
+				<filename name="aspectjrt-1.9.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib">
+				<filename name="ojdbc6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\io\github\typhon0\AnimateFX\1.2.0">
+				<filename name="AnimateFX-1.2.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\Jp-PC\.m2\repository\dom4j\dom4j\1.6.1">
+				<filename name="dom4j-1.6.1.jar"/>
+			</fileset>
+		</copy>
+	
+		<mkdir dir="project" />
+		<copy todir="project">
+			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication">
+				<include name="src/**" />
+			</fileset>
+		</copy>
+	
+		<mkdir dir="projectRefs" />
+	</target>
+	<target name='do-compile'>
+		<delete dir="build" />
+		<mkdir dir="build/src" />
+		<mkdir dir="build/libs" />
+		<mkdir dir="build/classes" />
+	
+		<!-- Copy project-libs references -->
+		<copy todir="build/libs">
+			<fileset dir="externalLibs">
+				<include name="javafx-graphics-11-win.jar"/>
+				<include name="spring-jdbc-5.1.3.RELEASE.jar"/>
+				<include name="mchange-commons-java-0.2.11.jar"/>
+				<include name="hibernate-entitymanager-5.2.16.Final.jar"/>
+				<include name="javafx-controls-11-win.jar"/>
+				<include name="javafx-base-11.jar"/>
+				<include name="AnimateFX-1.2.0.jar"/>
+				<include name="spring-data-jpa-2.1.3.RELEASE.jar"/>
+				<include name="jaxb-impl-2.2.11.jar"/>
+				<include name="commons-io-1.3.2.jar"/>
+				<include name="javassist-3.24.0-GA.jar"/>
+				<include name="spring-expression-5.1.3.RELEASE.jar"/>
+				<include name="classmate-1.3.0.jar"/>
+				<include name="dom4j-1.6.1.jar"/>
+				<include name="jfoenix-9.0.8.jar"/>
+				<include name="javafx-fxml-11-win.jar"/>
+				<include name="activation-1.1.1.jar"/>
+				<include name="spring-core-5.1.3.RELEASE.jar"/>
+				<include name="hibernate-core-5.2.16.Final.jar"/>
+				<include name="mysql-connector-java-5.1.45.jar"/>
+				<include name="spring-tx-5.1.3.RELEASE.jar"/>
+				<include name="jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
+				<include name="javafx-base-11-win.jar"/>
+				<include name="jandex-2.0.3.Final.jar"/>
+				<include name="hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+				<include name="spring-data-commons-2.1.3.RELEASE.jar"/>
+				<include name="javafx-fxml-11.jar"/>
+				<include name="slf4j-api-1.7.25.jar"/>
+				<include name="jaxb-api-2.2.11.jar"/>
+				<include name="fontawesomefx-8.1.jar"/>
+				<include name="javafx-controls-11.jar"/>
+				<include name="jaxb-core-2.2.11.jar"/>
+				<include name="spring-context-5.1.3.RELEASE.jar"/>
+				<include name="c3p0-0.9.5.2.jar"/>
+				<include name="spring-orm-5.1.3.RELEASE.jar"/>
+				<include name="spring-aop-5.1.3.RELEASE.jar"/>
+				<include name="javafx-graphics-11.jar"/>
+				<include name="antlr-2.7.7.jar"/>
+				<include name="spring-jcl-5.1.3.RELEASE.jar"/>
+				<include name="aspectjrt-1.9.1.jar"/>
+				<include name="ojdbc6.jar"/>
+				<include name="hibernate-commons-annotations-5.0.1.Final.jar"/>
+				<include name="spring-beans-5.1.3.RELEASE.jar"/>
+				<include name="byte-buddy-1.6.14.jar"/>
+				<include name="jboss-logging-3.3.1.Final.jar"/>
+			</fileset>
+		</copy>
+	
+		<!-- Copy project references -->
+	
+		<!-- Copy project sources itself -->
+		<copy todir="build/src">
+			<fileset dir="project/src">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<javac includeantruntime="false" source="10" target="10" srcdir="build/src" destdir="build/classes" encoding="Cp1252">
+			<classpath>
+				<fileset dir="build/libs">
+					<include name="*"/>
+				</fileset>
+			</classpath>
+		</javac>
+	
+		<!-- Copy over none Java-Files -->
+		<copy todir="build/classes">
+		<fileset dir="project/src">
+			<exclude name="**/*.java"/>
+		</fileset>
+		</copy>
+	
+	
+	</target>
+	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
+		<delete file="dist"/>
+		<delete file="deploy" />
+	
+		<mkdir dir="dist" />
+		<mkdir dir="dist/libs" />
+	
+		<copy todir="dist/libs">
+			<fileset dir="externalLibs">
+				<include name="*" />
+			</fileset>
+		</copy>
+	
+		<jar destfile="dist/libs/TRApplication-preloader.jar">
+			<fileset dir="build/classes">
+				<include name=".class"/>
+			</fileset>
+		</jar>
+	
+		<fx:resources id="appRes">
+			<fx:fileset dir="dist" requiredFor="preloader"
+				includes="TRApplication-preloader.jar"/>
+			<fx:fileset dir="dist" includes="TRApplication.jar"/>
+			<fx:fileset dir="dist" includes="libs/*"/>
+		</fx:resources>
+	
+		<fx:application id="fxApplication"
+			name="TRApplication"
+			mainClass="application.main.main"
+			preloaderClass=""
+			toolkit="fx"
+		/>
+	
+		<mkdir dir="build/classes/META-INF" />
+	
+	
+	
+		<fx:jar destfile="dist/TRApplication.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="build/classes">
+			<exclude name=".class" />
+			</fileset>
+			<fx:resources refid="appRes"/>
+	
+			<manifest>
+				<attribute name="Implementation-Vendor" value="jpcallerani"/>
+				<attribute name="Implementation-Title" value="TRApplication"/>
+				<attribute name="Implementation-Version" value="1.0"/>
+				<attribute name="JavaFX-Feature-Proxy" value="None"/>
+			</manifest>
+		</fx:jar>
+	
+	
+		<mkdir dir="deploy" />
+		<!-- Need to use ${basedir} because somehow the ant task is calculating the directory differently -->
+		<fx:deploy
+			embedJNLP="false"
+			extension="false"
+			includeDT="false"
+			offlineAllowed="true"
+			outdir="${basedir}/deploy"
+			outfile="TRApplication" nativeBundles="exe"
+			updatemode="background" >
+	
+			<fx:platform basedir="C:\Program Files\Java\jdk1.8.0_191"/>
+			<fx:info title="TRApplication" vendor="jpcallerani"/>
+	
+			<fx:application refId="fxApplication"/>
+			<fx:resources refid="appRes"/>
+		</fx:deploy>
+	
+	
+	</target>
+</project>

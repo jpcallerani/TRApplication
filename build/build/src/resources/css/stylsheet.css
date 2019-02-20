@@ -1,0 +1,278 @@
+
+.root {
+    -fx-accent: #ffb548;
+    -fx-focus-color: #bb7c23;
+}
+.parent{
+    -fx-background-color: #ffb548;
+}
+.txt-fields{
+    -fx-background-color: transparent;
+}
+.vbox{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 3.0px;
+}
+.txt-color{
+    -fx-text-fill: #999999;
+}
+
+.button_login {
+	-fx-background-color:  #f2740b;
+}
+
+.button_login:hover {
+	-fx-background-color: linear-gradient(#f2740b, #7c471c);
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.button_cancel{
+	-fx-border-color: transparent transparent #f2740b transparent;
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-background-color:  #FFFFFF;
+}
+
+.button_cancel:hover {
+	-fx-background-radius: 3.0px;
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.jfx-hamburger {
+	-fx-background-color: transparent;
+}
+
+.jfx-hamburger StackPane {
+	-fx-background-color: #f2740b;
+}
+
+.menu_teste {
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.menu_bar {
+	-fx-background-color: linear-gradient(#f2740b, #7c471c);
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.text_bar {
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.menu_item_bar {
+	-fx-background-color: #ffffff;
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.button_menu{
+	-fx-border-color: transparent transparent #f2740b transparent;
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-background-color:  #FFFFFF;
+}
+
+.panel_menu {
+	-fx-background-color: transparent;
+}
+
+.panel_menu:hover {
+	-fx-background-color: #f2740b;
+}
+
+.panel_filtro {
+	-fx-effect: dropshadow(three-pass-box, purple, 0.0, 25.0, -5.0, 0.0);
+	-fx-background-color: linear-gradient(#f2740b, #7c471c);
+}
+
+/* focused cell (keyboard navigation) */
+.list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:focused,
+.table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:focused,
+.tree-table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:focused,
+.table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell:focused,
+.tree-table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:focused {
+    -fx-background-insets: 0.0, 1.0, 2.0;
+    -fx-background-color: linear-gradient(#E46F0D,#E46F0D);
+}
+
+.tree-table-cell {
+    /* tree-table-cell needs slightly different padding to make the text sit at
+    the right height for the arrow */
+    -fx-padding: 0.25em 0.166667em 0.083em 0.166667em; /* 3 2 1 2 , plus border adds 1px */
+    -fx-background-color: null;
+    -fx-border-color: #1162bc;
+    -fx-cell-size: 2.0em; /* 24 */
+}
+
+.table-view:constrained-resize > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell:last-visible,
+.tree-table-view:constrained-resize > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:last-visible {
+    -fx-border-color: #000000;
+}
+
+.home {
+	-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0 );
+}
+
+.button_search {
+	-fx-background-color:  #ffffff;
+	-fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0  );
+}
+
+.button_search:hover {
+	-fx-background-color: linear-gradient(#f2740b, #7c471c);
+	-fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0  );
+	-fx-text-fill: #ffffff; 
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-shape: "M0,0v9h9V0H0z M2,8H1V7h1V8z M2,6H1V5h1V6z M2,4H1V3h1V4z M4,8H3V7h1V8z M4,6H3V5h1V6z M4,4H3V3h1V4z M6,8H5V7h1V8z M6,6H5 V5h1V6z M6,4H5V3h1V4z M8,8H7V7h1V8z M8,6H7V5h1V6z M8,4H7V3h1V4z";
+    -fx-background-color: #f2740b;
+    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
+    -fx-padding: 0.416667em 0.416667em 0.333333em 0.333333em; /* 5 5 4 4 */
+    -fx-scale-shape: true;
+}
+
+.date-picker:contains-focus > .arrow-button {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 1.0, 2.0, 1.0, 2.6;
+    -fx-background-radius: 0.0 2.0 2.0 0.0, 0.0 1.0 1.0 0.0, 0.0 1.0 1.0 0.0, 0.0 1.0 1.0 0.0;
+    -fx-border-color: #000000;
+}
+
+
+.date-picker-popup > .calendar-grid {
+    -fx-background-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+    /*-fx-background-insets: 1 0 0 0;*/
+    -fx-padding: 0.0;
+}
+
+.date-picker-popup > * > .day-cell:hover,
+.date-picker-popup > * > .selected,
+.date-picker-popup > * > .previous-month.selected,
+.date-picker-popup > * > .next-month.selected {
+    -fx-background: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+}
+
+.date-picker-popup > * > .previous-month:hover,
+.date-picker-popup > * > .next-month:hover {
+    -fx-background: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+}
+
+.date-picker-popup > * > .today:hover,
+.date-picker-popup > * > .today.selected {
+    -fx-background-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+}
+
+.date-picker-popup > * > .day-cell:focused,
+.date-picker-popup > * > .today:focused {
+    -fx-background-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+    -fx-background-insets: 1.0, 2.0, 3.0;
+}
+
+.date-picker-popup {
+     -fx-background-color:
+        linear-gradient(to bottom,
+            derive(#f2740b,-17.0%),
+            derive(#f2740b,-30.0%)
+        ),
+        -fx-control-inner-background;
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 0.0;
+    -fx-alignment: CENTER; /* VBox */
+    -fx-spacing: 0.0; /* VBox */
+    -fx-padding: 0.083333em; /* 1 1 1 1 */
+    -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12.0, 0.0 , 0.0 , 8.0 );
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-padding: 0.588883em 0.5em 0.666667em 0.5em; /* 7 6 8 6 */
+    -fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%));
+    -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0 0.0 1.0 0.0;
+}
+
+.date-picker-popup > * > .previous-month.today,
+.date-picker-popup > * > .next-month.today {
+    -fx-background-color: #000000;
+}
+
+
+
+.date-picker > .text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 1.0 0.0 1.0 1.0;
+    -fx-background-radius: 2.0 0.0 0.0 2.0;
+    -fx-border-color: #ffffff;
+}
+
+.date-picker:focused > .text-field,
+.date-picker > .text-field:focused {
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 1.0 0.0 1.0 1.0, 1.0 0.0 1.0 1.0, 3.0 2.0 3.0 3.0;
+    -fx-background-radius: 2.0 0.0 0.0 2.0, 1.0 0.0 0.0 1.0, 0.0;
+    -fx-border-color: #ffffff;
+}
+
+.date-picker-popup  {
+	-fx-font-size: 14.0px;
+	
+ }
+ 
+ .date-picker-popup:hover  {
+	-fx-cursor: hand;
+	
+ }
+ 
+ .date-picker > .arrow-button {
+ 	-fx-background-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+    -fx-border-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+}
+
+ .date-picker > .arrow-button:hover {
+-fx-cursor: hand;
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: #ffffff;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: #f2740b, derive(#f2740b, -20.0%),#f2740b;
+    -fx-background-insets: 0.0, 0.0 1.0 0.0 1.0;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%));
+    -fx-background-insets: 0.0, 1.0 0.0 1.0 0.0;
+}
+
+.text-field {
+    -fx-accent: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%));
+}
+
+.tree-table-row-cell:selected > *{ -fx-text-fill: #ffffff; }
+
+.rootPane {
+	 -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0  ); 
+  	-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%));    
+    -fx-border-radius:15.0 15.0 15.0 15.0;
+    -fx-background-radius: 10.0;
+}
+
+.shadowPane {
+	-fx-background-color: transparent;
+}
+	
+.taskRootPane {
+	 -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0  ); 
+  	-fx-background-color: linear-gradient(#f2740b, #f67f1c);    
+    -fx-border-radius:15.0 15.0 15.0 15.0;
+    -fx-background-radius: 10.0;
+}
+	
+.text_folder {
+	-fx-text-inner-color: #f2740b;
+}
+
+.txtLog {
+	-fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 5.0, 0.0 , 0.0 , 1.0  ); 
+	-fx-background-color: #f67f1c;
+ 	-fx-text-fill: #ffffff;
+}

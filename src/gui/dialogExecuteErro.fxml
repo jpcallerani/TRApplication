@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="shadowPane" prefHeight="460.0" prefWidth="627.0" styleClass="shadowPane" stylesheets="@../resources/css/stylsheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.taskErroController">
+   <children>
+      <AnchorPane fx:id="rootPane" layoutX="6.0" layoutY="5.0" prefHeight="450.0" prefWidth="615.0" styleClass="taskRootPane" stylesheets="@../resources/css/stylsheet.css">
+         <children>
+            <HBox fx:id="hboxFind" layoutX="15.0" layoutY="68.0" prefHeight="26.0" prefWidth="494.0">
+               <children>
+                  <ImageView fx:id="imgFind" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/uncheked.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="26.0" prefWidth="138.0" text="FINDING SCRIPT" textFill="WHITE" translateX="25.0">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="progressFind" prefHeight="17.0" prefWidth="252.0" progress="0.0" style="-fx-control-inner-background: #f2740b; -fx-text-box-border: #6b3c16;" translateX="59.0" translateY="5.0" />
+               </children>
+            </HBox>
+            <HBox fx:id="hboxExec" layoutX="15.0" layoutY="107.0" prefHeight="26.0" prefWidth="494.0">
+               <children>
+                  <ImageView fx:id="imgExec" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/uncheked.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="26.0" prefWidth="147.0" text="RUNNING SCRIPT" textFill="WHITE" translateX="25.0">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="progressExec" prefHeight="17.0" prefWidth="253.0" progress="0.0" style="-fx-control-inner-background: #f2740b; -fx-text-box-border: #6b3c16;" translateX="50.0" translateY="5.0" />
+               </children>
+            </HBox>
+            <JFXTextArea fx:id="txLog" editable="false" focusColor="WHITE" layoutX="14.0" layoutY="143.0" prefHeight="299.0" prefWidth="591.0" styleClass="txtLog" stylesheets="@../resources/css/stylsheet.css" unFocusColor="WHITE">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font></JFXTextArea>
+            <Line endX="459.0" layoutX="127.0" layoutY="56.0" startX="-112.0" stroke="WHITE" />
+            <Label layoutX="15.0" layoutY="14.0" prefHeight="41.0" prefWidth="225.0" text="TASK MONITOR" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="31.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnClose" layoutX="521.0" layoutY="81.0" prefHeight="36.0" prefWidth="66.0" styleClass="button_search" text="Close" viewOrder="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Prelo W01 Bold" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

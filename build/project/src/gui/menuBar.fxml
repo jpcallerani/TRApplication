@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vBox" prefHeight="757.0" prefWidth="200.0" style="-fx-border-color: f2740b; -fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SliderController">
+   <children>
+      <Pane prefHeight="109.0" prefWidth="331.0" styleClass="menu_bar" stylesheets="@../resources/css/stylsheet.css">
+         <children>
+            <Text fill="WHITE" layoutX="34.0" layoutY="72.0" strokeWidth="0.0" styleClass="text_bar" text="MENU" wrappingWidth="153.06640625">
+               <font>
+                  <Font name="Prelo W01 Bold" size="49.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <VBox fx:id="firstSubVBox">
+         <children>
+            <HBox fx:id="hboxOperations" prefHeight="90.0" prefWidth="228.0">
+               <children>
+                  <Pane fx:id="paneOperations" prefHeight="80.0" prefWidth="13.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="firstMenu" focusTraversable="false" prefHeight="85.0" prefWidth="230.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="OPERATIONS" textFill="#403a35">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="imgOperations" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                           <image>
+                              <Image url="@../resources/images/operation.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <VBox fx:id="firstSubMenuList" prefHeight="102.0" prefWidth="230.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane fx:id="paneCmLogScripts" prefHeight="52.0" prefWidth="7.0" />
+                        <JFXButton fx:id="btnCmLogScripts" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="52.0" prefWidth="222.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="CM_LOG_SCRIPTS">
+                           <font>
+                              <Font name="Prelo W01 Bold" size="11.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="imgCmLogScripts" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/baseline_arrow_right_alt_black_24dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane fx:id="paneSfwCmSchema" prefHeight="52.0" prefWidth="7.0" />
+                        <JFXButton fx:id="btnSizingCalculate" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="52.0" prefWidth="222.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="SIZING CALCULATE">
+                           <font>
+                              <Font name="Prelo W01 Bold" size="11.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="imgSfwCmSchema" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/baseline_arrow_right_alt_black_24dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="85.0" prefWidth="230.0">
+         <children>
+            <HBox fx:id="hboxAbout" prefHeight="90.0" prefWidth="228.0">
+               <children>
+                  <Pane fx:id="paneAbout" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT               " textFill="#403a35">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="imgAbout" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                           <image>
+                              <Image url="@../resources/images/baseline_feedback_black_48dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="85.0" prefWidth="230.0">
+         <children>
+            <HBox fx:id="hboxExt" prefHeight="90.0" prefWidth="228.0">
+               <children>
+                  <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT                     " textFill="#403a35">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="imgExit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                           <image>
+                              <Image url="@../resources/images/baseline_meeting_room_black_48dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
