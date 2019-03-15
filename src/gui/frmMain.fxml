@@ -16,7 +16,7 @@
             <Image url="@../resources/images/TR_LOGO.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblUsername" layoutX="929.0" layoutY="767.0" prefHeight="17.0" prefWidth="263.0" text="Connected as:">
+      <Label fx:id="lblUsername" layoutX="928.0" layoutY="747.0" prefHeight="17.0" prefWidth="263.0" text="Connected as:">
          <font>
             <Font name="Prelo W01 Bold" size="14.0" />
          </font>
@@ -31,5 +31,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXDrawer>
+      <Label fx:id="lblReconnect" layoutX="928.0" layoutY="770.0" prefHeight="18.0" prefWidth="191.0" text="Reconnect with different user" textFill="#ff6900">
+         <font>
+            <Font name="Prelo W01 Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
    </children>
 </AnchorPane>

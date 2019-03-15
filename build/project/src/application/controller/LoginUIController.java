@@ -129,7 +129,9 @@ public class LoginUIController implements Initializable {
 						stage.addEventHandler(WindowEvent.WINDOW_SHOWING, new EventHandler<WindowEvent>() {
 							@Override
 							public void handle(WindowEvent window) {
-								while (!returnCodSistema()) {
+								if (!txUsuario.getText().contains("_USER") && !txUsuario.getText().contains("_user")) {
+									while (!returnCodSistema()) {
+									}
 								}
 							}
 						});

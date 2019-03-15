@@ -5,8 +5,10 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -92,6 +94,13 @@
 			<cursor>
 				<Cursor fx:constant="HAND" />
 			</cursor>
+         <contextMenu>
+            <ContextMenu fx:id="cmDeletaLinha">
+              <items>
+                <MenuItem fx:id="miTeste" mnemonicParsing="false" text="- Deleta Linha" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
 		</JFXTreeTableView>
       <FontAwesomeIcon fx:id="btnFolder" fill="#c65c00" iconName="FOLDER" layoutX="277.0" layoutY="744.0" size="30PX">
          <cursor>

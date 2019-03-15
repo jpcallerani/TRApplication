@@ -29,6 +29,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,8 +39,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
@@ -118,9 +121,35 @@ public class CmLogScriptsController implements Initializable {
 
 	private TreeItem<Erro> root;
 
+	@FXML
+	private ContextMenu cmDeletaLinha;
+
+	@FXML
+	private MenuItem miTeste;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		this.tableCmLogScripts.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent t) {
+				if (t.getButton() == MouseButton.SECONDARY) {
+					cmDeletaLinha.show(tableCmLogScripts, t.getScreenX(), t.getScreenY());
+				}
+			}
+		});
+
+		this.miTeste.setOnAction(e -> {
+			//TODO Implementar deletar linha
+			/* Erro erro =
+			 this.tableCmLogScripts.getSelectionModel().getSelectedItem().getValue();
+			if (Install.alertYesAndNo("Are you sure that you want to delete the selected error?")) {
+				this.erroService.deleteErro(erro);
+				new Alert(AlertType.WARNING, "This function is not implemented!!", ButtonType.OK).showAndWait();
+			}*/
+		});
 
 		/**
 		 * choose define path

@@ -17,6 +17,14 @@ public class ErroService {
 	private ErroRepository repo;
 
 	/**
+	 * Delete selected error.
+	 * @param erro
+	 */
+	public void deleteErro(Erro erro) {
+		repo.delete(erro);
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */

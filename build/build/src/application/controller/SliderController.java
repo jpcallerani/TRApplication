@@ -79,7 +79,7 @@ public class SliderController implements Initializable {
 	private JFXButton btnSizingCalculate;
 
 	@FXML
-	private ImageView imgSfwCmSchema;
+	private ImageView imgTrSizingCalculate;
 
 	@FXML
 	private HBox hboxAbout;
@@ -129,7 +129,7 @@ public class SliderController implements Initializable {
 		TranslateTransition rotationAbout = Install.shakeTransition(imgAbout);
 		TranslateTransition rotationExit = Install.shakeTransition(imgExit);
 		TranslateTransition rotationCmLog = Install.shakeTransition(imgCmLogScripts);
-		TranslateTransition rotationSfwSchema = Install.shakeTransition(imgSfwCmSchema);
+		TranslateTransition rotationTrSizingCalculate = Install.shakeTransition(imgTrSizingCalculate);
 
 		firstMenu.setOnMouseEntered(e -> {
 			rotationOperations.play();
@@ -160,15 +160,19 @@ public class SliderController implements Initializable {
 		});
 
 		btnSizingCalculate.setOnMouseEntered(e -> {
-			rotationSfwSchema.play();
+			rotationTrSizingCalculate.play();
 			paneSfwCmSchema.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			btnSizingCalculate.setStyle("-fx-text-fill: #f2740b;");
 		});
 
 		btnSizingCalculate.setOnMouseExited(e -> {
-			rotationSfwSchema.pause();
+			rotationTrSizingCalculate.pause();
 			paneSfwCmSchema.setStyle("-fx-background-color: none");
 			btnSizingCalculate.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
+		});
+		
+		btnSizingCalculate.setOnMouseClicked( e-> {
+			Install.loadScene(enumTelas.FRM_SIZING_CALCULATE.getUrl());
 		});
 
 		btnAbout.setOnMouseEntered(e -> {

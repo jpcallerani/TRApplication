@@ -11,8 +11,7 @@
 }
 .vbox{
     -fx-background-color: #ffffff;
-    -fx-background-radius: 3.0px;
-}
+    -fx-background-radius: 3.0px;}
 .txt-color{
     -fx-text-fill: #999999;
 }

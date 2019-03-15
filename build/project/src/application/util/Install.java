@@ -6,13 +6,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.util.zip.ZipFile;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
@@ -32,6 +36,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,6 +66,7 @@ public class Install {
 	public static String filePackage;
 	public static String fileToBeExecutedFrom;
 	public static String fileToBeExecutedTo;
+	public static boolean isFromZip = false;
 
 	private static double xOffset = 0;
 	private static double yOffset = 0;
@@ -226,7 +234,6 @@ public class Install {
 		return fileCopy;
 	}
 
-
 	/**
 	 * Procura o arquivo no diretório selecionado
 	 * 
@@ -238,22 +245,70 @@ public class Install {
 	public static boolean findFile(String folder, String pfile) {
 		boolean fileFound = false;
 		pfile = pfile.substring(pfile.lastIndexOf("\\") + 1);
+		Charset CP866 = Charset.forName("CP866");
 		try {
-			String[] extensions = { "sql" };
+			String[] extensions = { "sql", "zip" };
 			boolean recursive = true;
 
 			Collection files = FileUtils.listFiles(new File(folder), extensions, recursive);
 
 			for (Iterator iterator = files.iterator(); iterator.hasNext();) {
 				File file = (File) iterator.next();
-				if (pfile.equalsIgnoreCase(file.getName())) {
-					Install.fileToBeExecutedFrom = file.getAbsolutePath();
-					fileFound = true;
-					break;
+				// find file inside zip.
+				if (file.getAbsolutePath().endsWith(".zip")) {
+					if (findInsideZipFile(new ZipFile(file, CP866), pfile, folder)) {
+						isFromZip = true;
+						fileFound = true;
+						break;
+					}
+				} else {
+					if (pfile.equalsIgnoreCase(file.getName())) {
+						Install.fileToBeExecutedFrom = file.getAbsolutePath();
+						isFromZip = false;
+						fileFound = true;
+						break;
+					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return fileFound;
+	}
+
+	/**
+	 * Método para procurar o arquivo do erro dentro do zip.
+	 * 
+	 * @param zip
+	 */
+	private static boolean findInsideZipFile(ZipFile zip, String pfile, String folder) {
+		boolean fileFound = false;
+		try {
+
+			Enumeration<? extends ZipEntry> entries = zip.entries();
+
+			while (entries.hasMoreElements()) {
+				ZipEntry entry = entries.nextElement();
+				if (!entry.isDirectory()) {
+					if (entry.getName().toUpperCase().contains(pfile.toUpperCase())) {
+						String entryFileName = entry.getName().substring(entry.getName().lastIndexOf("/") + 1,
+								entry.getName().length());
+						try (InputStream inputStream = zip.getInputStream(entry);
+								FileOutputStream outputStream = new FileOutputStream(
+										folder + File.separator + entryFileName);) {
+							int data = inputStream.read();
+							while (data != -1) {
+								outputStream.write(data);
+								data = inputStream.read();
+							}
+						}
+						Install.fileToBeExecutedFrom = folder + File.separator + entryFileName;
+						fileFound = true;
+					}
+				}
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("Error unzipping file " + zip, e);
 		}
 		return fileFound;
 	}
@@ -466,13 +521,23 @@ public class Install {
 	}
 
 	/**
-	 * Deleta pasta selecionada
+	 * Limpa pasta selecionada
 	 * 
 	 * @param path
 	 * @throws IOException
 	 */
-	public static void clearFolder(String pathname) throws IOException {
-		FileUtils.cleanDirectory(new File(pathname));
+	public static void clearFolder(String pathName) throws IOException {
+		FileUtils.cleanDirectory(new File(pathName));
+	}
+
+	/**
+	 * Delete pasta
+	 * 
+	 * @param pathName
+	 * @throws IOException
+	 */
+	public static void deleteFodler(String pathName) throws IOException {
+		FileUtils.deleteDirectory(new File(pathName));
 	}
 
 	/**
@@ -482,10 +547,10 @@ public class Install {
 	 */
 	public static StringBuilder readFile(String file) throws IOException {
 		StringBuilder fileContent = new StringBuilder();
-		LineIterator it = FileUtils.lineIterator(new File(file), "UTF-8");
+		LineIterator it = FileUtils.lineIterator(new File(file), "ISO-8859-1");
 		try {
 			while (it.hasNext()) {
-				fileContent.append(it.nextLine().toUpperCase() + "\n");
+				fileContent.append(it.nextLine() + "\n");
 			}
 		} finally {
 			LineIterator.closeQuietly(it);
@@ -530,5 +595,27 @@ public class Install {
 			}
 		}
 		return fileCreated;
+	}
+
+	/**
+	 * 
+	 * @param message
+	 * @return
+	 */
+	public static boolean alertYesAndNo(String message) {
+		boolean awnser = false;
+		final Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("ATENTION!");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.YES) {
+			awnser = true;
+		}
+		return awnser;
 	}
 }

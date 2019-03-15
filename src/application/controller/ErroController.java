@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Controller;
@@ -95,7 +94,8 @@ public class ErroController implements Initializable {
 		 * Executa o script selecionado na base;
 		 */
 		this.btnExec.setOnMouseClicked(e -> {
-			if (this.alertFindFile()) {
+			if (Install.alertYesAndNo("Are you sure that you want execute \n" + this.selectedErro.getObjeto() + "\n"
+					+ "in " + Install.username + "@" + Install.tns + "?")) {
 				this.openTaskErro();
 			}
 		});
@@ -191,28 +191,6 @@ public class ErroController implements Initializable {
 		this.txRM.setText(this.selectedErro.getRm());
 		this.txObjeto.setText(this.selectedErro.getObjeto());
 		this.txErro.setText(this.selectedErro.getErro());
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	private boolean alertFindFile() {
-		boolean awnser = false;
-		final Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("ATENTION!");
-		alert.setHeaderText(null);
-		alert.setContentText("Are you sure that you want execute \n" + this.selectedErro.getObjeto() + "\n" + "in "
-				+ Install.username + "@" + Install.tns + "?");
-
-		alert.getButtonTypes().clear();
-		alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.YES) {
-			awnser = true;
-		}
-		return awnser;
 	}
 
 	/*

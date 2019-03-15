@@ -73,7 +73,7 @@
                               <Font name="Prelo W01 Bold" size="11.0" />
                            </font>
                            <graphic>
-                              <ImageView fx:id="imgSfwCmSchema" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgTrSizingCalculate" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/images/baseline_arrow_right_alt_black_24dp.png" />
                                  </image>

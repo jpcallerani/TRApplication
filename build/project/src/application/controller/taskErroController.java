@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -194,8 +195,9 @@ public class taskErroController implements Initializable {
 						hboxFind.setDisable(false);
 						btnClose.setDisable(false);
 					} else {
-						if (Install.reWriteFile(new File(Install.fileToBeExecutedTo).getAbsolutePath(),
-								Install.readFile(new File(Install.fileToBeExecutedFrom).getAbsolutePath()))) {
+						if (Install.reWriteFile(new File(Install.fileToBeExecutedTo).getAbsolutePath(), 
+						    Install.readFile(new File(Install.fileToBeExecutedFrom).getAbsolutePath()))) {
+							FileUtils.forceDelete(new File(Install.fileToBeExecutedFrom));
 							Install.copyFile(Install.fileDefine, copyTo + "define.sql");
 							Install.createCharacterSetScripts(copyTo);
 							Install.createOrdemInstall(copyTo, writeOrdemInstall());
@@ -232,6 +234,9 @@ public class taskErroController implements Initializable {
 		th.start();
 	}
 
+	/**
+	 * 
+	 */
 	public void runExecWindows() {
 		taskWinInstall = new Task<Integer>() {
 			@Override

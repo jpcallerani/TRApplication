@@ -1,0 +1,1635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="frmSizingCalculate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SizingCalculateController">
+	<children>
+		<Pane fx:id="filtroSizingCalculate" layoutY="-5.0" prefHeight="764.0" prefWidth="65.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
+			<children>
+				<ImageView fx:id="btnHome" fitHeight="36.0" fitWidth="36.0" layoutX="15.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" styleClass="home">
+					<image>
+						<Image url="@../resources/images/home.png" />
+					</image>
+					<cursor>
+						<Cursor fx:constant="HAND" />
+					</cursor>
+				</ImageView>
+			</children>
+		</Pane>
+      <Accordion fx:id="accorSizing" layoutX="68.0" prefHeight="694.0" prefWidth="1119.0">
+        <panes>
+          <TitledPane fx:id="tpNucleoComum" animated="false" prefHeight="695.0" prefWidth="1061.0" text="0 - NÚCLEO COMUM" textFill="#f67f1c">
+            <content>
+              <AnchorPane fx:id="anchorQuestionario" minHeight="0.0" minWidth="0.0" prefHeight="647.0" prefWidth="1066.0">
+                     <children>
+                        <HBox layoutX="13.0" layoutY="14.0" prefHeight="48.0" prefWidth="1076.0" style="-fx-background-color: #f67f1c;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="49.0" prefWidth="92.0" text="ENTIDADE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="34.0" text="ID" textFill="WHITE" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="365.0" text="QUESTÃO" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="61.0" text="SIM/NÃO" textAlignment="CENTER" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="89.0" text="QTDE. INICIAL&#10;(Migração)" textAlignment="CENTER" textFill="WHITE" translateX="50.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="PERCENTUAL (%)&#10;CRESCIMENTO MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="60.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="QUANTIDADE MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="80.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxExportador" layoutX="20.0" layoutY="68.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PARCEIRO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl01" prefHeight="27.0" prefWidth="28.0" text="1" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de CNPJs Exportadores" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx01yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx01Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx01Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx01Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxImportador" layoutX="20.0" layoutY="101.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PARCEIRO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl02" prefHeight="27.0" prefWidth="28.0" text="2" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de CNPJs Importadores" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx02yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx02Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx02Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx02Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxClienteInter" layoutX="20.0" layoutY="133.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PARCEIRO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl34" prefHeight="27.0" prefWidth="28.0" text="34" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Clientes Internacionais" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx34yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx34Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx34Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="5.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx34Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxFabricante" layoutX="20.0" layoutY="164.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PARCEIRO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl03" prefHeight="27.0" prefWidth="28.0" text="3" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Fabricantes + Fornecedores Internacionais" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx03yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx03Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx03Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="5.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx03Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxParceiro" layoutX="20.0" layoutY="195.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PARCEIRO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl04" prefHeight="27.0" prefWidth="28.0" text="4" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Outros Parceiros (Agentes de Carga + Transportadoras + Despachantes + Bancos + Seguradoras, etc. )" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx04yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx04Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx04Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="5.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx04Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxItensInter" layoutX="21.0" layoutY="226.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PRODUTO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl05" prefHeight="27.0" prefWidth="28.0" text="5" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Itens, Peças ou Part-Numbers Importados" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx05yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx05Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx05Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="5.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx05Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxItensNac" layoutX="21.0" layoutY="257.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="PRODUTO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl20" prefHeight="27.0" prefWidth="28.0" text="20" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Itens, Peças ou Part-Numbers Nacionais" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx20yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx20Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx20Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="5.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx20Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxDespesa" layoutX="21.0" layoutY="289.0" prefHeight="27.0" prefWidth="1076.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="28.0" prefWidth="94.0" text="DESPESA">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl06" prefHeight="27.0" prefWidth="28.0" text="6" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Despesas, Custos e/ou Impostos Distintos (Ex. II+IPI+ICMS = 3 Despesas)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx06yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx06Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx06Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx06Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+               <font>
+                  <Font name="Prelo W01 Bold" size="16.0" />
+               </font>
+          </TitledPane>
+          <TitledPane animated="false" text="9/21 - IMPORTAÇÃO" textFill="#f67f1c">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="19.0" layoutY="12.0" prefHeight="48.0" prefWidth="1076.0" style="-fx-background-color: #f67f1c;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="49.0" prefWidth="92.0" text="ENTIDADE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="34.0" text="ID" textFill="WHITE" translateX="65.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="426.0" text="QUESTÃO" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="61.0" text="SIM/NÃO" textAlignment="CENTER" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="89.0" text="QTDE. INICIAL&#10;(Migração)" textAlignment="CENTER" textFill="WHITE" translateX="50.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="PERCENTUAL (%)&#10;CRESCIMENTO MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="60.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="QUANTIDADE MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="80.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="64.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="PEDIDO DE COMPRA (PO)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl07" prefHeight="27.0" prefWidth="28.0" text="7" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Ordens ou Pedidos de Compra (PO) de Importação" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx07yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx07Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx07Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx07Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="95.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="PEDIDO DE COMPRA (PO)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl08" prefHeight="27.0" prefWidth="28.0" text="8" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Itens por Ordem (PO)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx08yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx08Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx08Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx08Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="126.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="PEDIDO DE COMPRA (PO)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl09" prefHeight="27.0" prefWidth="28.0" text="9" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Remessas por Item de Ordem (PO)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx09yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx09Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx09Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx09Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="157.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="FATURA / INVOICE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl10" prefHeight="27.0" prefWidth="28.0" text="10" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Faturas ou Invoices de Importação" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx10yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx10Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx10Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx10Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="187.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="FATURA / INVOICE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl11" prefHeight="27.0" prefWidth="28.0" text="11" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Itens por Fatura" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx11yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx11Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx11Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx11Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="218.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="FATURA / INVOICE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl12" prefHeight="27.0" prefWidth="28.0" text="12" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="\% de Itens com controle de Serial Number, número de Lote ou Chassi" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx12yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx12Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx12Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx12Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="250.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="LICENÇA (LI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl13" prefHeight="27.0" prefWidth="28.0" text="13" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Licenças de Importação (LI)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx13yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx13Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx13Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx13Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="280.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="LICENÇA (LI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl14" prefHeight="27.0" prefWidth="28.0" text="14" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Itens por Licença (LI)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx14yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx14Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx14Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx14Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="311.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE (DI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl15" prefHeight="27.0" prefWidth="28.0" text="15" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Embarques (AWB, BL) ou Declarações de Importação (DI)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx15yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx15Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx15Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx15Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="343.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE (DI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl16" prefHeight="27.0" prefWidth="28.0" text="16" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Fornecedores ou Fabricantes Diferentes num mesmo Embarque" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx16yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx16Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx16Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx16Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="376.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE (DI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl17" prefHeight="27.0" prefWidth="28.0" text="17" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Itens, Peças ou Part-Numbers num mesmo Embarque" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx17yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx17Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx17Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx17Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="409.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE (DI)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl18" prefHeight="27.0" prefWidth="28.0" text="18" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de NCMs Diferentes num mesmo Embarque" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx18yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx18Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx18Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx18Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="441.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DESPESA">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl19" prefHeight="27.0" prefWidth="28.0" text="19" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Despesas, Custos e/ou Impostos Distintos, por Embarque (Ex. II+IPI+ICMS = 3 Despesas)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx19yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx19Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx19Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx19Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+               <font>
+                  <Font name="Prelo W01 Bold" size="16.0" />
+               </font>
+          </TitledPane>
+          <TitledPane animated="false" text="2 - EXPORTAÇÃO" textFill="#f67f1c">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="16.0" layoutY="13.0" prefHeight="48.0" prefWidth="1076.0" style="-fx-background-color: #f67f1c;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="49.0" prefWidth="92.0" text="ENTIDADE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="34.0" text="ID" textFill="WHITE" translateX="65.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="426.0" text="QUESTÃO" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="51.0" prefWidth="61.0" text="SIM/NÃO" textAlignment="CENTER" textFill="WHITE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="89.0" text="QTDE. INICIAL&#10;(Migração)" textAlignment="CENTER" textFill="WHITE" translateX="50.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="PERCENTUAL (%)&#10;CRESCIMENTO MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="60.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="145.0" text="QUANTIDADE MENSAL" textAlignment="CENTER" textFill="WHITE" translateX="80.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="66.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl21" prefHeight="27.0" prefWidth="28.0" text="21" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Embarques (AWB, BL) ou Processos de Exportação" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx21yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx21Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx21Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx21Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="100.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl22" prefHeight="27.0" prefWidth="28.0" text="22" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Itens por Embarque ou Fatura" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx22yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx22Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx22Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx22Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="134.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBARQUE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl23" prefHeight="27.0" prefWidth="28.0" text="23" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média de Subitens por Item de Embarque ou Fatura" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx23yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx23Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx23Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx23Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="167.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="FATURA / INVOICE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl24" prefHeight="27.0" prefWidth="28.0" text="24" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Faturas ou Invoices de Exportação" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx24yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx24Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx24Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx24Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="200.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="SENF">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl25" prefHeight="27.0" prefWidth="28.0" text="25" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Emite Solic. Emissão de Nota Fiscal de Saída - SENF?" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx25yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx25Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx25Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx25Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="233.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="NOTA FISCAL (SAÍDA)">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl26" prefHeight="27.0" prefWidth="28.0" text="26" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Emite Nota Fiscal de Saída?" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx26yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx26Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx26Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx26Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="266.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="RE/RES">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl27" prefHeight="27.0" prefWidth="28.0" text="27" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Registros de Exportação - RE/RES" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx27yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx27Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx27Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx27Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="298.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DSE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl28" prefHeight="27.0" prefWidth="28.0" text="28" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Declarações Simplificadas de Exportação - DSE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx28yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx28Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx28Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx28Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="331.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DDE">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl29" prefHeight="27.0" prefWidth="28.0" text="29" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Declarações de Despacho de Exportação - DDE" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx29yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx29Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx29Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx29Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="366.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="EMBALAGEM">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl30" prefHeight="27.0" prefWidth="28.0" text="30" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Média Mensal de Embalagens por Embarque ou Fatura" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx30yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx30Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx30Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx30Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="399.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DESPESA">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl31" prefHeight="27.0" prefWidth="28.0" text="31" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Qtde. de Despesas, Custos e/ou Impostos Distintos, por Embarque (Ex. Armazenagem+Frete+Seguro = 3 Despesas)" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx31yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx31Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx31Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx31Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="432.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DOCUMENTO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl32" prefHeight="27.0" prefWidth="28.0" text="32" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Emite Certificado de Origem?" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx32yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx32Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx32Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx32Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="22.0" layoutY="465.0" prefHeight="27.0" prefWidth="1073.0">
+                           <children>
+                              <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="154.0" text="DOCUMENTO">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lbl33" prefHeight="27.0" prefWidth="28.0" text="33" translateX="10.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" prefWidth="368.0" text="Emite Conhecimento de Embarque (Instrução / Confirmação, etc.)?" translateX="25.0">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="tx33yesno" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="S" translateX="28.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx33Inicial" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="50.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx33Percentual" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="70.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tx33Mensal" alignment="CENTER" prefHeight="27.0" prefWidth="106.0" text="0.00" translateX="130.0" unFocusColor="#f67f1c">
+                                 <font>
+                                    <Font name="Prelo W01 Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+               <font>
+                  <Font name="Prelo W01 Bold" size="16.0" />
+               </font>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Pane fx:id="paneExecSizing" layoutX="65.0" layoutY="694.0" prefHeight="62.0" prefWidth="1119.0">
+         <children>
+            <JFXButton fx:id="btnExecSizing" buttonType="RAISED" layoutX="908.0" layoutY="7.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="GENERATE SIZING" textFill="WHITE" viewOrder="3.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Prelo W01 Bold" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+	</children>
+</AnchorPane>
