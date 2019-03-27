@@ -304,15 +304,22 @@ public class taskErroController implements Initializable {
 	 * @throws IOException
 	 */
 	private List<String> findVariableError() throws IOException {
+		//
 		List<String> erroVariavel = new ArrayList<>();
+		//
 		List<String> scriptVariavel = new ArrayList<>();
+		//
 		StringBuilder defineVariable = new StringBuilder();
+		
 		// find by oracle variables
 		Pattern p = Pattern.compile("\\&&(.*?)\\s");
+		
 		// read the files to check incompatible variables
 		StringBuilder fileContent = Install.readFile(Install.fileToBeExecutedFrom);
+		
 		// replace all non character minus &&
 		fileContent = new StringBuilder(fileContent.toString().replaceAll("[^\\w^&]", " "));
+		
 		// find variables
 		Matcher m1 = p.matcher(fileContent.toString());
 		while (m1.find()) {
