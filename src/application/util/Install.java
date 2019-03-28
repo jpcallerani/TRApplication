@@ -586,6 +586,7 @@ public class Install {
 
 			fileCreated = true;
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw e;
 		} finally {
 			try {

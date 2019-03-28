@@ -129,10 +129,11 @@ public class LoginUIController implements Initializable {
 						stage.addEventHandler(WindowEvent.WINDOW_SHOWING, new EventHandler<WindowEvent>() {
 							@Override
 							public void handle(WindowEvent window) {
-								if (!txUsuario.getText().contains("_USER") && !txUsuario.getText().contains("_user")) {
-									while (!returnCodSistema()) {
-									}
-								}
+								DatabaseConnection con = new DatabaseConnection();
+								con.Connect();
+								if (!con.returnCodFromDatabase(txUsuario.getText())) {
+									returnCodSistema();
+								} 
 							}
 						});
 						stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
@@ -176,7 +177,7 @@ public class LoginUIController implements Initializable {
 	private void close_app(MouseEvent event) {
 		System.exit(0);
 	}
-
+	
 	/**
 	 * Guardo o código sistema selecionado pelo usuário;
 	 * 
