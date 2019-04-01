@@ -167,7 +167,7 @@ public class DatabaseConnection {
 	public boolean returnCodFromDatabase(String username) {
 		boolean resposta = true;
 		try {
-			ResultSet rs = this.Query("select cod_sistema from sfw_cm_schema where s_schema_owner = '" + username + "' and rownum = 1");
+			ResultSet rs = this.Query("select cod_sistema from sfw_cm_schema where s_schema_owner = upper('" + username + "') and rownum = 1");
 			while (rs.next()) {
 				Install.cod_sistema = rs.getString("cod_sistema");
 			}
