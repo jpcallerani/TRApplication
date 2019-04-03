@@ -7,7 +7,9 @@ public enum enumTelas {
 	 FRM_SIZING_CALCULATE("/gui/frmSizingCalculate.fxml"),
 	 FRM_DATABASE_COMPARISON("/gui/frmSizingCalculate.fxml"),
 	 LOGIN("/gui/Login.fxml"),
-	 MENU_BAR("/gui/menuBar.fxml");
+	 MENU_BAR("/gui/menuBar.fxml"),
+	 COMPARE("/gui/frmCompare.fxml");
+	
 	
 	private String url; 	 
 

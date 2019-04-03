@@ -104,6 +104,9 @@ public class SliderController implements Initializable {
 
 	@FXML
 	private ImageView imgExit;
+		
+	@FXML
+	private JFXButton btnCompare;
 
 	Map<VBox, VBox> map = new HashMap<VBox, VBox>();
 
@@ -214,6 +217,28 @@ public class SliderController implements Initializable {
 			timeline.setOnFinished((ae) -> System.exit(1));
 			timeline.play();
 		});
+		
+		
+		
+		//
+	
+		
+		btnCompare.setOnMouseClicked(e -> {
+			Install.loadScene(enumTelas.COMPARE.getUrl());
+		});
+		//
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**

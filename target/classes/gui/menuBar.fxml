@@ -115,6 +115,30 @@
       </VBox>
       <VBox prefHeight="85.0" prefWidth="230.0">
          <children>
+            <HBox fx:id="hboxExt1" prefHeight="90.0" prefWidth="228.0">
+               <children>
+                  <Pane fx:id="paneExit1" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="btnCompare" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="Compare" textFill="#403a35">
+                     <font>
+                        <Font name="Prelo W01 Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="imgExit1" fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" scaleZ="2.0" translateX="-10.0">
+                           <image>
+                              <Image url="@../application/util/compareLogo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="85.0" prefWidth="230.0">
+         <children>
             <HBox fx:id="hboxExt" prefHeight="90.0" prefWidth="228.0">
                <children>
                   <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
