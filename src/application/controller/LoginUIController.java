@@ -129,10 +129,12 @@ public class LoginUIController implements Initializable {
 						stage.addEventHandler(WindowEvent.WINDOW_SHOWING, new EventHandler<WindowEvent>() {
 							@Override
 							public void handle(WindowEvent window) {
-								DatabaseConnection con = new DatabaseConnection();
-								con.Connect();
-								if (!con.returnCodFromDatabase(txUsuario.getText())) {
-									returnCodSistema();
+								if (!txUsuario.getText().toUpperCase().equalsIgnoreCase("DA_USER")) {
+									DatabaseConnection con = new DatabaseConnection();
+									con.Connect();
+									if (!con.returnCodFromDatabase(txUsuario.getText())) {
+										returnCodSistema();
+									} 
 								} 
 							}
 						});
