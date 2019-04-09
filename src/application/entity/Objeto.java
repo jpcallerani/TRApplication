@@ -1,15 +1,30 @@
-package application.controller;
+package application.entity;
 
-public class Objeto {
+import java.io.Serializable;
+
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
+public class Objeto extends RecursiveTreeObject<Objeto>  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String nome;
 	String codSistema;
 	String tipo;
 	String erro;
-	String codigo;
-
+	String codigo;	
 	String id;
-	public Objeto () {
 	
+	public Objeto() {
+		
+	}
+	
+	public Objeto(String nome, String tipo, String erro) {
+		super();
+		this.nome = nome;
+		this.tipo = tipo;
+		this.erro = erro;
 	}
 
 	public String getNome() {
@@ -51,10 +66,7 @@ public class Objeto {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	
 
-	
-	
 	//novo
 	public String getId() {
 		return id;
