@@ -117,9 +117,7 @@ public class taskErroController implements Initializable {
 				txLog.setCursor(Cursor.WAIT);
 
 				// valida se o arquivo foi encontrado no caminho informado.
-				validFile = Install.findFile(Install.filePackage, erro.getObjeto());
-
-				if (validFile) {
+				if (Install.findFile(Install.filePackage, erro.getObjeto()) != null) {
 					/**
 					 * Se achou o arquivo, chama o método para executalo no banco.
 					 */

@@ -4,7 +4,11 @@
 package application.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +17,25 @@ import java.util.ResourceBundle;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.netbeans.lib.cvsclient.command.CommandAbortedException;
+import org.netbeans.lib.cvsclient.command.CommandException;
+import org.netbeans.lib.cvsclient.connection.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -27,13 +45,12 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import animatefx.animation.BounceInDown;
-import animatefx.animation.FadeIn;
-import application.entity.Erro;
 import application.entity.Objeto;
-import application.service.ErroService;
+import application.util.CVSUtil;
 import application.util.Install;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import gui.enumeration.enumTelas;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -41,10 +58,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -60,21 +74,14 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
-
-//por hora foi comentado a parte de pesquisar
 
 @Controller
 public class CompareScriptsController implements Initializable {
-
-	private ErroService								erroService;
 
 	@FXML
 	private AnchorPane								frmCompare;
@@ -109,7 +116,6 @@ public class CompareScriptsController implements Initializable {
 	@FXML
 	private JFXTextField							txFolder;
 
-	// alterei a função do botao define para buscar um arquivo xml e le-lo
 	@FXML
 	private FontAwesomeIcon						btnDefine;
 
@@ -126,14 +132,12 @@ public class CompareScriptsController implements Initializable {
 	private Tooltip										ttDefine;
 
 	@FXML
-	private Label											labelNome;					// username vira nome
+	private Label											labelNome;					// username
+																												// vira
+																												// nome
 
 	@FXML
 	private JFXTextField							txNome;
-
-	private ObservableList<Erro>			data;
-
-	private TreeItem<Objeto>					root;
 
 	@FXML
 	private ContextMenu								cmDeletaLinha;
@@ -147,8 +151,6 @@ public class CompareScriptsController implements Initializable {
 
 	@FXML
 	private JFXTextField							txTipo;
-
-	//
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -167,7 +169,6 @@ public class CompareScriptsController implements Initializable {
 		this.btnDefine.setOnMouseClicked(e -> {
 			// ao selecionar o arquivo .xml irá lê-lo
 			List<Objeto> objetos = null;
-
 			javafx.scene.Node source = (javafx.scene.Node) e.getSource();
 			Stage stage = (Stage) source.getScene().getWindow();
 			FileChooser fileChooser = new FileChooser();
@@ -178,11 +179,23 @@ public class CompareScriptsController implements Initializable {
 				this.txDefine.setText(selectedFile.getAbsolutePath());
 
 				//// funcao para ler o xml, está na classe scriptRead
-				objetos = this.lerXML(selectedFile);
+				if (FilenameUtils.getExtension(selectedFile.getAbsolutePath()).equalsIgnoreCase("xml")) {
+					objetos = this.lerXML(selectedFile);
+				} else {
+					objetos = this.LerExcel(selectedFile);
+				}
 				/////
+				JFXTreeTableColumn<Objeto, String> colCodSistema = new JFXTreeTableColumn<>("Sistema");
+				colCodSistema.setPrefWidth(100);
+				colCodSistema.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+						return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
+					}
+				});
 
 				JFXTreeTableColumn<Objeto, String> colNome = new JFXTreeTableColumn<>("Nome do Objeto");
-				colNome.setPrefWidth(400);
+				colNome.setPrefWidth(350);
 				colNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
@@ -191,7 +204,7 @@ public class CompareScriptsController implements Initializable {
 				});
 
 				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Erro");
-				colErro.setPrefWidth(250);
+				colErro.setPrefWidth(200);
 				colErro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
@@ -200,7 +213,7 @@ public class CompareScriptsController implements Initializable {
 				});
 
 				JFXTreeTableColumn<Objeto, String> colTipo = new JFXTreeTableColumn<>("Tipo");
-				colTipo.setPrefWidth(350);
+				colTipo.setPrefWidth(300);
 				colTipo.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
@@ -217,7 +230,7 @@ public class CompareScriptsController implements Initializable {
 				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos, RecursiveTreeObject::getChildren);
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
-				tableCompare.getColumns().setAll(colNome, colErro, colTipo);
+				tableCompare.getColumns().setAll(colCodSistema,colNome, colErro, colTipo);
 
 			}
 
@@ -307,10 +320,17 @@ public class CompareScriptsController implements Initializable {
 		List<Objeto> v_list_usuario = new ArrayList<Objeto>();
 
 		try {
+			//
+			InputStream inputStream = new FileInputStream(file);
+			Reader reader = new InputStreamReader(inputStream, "UTF-8");
+			InputSource is = new InputSource(reader);
+			is.setEncoding("UTF-8");
+			//
+
 			// processo para ler
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(file);
+			Document doc = dBuilder.parse(is);
 			doc.getDocumentElement().normalize();
 
 			// obtem os nodes para le-los, versao para obter o id e nodes para os
@@ -354,14 +374,14 @@ public class CompareScriptsController implements Initializable {
 					objeto1.setTipo(tipo);
 					objeto1.setErro(erro);
 					objeto1.setCodigo(codigo);
-
+					//
 					v_list_usuario.add(objeto1);
 
 				}
 			}
 
 		} catch (Exception e) {
-			System.out.println("!!!!!!!!  Exception while reading xml file :" + e.getMessage());
+			new Alert(AlertType.ERROR, "XML invalid format!! -> " + e.getMessage(), ButtonType.OK).showAndWait();
 		}
 		return v_list_usuario;
 
@@ -416,12 +436,65 @@ public class CompareScriptsController implements Initializable {
 			@Override
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);
-				System.out.println("######################################################");
-				System.out.println("##### CodSistema -> " + objeto.getCodSistema() + "####");
-				System.out.println("##### Nome       -> " + objeto.getNome() + "      ####");
-				System.out.println("##### Erro       -> " + objeto.getErro() + "      ####");
-				System.out.println("##### Tipo 			 -> " + objeto.getTipo() + "      ####");
-				System.out.println("######@###############################################");;
+				try {
+					// Cria arquivo de origem para comparação;
+					File compareFolder = new File("Compare");
+
+					// Cria a pasta caso não exista;
+					if (!compareFolder.exists()) {
+						compareFolder.mkdirs();
+					} else {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								try {
+									FileUtils.forceDelete(compareFolder);
+								} catch (IOException e) {
+								}
+							}
+						});					
+					}
+
+					// Cria o arquivo de destino vindo pelo xml ou excel;
+					File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
+
+					// Se o arquivo foi do XML/XLS foi criado com sucesso continua a execução;
+					Install.createFile(toFile, objeto.getCodigo());
+
+					// Busca arquivo CVS;
+					File fromFile = findFileCVS(objeto);
+
+					// se encontrou o arquivo faz o checkout;
+					if (fromFile != null) {
+
+						try {
+							File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
+							
+							File examDiff = new File("Diff");
+							
+							 Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
+							
+						} catch (Exception e) {
+							new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+						}
+
+					} else {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+							}
+						});
+					}
+				} catch (Exception e) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
+						}
+					});
+				}
+
 				return null;
 			}
 
@@ -440,5 +513,144 @@ public class CompareScriptsController implements Initializable {
 		Thread th = new Thread(task);
 		th.setDaemon(true);
 		th.start();
+	}
+
+	/**
+	 * Método para ler Excel
+	 * 
+	 * @param arquivo
+	 * @return
+	 * @throws IOException
+	 * @throws EncryptedDocumentException
+	 * @throws InvalidFormatException
+	 */
+	private List<Objeto> LerExcel(File arquivo) {
+
+		List<Objeto> objetos = new ArrayList<>();
+
+		try {
+			// Creating a Workbook from an Excel file (.xls or .xlsx)
+			Workbook workbook = WorkbookFactory.create(arquivo);
+
+			// Getting the Sheet at index zero
+			Sheet sheet = workbook.getSheetAt(0);
+
+			// Create a DataFormatter to format and get each cell's value as String
+			DataFormatter dataFormatter = new DataFormatter();
+
+			String cellValue;
+			for (Row row : sheet) {
+				Objeto obj = new Objeto();
+				for (Cell cell : row) {
+					if (row.getRowNum() > 0) {
+						if (cell.getColumnIndex() > 0) {
+							cellValue = dataFormatter.formatCellValue(cell);
+							// get cod sistema;
+							if (cell.getColumnIndex() == 1) {
+								obj.setId(cellValue);
+								// get tipo objeto;
+							} else if (cell.getColumnIndex() == 2) {
+								obj.setTipo(cellValue);
+								// get nome objeto;
+							} else if (cell.getColumnIndex() == 3) {
+								obj.setNome(cellValue);
+								// get erro objeto;
+							} else if (cell.getColumnIndex() == 4) {
+								obj.setErro(cellValue);
+								// get código objeto;
+							} else if (cell.getColumnIndex() == 5) {
+								obj.setCodigo(cellValue);
+							}
+						}
+					} else {
+						if (cell.getColumnIndex() == 1) {
+							cellValue = dataFormatter.formatCellValue(cell);
+							if (!cellValue.toUpperCase().contains("OWNER")) {
+								throw new Exception();
+							}
+						}
+					}
+				}
+				objetos.add(obj);
+			}
+		} catch (Exception e) {
+			new Alert(AlertType.ERROR, "Excel invalid format!! -> " + e.getMessage(), ButtonType.OK).showAndWait();
+		}
+		return objetos;
+	}
+
+	/**
+	 * Busca o ,v dentro do repositório do CVS;
+	 * 
+	 * @return
+	 */
+	private File findFileCVS(Objeto objeto) {
+		File arquivoEncontrado = null;
+		String repositorio = "";
+		try {
+
+			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\" + Install.returnModuloFromCodSistema(objeto.getCodSistema());
+
+			// Busca o arquivo na pasta PLSQL do CVS
+			arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL", objeto.getNome() + ".sql,v");
+
+			// se não achar busca na pasta de Integrações
+			if (arquivoEncontrado == null) {
+				arquivoEncontrado = Install.findFile(repositorio + "\\Integracoes", objeto.getNome() + ".sql,v");
+			}
+
+			// se não achar busca na pasta de Interfaces
+			if (arquivoEncontrado == null) {
+				arquivoEncontrado = Install.findFile(repositorio + "\\Interfaces", objeto.getNome() + ".sql,v");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return arquivoEncontrado;
+	}
+
+	/**
+	 * 
+	 * @param arquivo
+	 * @throws Exception
+	 * @throws CommandException
+	 * @throws CommandAbortedException
+	 */
+	private File checkoutFileFromCVS(File arquivo, Objeto objeto) throws CommandAbortedException, CommandException, Exception {
+
+		File arquivoEncontrado = null;
+
+		// Monta o CVSRoot;
+		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/" + Install.returnRepoFromCodSistema(objeto.getCodSistema());
+
+		// Cria pasta onde serão feitos os checkouts;
+		File temp = new File("temp");
+		if (!temp.exists()) {
+			temp.mkdirs();
+		}
+
+		//
+		CVSUtil cvs = new CVSUtil(cvsRoot, temp.getAbsolutePath(), "SOFTWAYSA2014");
+
+		// monta arquivo para ser feito o checkout;
+		String arquivoCheckout = arquivo.getAbsolutePath().substring(arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())), arquivo.getAbsolutePath().length() - 2);
+		cvs.checkOut(arquivoCheckout, objeto.getId());
+
+		// busca se o arquivo foi baixado com sucesso;
+		arquivoEncontrado = Install.findFile(temp.getAbsolutePath(), objeto.getNome().toLowerCase() + ".sql");
+		
+		// Caminho do arquivo destino
+		File arquivoDestino = new File("compare\\" + objeto.getNome().toLowerCase() + "_VB.sql");
+
+		// Copia a pasta do checkout para pasta de compare;
+		Install.copyFile(arquivoEncontrado.getAbsolutePath(), arquivoDestino.getAbsolutePath());
+
+		// limpa a pasta de checkout;
+		try {
+			FileUtils.forceDelete(temp);
+		} catch (Exception e) {
+		}
+
+		return arquivoDestino;
 	}
 }

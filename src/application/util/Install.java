@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
+import java.io.Writer;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -37,8 +41,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -54,22 +58,22 @@ import javafx.util.Duration;
 
 public class Install {
 
-	public static String username;
-	public static String password;
-	public static String tns;
-	public static String cod_sistema = "";
-	public static String url;
-	public static String driver = "oracle.jdbc.driver.OracleDriver";
-	public static Stage mainStage;
-	public static AnchorPane mainRoot;
-	public static String fileDefine;
-	public static String filePackage;
-	public static String fileToBeExecutedFrom;
-	public static String fileToBeExecutedTo;
-	public static boolean isFromZip = false;
+	public static String			username;
+	public static String			password;
+	public static String			tns;
+	public static String			cod_sistema	= "";
+	public static String			url;
+	public static String			driver			= "oracle.jdbc.driver.OracleDriver";
+	public static Stage				mainStage;
+	public static AnchorPane	mainRoot;
+	public static String			fileDefine;
+	public static String			filePackage;
+	public static String			fileToBeExecutedFrom;
+	public static String			fileToBeExecutedTo;
+	public static boolean			isFromZip		= false;
 
-	private static double xOffset = 0;
-	private static double yOffset = 0;
+	private static double			xOffset			= 0;
+	private static double			yOffset			= 0;
 
 	/**
 	 * põe a tela em status de load;
@@ -117,8 +121,7 @@ public class Install {
 	 * @return
 	 */
 	public static Timeline blinkTranstition(Node node) {
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), evt -> node.setVisible(false)),
-				new KeyFrame(Duration.seconds(0.1), evt -> node.setVisible(true)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), evt -> node.setVisible(false)), new KeyFrame(Duration.seconds(0.1), evt -> node.setVisible(true)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		return timeline;
 	}
@@ -205,10 +208,12 @@ public class Install {
 	/**
 	 * Função para copiar um arquivo.
 	 * 
-	 * @param in  Arquivo de entrada.
-	 * @param out Arquivo de saída.
+	 * @param in
+	 *          Arquivo de entrada.
+	 * @param out
+	 *          Arquivo de saída.
 	 * @throws IOException
-	 * @throws             java.io.IOException
+	 * @throws java.io.IOException
 	 */
 	@SuppressWarnings("resource")
 	public static boolean copyFile(String in, String out) throws IOException {
@@ -242,12 +247,12 @@ public class Install {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("rawtypes")
-	public static boolean findFile(String folder, String pfile) {
-		boolean fileFound = false;
+	public static File findFile(String folder, String pfile) {
+		File arquivoEncontrado = null;
 		pfile = pfile.substring(pfile.lastIndexOf("\\") + 1);
 		Charset CP866 = Charset.forName("CP866");
 		try {
-			String[] extensions = { "sql", "zip" };
+			String[] extensions = {"sql", "zip", "sql,v"};
 			boolean recursive = true;
 
 			Collection files = FileUtils.listFiles(new File(folder), extensions, recursive);
@@ -258,14 +263,12 @@ public class Install {
 				if (file.getAbsolutePath().endsWith(".zip")) {
 					if (findInsideZipFile(new ZipFile(file, CP866), pfile, folder)) {
 						isFromZip = true;
-						fileFound = true;
 						break;
 					}
 				} else {
-					if (pfile.equalsIgnoreCase(file.getName())) {
-						Install.fileToBeExecutedFrom = file.getAbsolutePath();
+					if (pfile.toLowerCase().equalsIgnoreCase(file.getName().toLowerCase())) {
+						arquivoEncontrado = file;
 						isFromZip = false;
-						fileFound = true;
 						break;
 					}
 				}
@@ -273,7 +276,8 @@ public class Install {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return fileFound;
+		Install.fileToBeExecutedFrom = arquivoEncontrado.getAbsolutePath();
+		return arquivoEncontrado;
 	}
 
 	/**
@@ -291,11 +295,8 @@ public class Install {
 				ZipEntry entry = entries.nextElement();
 				if (!entry.isDirectory()) {
 					if (entry.getName().toUpperCase().contains(pfile.toUpperCase())) {
-						String entryFileName = entry.getName().substring(entry.getName().lastIndexOf("/") + 1,
-								entry.getName().length());
-						try (InputStream inputStream = zip.getInputStream(entry);
-								FileOutputStream outputStream = new FileOutputStream(
-										folder + File.separator + entryFileName);) {
+						String entryFileName = entry.getName().substring(entry.getName().lastIndexOf("/") + 1, entry.getName().length());
+						try (InputStream inputStream = zip.getInputStream(entry); FileOutputStream outputStream = new FileOutputStream(folder + File.separator + entryFileName);) {
 							int data = inputStream.read();
 							while (data != -1) {
 								outputStream.write(data);
@@ -576,8 +577,7 @@ public class Install {
 			}
 			v_bufferedwriter_startinstall = new BufferedWriter(new FileWriter(v_file_startinstall));
 
-			content = new StringBuilder(
-					content.toString().replaceAll("&&VERSAO_ATUAL\\w*?.*?\\'", "EXECUTED_BY_SYSTEM'"));
+			content = new StringBuilder(content.toString().replaceAll("&&VERSAO_ATUAL\\w*?.*?\\'", "EXECUTED_BY_SYSTEM'"));
 			v_bufferedwriter_startinstall.write(content.toString());
 			v_bufferedwriter_startinstall.newLine();
 			v_bufferedwriter_startinstall.newLine();
@@ -618,5 +618,95 @@ public class Install {
 			awnser = true;
 		}
 		return awnser;
+	}
+
+	/**
+	 * escreve arquivo
+	 */
+	public void writeFile(File arquivo, String codigo) {
+		RandomAccessFile stream;
+		FileChannel channel;
+		try {
+			stream = new RandomAccessFile(arquivo, "rw");
+			channel = stream.getChannel();
+			String value = "Hello";
+			byte[] strBytes = value.getBytes();
+			ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
+			buffer.put(strBytes);
+			buffer.flip();
+			channel.write(buffer);
+			stream.close();
+			channel.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * retorna o módulo do sistema a partir do codSistema
+	 * 
+	 * @param codSistema
+	 * @return
+	 */
+	public static String returnModuloFromCodSistema(String codSistema) {
+		String modulo = "";
+
+		if (codSistema.equalsIgnoreCase("0")) {
+			modulo = "UNI_SoftComexBD";
+		} else if (codSistema.equalsIgnoreCase("2")) {
+			modulo = "UNI_ExportSYSBD";
+		} else if (codSistema.equalsIgnoreCase("3")) {
+			modulo = "UNI_DrawbackSYSBD";
+		} else if (codSistema.equalsIgnoreCase("6")) {
+			modulo = "UNI_RecofSYSBD";
+		} else if (codSistema.equalsIgnoreCase("9")) {
+			modulo = "UNI_ImportSYSBD";
+		} else if (codSistema.equalsIgnoreCase("21")) {
+			modulo = "UNI_BrokerSYSBD";
+		} else if (codSistema.equalsIgnoreCase("500")) {
+			modulo = "UNI_InOutSYSBD";
+		}
+		return modulo;
+	}
+
+	/**
+	 * retorna o repositório do sistema a partir do codSistema
+	 * 
+	 * @param codSistema
+	 * @return
+	 */
+	public static String returnRepoFromCodSistema(String codSistema) {
+		String repositorio = "";
+
+		if (codSistema.equalsIgnoreCase("0")) {
+			repositorio = "repositorio_classes_softway.cvs";
+		} else if (codSistema.equalsIgnoreCase("2")) {
+			repositorio = "excvsrep";
+		} else if (codSistema.equalsIgnoreCase("3")) {
+			repositorio = "dbcvsrep";
+		} else if (codSistema.equalsIgnoreCase("6")) {
+			repositorio = "Repositorio_RegEsp.cvs";
+		} else if (codSistema.equalsIgnoreCase("9")) {
+			repositorio = "iscvsrep";
+		} else if (codSistema.equalsIgnoreCase("21")) {
+			repositorio = "bscvsrep";
+		} else if (codSistema.equalsIgnoreCase("500")) {
+			repositorio = "integracao_cvs";
+		}
+		return repositorio;
+	}
+
+	/**
+	 * Cria o arquivo fisicamente na máquina;
+	 * 
+	 * @throws IOException
+	 */
+	public static void createFile(File arquivo, String conteudo) throws IOException {
+		if (arquivo.exists()) {
+			arquivo.delete();
+		}
+		Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo), "ISO-8859-1"));
+		out.write(conteudo);
+		out.close();
 	}
 }
