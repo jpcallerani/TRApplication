@@ -276,7 +276,9 @@ public class Install {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Install.fileToBeExecutedFrom = arquivoEncontrado.getAbsolutePath();
+		if (arquivoEncontrado != null) {
+			Install.fileToBeExecutedFrom = arquivoEncontrado.getAbsolutePath();
+		}
 		return arquivoEncontrado;
 	}
 

@@ -29,7 +29,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.netbeans.lib.cvsclient.command.CommandAbortedException;
 import org.netbeans.lib.cvsclient.command.CommandException;
-import org.netbeans.lib.cvsclient.connection.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -156,6 +155,20 @@ public class CompareScriptsController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		// Cria arquivo de origem para comparação;
+		File compareFolder = new File("Compare");
+
+		// Cria a pasta caso não exista;
+		if (!compareFolder.exists()) {
+			compareFolder.mkdirs();
+		} else {
+			try {
+				FileUtils.forceDelete(compareFolder);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+
 		this.tableCompare.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
 			@Override
@@ -230,7 +243,7 @@ public class CompareScriptsController implements Initializable {
 				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos, RecursiveTreeObject::getChildren);
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
-				tableCompare.getColumns().setAll(colCodSistema,colNome, colErro, colTipo);
+				tableCompare.getColumns().setAll(colCodSistema, colNome, colErro, colTipo);
 
 			}
 
@@ -437,52 +450,51 @@ public class CompareScriptsController implements Initializable {
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);
 				try {
-					// Cria arquivo de origem para comparação;
-					File compareFolder = new File("Compare");
+					File cvs = new File("W:");
+					if (cvs.exists()) {
+						// Busca arquivo CVS;
+						File fromFile = findFileCVS(objeto);
 
-					// Cria a pasta caso não exista;
-					if (!compareFolder.exists()) {
-						compareFolder.mkdirs();
-					} else {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								try {
-									FileUtils.forceDelete(compareFolder);
-								} catch (IOException e) {
-								}
+						// se encontrou o arquivo faz o checkout;
+						if (fromFile != null) {
+
+							try {
+								// Cria arquivo de origem para comparação;
+								File compareFolder = new File("Compare");
+
+								// Cria o arquivo de destino vindo pelo xml ou excel;
+								File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
+
+								// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
+								// execução;
+								Install.createFile(toFile, objeto.getCodigo());
+
+								// Baixa o arquivo do CVS;
+								File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
+
+								// Chama o examdiff para execução do compare;
+								File examDiff = new File("Diff");
+								//
+								Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
+								//
+
+							} catch (Exception e) {
+								new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
 							}
-						});					
-					}
 
-					// Cria o arquivo de destino vindo pelo xml ou excel;
-					File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
-
-					// Se o arquivo foi do XML/XLS foi criado com sucesso continua a execução;
-					Install.createFile(toFile, objeto.getCodigo());
-
-					// Busca arquivo CVS;
-					File fromFile = findFileCVS(objeto);
-
-					// se encontrou o arquivo faz o checkout;
-					if (fromFile != null) {
-
-						try {
-							File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
-							
-							File examDiff = new File("Diff");
-							
-							 Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
-							
-						} catch (Exception e) {
-							new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+						} else {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+								}
+							});
 						}
-
 					} else {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+								new Alert(AlertType.ERROR, "CVS unit not mapped", ButtonType.OK).showAndWait();
 							}
 						});
 					}
@@ -638,7 +650,7 @@ public class CompareScriptsController implements Initializable {
 
 		// busca se o arquivo foi baixado com sucesso;
 		arquivoEncontrado = Install.findFile(temp.getAbsolutePath(), objeto.getNome().toLowerCase() + ".sql");
-		
+
 		// Caminho do arquivo destino
 		File arquivoDestino = new File("compare\\" + objeto.getNome().toLowerCase() + "_VB.sql");
 
