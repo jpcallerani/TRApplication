@@ -278,19 +278,7 @@ public class CompareScriptsController implements Initializable {
 
 		//
 
-		/**
-		 * Limpa o filtro
-		 */
-		this.btnClear.setOnMouseClicked(e -> {
-			this.clearFilters();
-		});
 
-		/**
-		 * Executa consulta
-		 */
-		/*
-		 * this.btnSearch.setOnMouseClicked(e -> { this.findByFilter(); });
-		 */
 		/**
 		 * Volta para página principal
 		 */
@@ -316,16 +304,8 @@ public class CompareScriptsController implements Initializable {
 		});
 	}
 
-	/**
-	 * clear fields
-	 */
-	private void clearFilters() {
-		this.txDate.getEditor().setText("");
-		this.txErro.setText("");
-		this.txCodigo.setText("");
-		this.txNome.setText("");
-		this.txTipo.setText("");
-	}
+
+
 
 	// cria uma lista de objetos referentes ao do xml lido
 	private List<Objeto> lerXML(File file) {
@@ -367,10 +347,12 @@ public class CompareScriptsController implements Initializable {
 
 					String nome =       element.getElementsByTagName("nome").item(0).getTextContent();
 					String codSistema = element.getElementsByTagName("codSistema").item(0).getTextContent();
-					String tipo =       element.getElementsByTagName("tipo").item(0).getTextContent();
-					String erro =       element.getElementsByTagName("erro").item(0).getTextContent();
-					String codigo =     element.getElementsByTagName("codigo").item(0).getTextContent();
 
+					String tipo = element.getElementsByTagName("tipo").item(0).getTextContent();
+					String erro = element.getElementsByTagName("erro").item(0).getTextContent();
+					String codigo = element.getElementsByTagName("codigo").item(0).getTextContent();
+					codigo = codigo.replaceAll("&gt;", ">");
+					codigo = codigo.replaceAll("&lt;", "<");
 					///
 					/*
 					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as
