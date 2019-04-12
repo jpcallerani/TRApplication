@@ -365,11 +365,11 @@ public class CompareScriptsController implements Initializable {
 
 					objeto1 = new Objeto();
 
-					String nome = element.getElementsByTagName("nome").item(0).getTextContent();
+					String nome =       element.getElementsByTagName("nome").item(0).getTextContent();
 					String codSistema = element.getElementsByTagName("codSistema").item(0).getTextContent();
-					String tipo = element.getElementsByTagName("tipo").item(0).getTextContent();
-					String erro = element.getElementsByTagName("erro").item(0).getTextContent();
-					String codigo = element.getElementsByTagName("codigo").item(0).getTextContent();
+					String tipo =       element.getElementsByTagName("tipo").item(0).getTextContent();
+					String erro =       element.getElementsByTagName("erro").item(0).getTextContent();
+					String codigo =     element.getElementsByTagName("codigo").item(0).getTextContent();
 
 					///
 					/*
