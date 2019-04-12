@@ -47,7 +47,6 @@ import animatefx.animation.BounceInDown;
 import application.entity.Objeto;
 import application.util.CVSUtil;
 import application.util.Install;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import gui.enumeration.enumTelas;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -62,7 +61,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.DatePicker;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
@@ -73,7 +72,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.DirectoryChooser;
+
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -94,29 +93,13 @@ public class CompareScriptsController implements Initializable {
 	@FXML
 	private ImageView									btnHome;
 
-	@FXML
-	private DatePicker								txDate;
-
-	@FXML
-	private JFXTextField							txErro;
-
-	@FXML
-	private JFXButton									btnSearch;
 	//
 	@FXML
 	private JFXButton									btnRead;
-	//
-	@FXML
-	private JFXButton									btnClear;
+
 
 	@FXML
-	private FontAwesomeIcon						btnFolder;
-
-	@FXML
-	private JFXTextField							txFolder;
-
-	@FXML
-	private FontAwesomeIcon						btnDefine;
+	private JFXButton						btnDefine;
 
 	@FXML
 	private JFXTextField							txDefine;
@@ -131,14 +114,6 @@ public class CompareScriptsController implements Initializable {
 	private Tooltip										ttDefine;
 
 	@FXML
-	private Label											labelNome;					// username
-																												// vira
-																												// nome
-
-	@FXML
-	private JFXTextField							txNome;
-
-	@FXML
 	private ContextMenu								cmDeletaLinha;
 
 	@FXML
@@ -151,7 +126,10 @@ public class CompareScriptsController implements Initializable {
 	@FXML
 	private JFXTextField							txTipo;
 
+	
 	@SuppressWarnings("unchecked")
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -219,6 +197,7 @@ public class CompareScriptsController implements Initializable {
 				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Erro");
 				colErro.setPrefWidth(200);
 				colErro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					
 					@Override
 					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
 						return new SimpleStringProperty(param.getValue().getValue().getErro());
@@ -249,20 +228,7 @@ public class CompareScriptsController implements Initializable {
 
 		});
 
-		/**
-		 * find package folder
-		 */
-		this.btnFolder.setOnMouseClicked(e -> {
-			javafx.scene.Node source = (javafx.scene.Node) e.getSource();
-			Stage stage = (Stage) source.getScene().getWindow();
-			final DirectoryChooser directoryChooser = new DirectoryChooser();
-			directoryChooser.setTitle("Select the package folder!");
-			final File selectedDirectory = directoryChooser.showDialog(stage);
-			if (selectedDirectory != null) {
-				this.txFolder.setText(selectedDirectory.getAbsolutePath());
-				Install.filePackage = selectedDirectory.getAbsolutePath();
-			}
-		});
+
 
 		/**
 		 * abre o dialog com a linha selecionada.
@@ -276,21 +242,8 @@ public class CompareScriptsController implements Initializable {
 			}
 		});
 
-		//
 
-		/**
-		 * Limpa o filtro
-		 */
-		this.btnClear.setOnMouseClicked(e -> {
-			this.clearFilters();
-		});
 
-		/**
-		 * Executa consulta
-		 */
-		/*
-		 * this.btnSearch.setOnMouseClicked(e -> { this.findByFilter(); });
-		 */
 		/**
 		 * Volta para página principal
 		 */
@@ -316,16 +269,8 @@ public class CompareScriptsController implements Initializable {
 		});
 	}
 
-	/**
-	 * clear fields
-	 */
-	private void clearFilters() {
-		this.txDate.getEditor().setText("");
-		this.txErro.setText("");
-		this.txCodigo.setText("");
-		this.txNome.setText("");
-		this.txTipo.setText("");
-	}
+
+
 
 	// cria uma lista de objetos referentes ao do xml lido
 	private List<Objeto> lerXML(File file) {
@@ -370,7 +315,8 @@ public class CompareScriptsController implements Initializable {
 					String tipo = element.getElementsByTagName("tipo").item(0).getTextContent();
 					String erro = element.getElementsByTagName("erro").item(0).getTextContent();
 					String codigo = element.getElementsByTagName("codigo").item(0).getTextContent();
-
+					codigo = codigo.replaceAll("&gt;", ">");
+					codigo = codigo.replaceAll("&lt;", "<");
 					///
 					/*
 					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as
@@ -446,6 +392,7 @@ public class CompareScriptsController implements Initializable {
 	 */
 	private void executeCompare(Objeto objeto) {
 		Task<?> task = new Task<Object>() {
+			
 			@Override
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);

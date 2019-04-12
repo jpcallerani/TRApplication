@@ -6,11 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-11.0.1">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -19,6 +15,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Oracle/product/11.2.0/client_1/jdbc/lib/ojdbc6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/backupJp/Projetos/EclipseProjects/checkout_CVS/lib/lib.cvsclient.jar"/>
+	<classpathentry kind="lib" path="C:/Users/U6075955/eclipse-workspace/TRApplication/lib/lib.cvsclient.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

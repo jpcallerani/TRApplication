@@ -80,6 +80,7 @@ public class Install {
 	 * 
 	 * @param parent
 	 */
+	
 	public static void loadStatus(AnchorPane parent) {
 		parent.setCursor(Cursor.WAIT);
 		for (int i = 0; i < parent.getChildren().size(); i++) {
@@ -183,6 +184,7 @@ public class Install {
 	 */
 	public static void makeStageDrageable(Node node) {
 		node.setOnMousePressed(new EventHandler<MouseEvent>() {
+	
 			@Override
 			public void handle(MouseEvent event) {
 				xOffset = event.getSceneX();
