@@ -23,9 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -40,19 +38,10 @@ import javafx.util.Duration;
 public class SliderController implements Initializable {
 
 	@FXML
-	AnchorPane rootPane;
+	private VBox vBox;
 
 	@FXML
-	VBox vBox;
-
-	@FXML
-	VBox firstSubVBox;
-
-	@FXML
-	VBox firstSubMenuList;
-
-	@FXML
-	Button firstMenu;
+	private VBox firstSubVBox;
 
 	@FXML
 	private HBox hboxOperations;
@@ -61,7 +50,13 @@ public class SliderController implements Initializable {
 	private Pane paneOperations;
 
 	@FXML
+	private JFXButton firstMenu;
+
+	@FXML
 	private ImageView imgOperations;
+
+	@FXML
+	private VBox firstSubMenuList;
 
 	@FXML
 	private Pane paneCmLogScripts;
@@ -70,19 +65,25 @@ public class SliderController implements Initializable {
 	private JFXButton btnCmLogScripts;
 
 	@FXML
-	private ImageView imgCmLogScripts;
+	private HBox hboxAbout;
 
 	@FXML
-	private Pane paneSfwCmSchema;
+	private Pane paneSizing;
 
 	@FXML
 	private JFXButton btnSizingCalculate;
 
 	@FXML
-	private ImageView imgTrSizingCalculate;
+	private HBox hboxAbout1;
 
 	@FXML
-	private HBox hboxAbout;
+	private Pane paneCompare;
+
+	@FXML
+	private JFXButton btnCompare;
+
+	@FXML
+	private HBox hboxExt1;
 
 	@FXML
 	private Pane paneAbout;
@@ -104,9 +105,6 @@ public class SliderController implements Initializable {
 
 	@FXML
 	private ImageView imgExit;
-		
-	@FXML
-	private JFXButton btnCompare;
 
 	Map<VBox, VBox> map = new HashMap<VBox, VBox>();
 
@@ -131,59 +129,68 @@ public class SliderController implements Initializable {
 		TranslateTransition rotationOperations = Install.shakeTransition(imgOperations);
 		TranslateTransition rotationAbout = Install.shakeTransition(imgAbout);
 		TranslateTransition rotationExit = Install.shakeTransition(imgExit);
-		TranslateTransition rotationCmLog = Install.shakeTransition(imgCmLogScripts);
-		TranslateTransition rotationTrSizingCalculate = Install.shakeTransition(imgTrSizingCalculate);
 
+		// OPERATION MENU
 		firstMenu.setOnMouseEntered(e -> {
 			rotationOperations.play();
 			paneOperations.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			firstMenu.setStyle("-fx-text-fill: #f2740b;");
 		});
-
+		// OPERATION MENU
 		firstMenu.setOnMouseExited(e -> {
 			rotationOperations.pause();
 			paneOperations.setStyle("-fx-background-color: none");
 			firstMenu.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
 		});
-
+		// CMLOGSCRIPTS MENU
 		btnCmLogScripts.setOnMouseEntered(e -> {
-			rotationCmLog.play();
 			paneCmLogScripts.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			btnCmLogScripts.setStyle("-fx-text-fill: #f2740b;");
 		});
-
+		// CMLOGSCRIPTS MENU
 		btnCmLogScripts.setOnMouseExited(e -> {
-			rotationCmLog.pause();
 			paneCmLogScripts.setStyle("-fx-background-color: none");
 			btnCmLogScripts.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
 		});
-
+		// CMLOGSCRIPTS MENU
 		btnCmLogScripts.setOnMouseClicked(e -> {
 			Install.loadScene(enumTelas.FRM_CM_LOG_SCRIPTS.getUrl());
 		});
-
+		// SIZING CALCULATE MENU
 		btnSizingCalculate.setOnMouseEntered(e -> {
-			rotationTrSizingCalculate.play();
-			paneSfwCmSchema.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
+			paneSizing.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			btnSizingCalculate.setStyle("-fx-text-fill: #f2740b;");
 		});
-
+		// SIZING CALCULATE MENU
 		btnSizingCalculate.setOnMouseExited(e -> {
-			rotationTrSizingCalculate.pause();
-			paneSfwCmSchema.setStyle("-fx-background-color: none");
+			paneSizing.setStyle("-fx-background-color: none");
 			btnSizingCalculate.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
 		});
-		
-		btnSizingCalculate.setOnMouseClicked( e-> {
+		// SIZING CALCULATE MENU
+		btnSizingCalculate.setOnMouseClicked(e -> {
 			Install.loadScene(enumTelas.FRM_SIZING_CALCULATE.getUrl());
 		});
-
+		// COMPARE MENU
+		btnCompare.setOnMouseExited(e -> {
+			paneCompare.setStyle("-fx-background-color: none");
+			btnCompare.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
+		});
+		// COMPARE MENU
+		btnCompare.setOnMouseEntered(e -> {
+			paneCompare.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
+			btnCompare.setStyle("-fx-text-fill: #f2740b;");
+		});
+		// COMPARE MENU
+		btnCompare.setOnMouseClicked(e -> {
+			Install.loadScene(enumTelas.FRM_COMPARE.getUrl());
+		});
+		// ABOUT MENU
 		btnAbout.setOnMouseEntered(e -> {
 			rotationAbout.play();
 			paneAbout.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			btnAbout.setStyle("-fx-text-fill: #f2740b;");
 		});
-
+		// ABOUT MENU
 		btnAbout.setOnMouseExited(e -> {
 			rotationAbout.pause();
 			paneAbout.setStyle("-fx-background-color: none");
@@ -195,17 +202,17 @@ public class SliderController implements Initializable {
 			paneExit.setStyle("-fx-background-color: linear-gradient(#f2740b, #7c471c);");
 			btnExit.setStyle("-fx-text-fill: #f2740b;");
 		});
-
+		// EXIT MENU
 		btnExit.setOnMouseExited(e -> {
 			rotationExit.pause();
 			paneExit.setStyle("-fx-background-color: none");
 			btnExit.setStyle("-fx-background-color:  #FFFFFF;" + "-fx-text-fill: #403a35;");
 		});
-
+		// EXIT MENU
 		btnAbout.setOnMouseClicked(e -> {
 
 		});
-
+		// EXIT MENU
 		btnExit.setOnMouseClicked(e -> {
 			DatabaseConnection con = new DatabaseConnection();
 			con.Connect();
@@ -217,28 +224,7 @@ public class SliderController implements Initializable {
 			timeline.setOnFinished((ae) -> System.exit(1));
 			timeline.play();
 		});
-		
-		
-		
-		//
-	
-		
-		btnCompare.setOnMouseClicked(e -> {
-			Install.loadScene(enumTelas.COMPARE.getUrl());
-		});
-		//
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 	/**

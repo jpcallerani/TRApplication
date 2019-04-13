@@ -47,7 +47,6 @@ import animatefx.animation.BounceInDown;
 import application.entity.Objeto;
 import application.util.CVSUtil;
 import application.util.Install;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import gui.enumeration.enumTelas;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -62,9 +61,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -73,7 +71,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -83,73 +80,37 @@ import javafx.util.Callback;
 public class CompareScriptsController implements Initializable {
 
 	@FXML
-	private AnchorPane								frmCompare;
+	private AnchorPane frmCompare;
 
 	@FXML
-	private Pane											filtroCmLogScripts;
+	private Pane filtroCmLogScripts;
 
 	@FXML
-	private JFXTreeTableView<Objeto>	tableCompare;
+	private ImageView btnHome;
 
 	@FXML
-	private ImageView									btnHome;
+	private JFXTreeTableView<Objeto> tableCompare;
 
 	@FXML
-	private DatePicker								txDate;
+	private ContextMenu cmDeletaLinha;
 
 	@FXML
-	private JFXTextField							txErro;
+	private JFXTextField txDefine;
 
 	@FXML
-	private JFXButton									btnSearch;
-	//
-	@FXML
-	private JFXButton									btnRead;
-	//
-	@FXML
-	private JFXButton									btnClear;
+	private Tooltip ttDefine;
 
 	@FXML
-	private FontAwesomeIcon						btnFolder;
+	private JFXButton btnLoadFile;
 
 	@FXML
-	private JFXTextField							txFolder;
+	private RadioButton rdCVS;
 
 	@FXML
-	private FontAwesomeIcon						btnDefine;
+	private ToggleGroup grupo;
 
 	@FXML
-	private JFXTextField							txDefine;
-
-	@FXML
-	private JFXTextField							txCodigo;
-
-	@FXML
-	private Tooltip										ttPackage;
-
-	@FXML
-	private Tooltip										ttDefine;
-
-	@FXML
-	private Label											labelNome;					// username
-																												// vira
-																												// nome
-
-	@FXML
-	private JFXTextField							txNome;
-
-	@FXML
-	private ContextMenu								cmDeletaLinha;
-
-	@FXML
-	private MenuItem									miTeste;
-
-	//
-	@FXML
-	private Label											labelTipo;
-
-	@FXML
-	private JFXTextField							txTipo;
+	private RadioButton rdDatabase;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -179,7 +140,7 @@ public class CompareScriptsController implements Initializable {
 			}
 		});
 
-		this.btnDefine.setOnMouseClicked(e -> {
+		this.btnLoadFile.setOnMouseClicked(e -> {
 			// ao selecionar o arquivo .xml irá lê-lo
 			List<Objeto> objetos = null;
 			javafx.scene.Node source = (javafx.scene.Node) e.getSource();
@@ -200,39 +161,47 @@ public class CompareScriptsController implements Initializable {
 				/////
 				JFXTreeTableColumn<Objeto, String> colCodSistema = new JFXTreeTableColumn<>("Sistema");
 				colCodSistema.setPrefWidth(100);
-				colCodSistema.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
-					}
-				});
+				colCodSistema.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
+							}
+						});
 
 				JFXTreeTableColumn<Objeto, String> colNome = new JFXTreeTableColumn<>("Nome do Objeto");
 				colNome.setPrefWidth(350);
-				colNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getNome());
-					}
-				});
+				colNome.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getNome());
+							}
+						});
 
 				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Erro");
 				colErro.setPrefWidth(200);
-				colErro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getErro());
-					}
-				});
+				colErro.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getErro());
+							}
+						});
 
 				JFXTreeTableColumn<Objeto, String> colTipo = new JFXTreeTableColumn<>("Tipo");
 				colTipo.setPrefWidth(300);
-				colTipo.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getTipo());
-					}
-				});
+				colTipo.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getTipo());
+							}
+						});
 
 				ObservableList<Objeto> obObjetos = FXCollections.observableArrayList();
 
@@ -240,28 +209,14 @@ public class CompareScriptsController implements Initializable {
 					obObjetos.add(objetos.get(i));
 				}
 
-				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos, RecursiveTreeObject::getChildren);
+				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos,
+						RecursiveTreeObject::getChildren);
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
 				tableCompare.getColumns().setAll(colCodSistema, colNome, colErro, colTipo);
 
 			}
 
-		});
-
-		/**
-		 * find package folder
-		 */
-		this.btnFolder.setOnMouseClicked(e -> {
-			javafx.scene.Node source = (javafx.scene.Node) e.getSource();
-			Stage stage = (Stage) source.getScene().getWindow();
-			final DirectoryChooser directoryChooser = new DirectoryChooser();
-			directoryChooser.setTitle("Select the package folder!");
-			final File selectedDirectory = directoryChooser.showDialog(stage);
-			if (selectedDirectory != null) {
-				this.txFolder.setText(selectedDirectory.getAbsolutePath());
-				Install.filePackage = selectedDirectory.getAbsolutePath();
-			}
 		});
 
 		/**
@@ -277,7 +232,6 @@ public class CompareScriptsController implements Initializable {
 		});
 
 		//
-
 
 		/**
 		 * Volta para página principal
@@ -303,9 +257,6 @@ public class CompareScriptsController implements Initializable {
 			Install.homeOut(this.btnHome);
 		});
 	}
-
-
-
 
 	// cria uma lista de objetos referentes ao do xml lido
 	private List<Objeto> lerXML(File file) {
@@ -345,7 +296,7 @@ public class CompareScriptsController implements Initializable {
 
 					objeto1 = new Objeto();
 
-					String nome =       element.getElementsByTagName("nome").item(0).getTextContent();
+					String nome = element.getElementsByTagName("nome").item(0).getTextContent();
 					String codSistema = element.getElementsByTagName("codSistema").item(0).getTextContent();
 
 					String tipo = element.getElementsByTagName("tipo").item(0).getTextContent();
@@ -355,8 +306,8 @@ public class CompareScriptsController implements Initializable {
 					codigo = codigo.replaceAll("&lt;", "<");
 					///
 					/*
-					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as
-					 * com base no codSistema delas
+					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as com base no
+					 * codSistema delas
 					 */
 					String id = tagCerta(codSistema, versao);
 					objeto1.setId(id);
@@ -403,6 +354,9 @@ public class CompareScriptsController implements Initializable {
 		} else if (cod.equals("3")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "DB");
+		} else if (cod.equals("6")) {
+			id1 = getValue("id", (Element) version.item(0));
+			id2 = "tag_" + id1.replace("BG", "RF");
 		} else if (cod.equals("9")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "IS");
@@ -432,43 +386,55 @@ public class CompareScriptsController implements Initializable {
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);
 				try {
-					File cvs = new File("W:");
-					if (cvs.exists()) {
-						// Busca arquivo CVS;
-						File fromFile = findFileCVS(objeto);
+					if (rdCVS.isSelected()) {
+						File cvs = new File("W:");
+						if (cvs.exists()) {
+							// Busca arquivo CVS;
+							File fromFile = findFileCVS(objeto);
 
-						// se encontrou o arquivo faz o checkout;
-						if (fromFile != null) {
+							// se encontrou o arquivo faz o checkout;
+							if (fromFile != null) {
 
-							try {
-								// Cria arquivo de origem para comparação;
-								File compareFolder = new File("Compare");
+								try {
+									// Cria arquivo de origem para comparação;
+									File compareFolder = new File("Compare");
 
-								// Cria o arquivo de destino vindo pelo xml ou excel;
-								File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
+									// Cria o arquivo de destino vindo pelo xml ou excel;
+									File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
 
-								// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
-								// execução;
-								Install.createFile(toFile, objeto.getCodigo());
+									// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
+									// execução;
+									Install.createFile(toFile, objeto.getCodigo());
 
-								// Baixa o arquivo do CVS;
-								File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
+									// Baixa o arquivo do CVS;
+									File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
 
-								// Chama o examdiff para execução do compare;
-								File examDiff = new File("Diff");
-								//
-								Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
-								//
+									// Chama o examdiff para execução do compare;
+									File examDiff = new File("Diff");
+									//
+									Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  "
+											+ fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
+									//
 
-							} catch (Exception e) {
-								new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+								} catch (Exception e) {
+									new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(),
+											ButtonType.OK).showAndWait();
+								}
+
+							} else {
+								Platform.runLater(new Runnable() {
+									@Override
+									public void run() {
+										new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK)
+												.showAndWait();
+									}
+								});
 							}
-
 						} else {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+									new Alert(AlertType.ERROR, "CVS unit not mapped", ButtonType.OK).showAndWait();
 								}
 							});
 						}
@@ -476,7 +442,8 @@ public class CompareScriptsController implements Initializable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								new Alert(AlertType.ERROR, "CVS unit not mapped", ButtonType.OK).showAndWait();
+								new Alert(AlertType.ERROR, "Comparison using database not implemented!!", ButtonType.OK)
+										.showAndWait();
 							}
 						});
 					}
@@ -583,7 +550,8 @@ public class CompareScriptsController implements Initializable {
 		String repositorio = "";
 		try {
 
-			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\" + Install.returnModuloFromCodSistema(objeto.getCodSistema());
+			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\"
+					+ Install.returnModuloFromCodSistema(objeto.getCodSistema());
 
 			// Busca o arquivo na pasta PLSQL do CVS
 			arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL", objeto.getNome() + ".sql,v");
@@ -610,12 +578,14 @@ public class CompareScriptsController implements Initializable {
 	 * @throws CommandException
 	 * @throws CommandAbortedException
 	 */
-	private File checkoutFileFromCVS(File arquivo, Objeto objeto) throws CommandAbortedException, CommandException, Exception {
+	private File checkoutFileFromCVS(File arquivo, Objeto objeto)
+			throws CommandAbortedException, CommandException, Exception {
 
 		File arquivoEncontrado = null;
 
 		// Monta o CVSRoot;
-		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/" + Install.returnRepoFromCodSistema(objeto.getCodSistema());
+		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/"
+				+ Install.returnRepoFromCodSistema(objeto.getCodSistema());
 
 		// Cria pasta onde serão feitos os checkouts;
 		File temp = new File("temp");
@@ -627,7 +597,9 @@ public class CompareScriptsController implements Initializable {
 		CVSUtil cvs = new CVSUtil(cvsRoot, temp.getAbsolutePath(), "SOFTWAYSA2014");
 
 		// monta arquivo para ser feito o checkout;
-		String arquivoCheckout = arquivo.getAbsolutePath().substring(arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())), arquivo.getAbsolutePath().length() - 2);
+		String arquivoCheckout = arquivo.getAbsolutePath().substring(
+				arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())),
+				arquivo.getAbsolutePath().length() - 2);
 		cvs.checkOut(arquivoCheckout, objeto.getId());
 
 		// busca se o arquivo foi baixado com sucesso;

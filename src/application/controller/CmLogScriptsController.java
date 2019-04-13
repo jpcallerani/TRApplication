@@ -141,16 +141,6 @@ public class CmLogScriptsController implements Initializable {
 			}
 		});
 
-		this.miTeste.setOnAction(e -> {
-			//TODO Implementar deletar linha
-			/* Erro erro =
-			 this.tableCmLogScripts.getSelectionModel().getSelectedItem().getValue();
-			if (Install.alertYesAndNo("Are you sure that you want to delete the selected error?")) {
-				this.erroService.deleteErro(erro);
-				new Alert(AlertType.WARNING, "This function is not implemented!!", ButtonType.OK).showAndWait();
-			}*/
-		});
-
 		/**
 		 * choose define path
 		 */

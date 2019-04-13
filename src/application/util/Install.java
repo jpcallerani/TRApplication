@@ -475,7 +475,7 @@ public class Install {
 			}
 			v_bufferedwriter_startinstall = new BufferedWriter(new FileWriter(v_file_startinstall));
 
-			stringBuilderNovo.append("@\".\\define.sql\" \n");
+			stringBuilderNovo.append("@@\"define.sql\" \n");
 			stringBuilderNovo.append(content);
 			v_bufferedwriter_startinstall.write(stringBuilderNovo.toString());
 			v_bufferedwriter_startinstall.newLine();

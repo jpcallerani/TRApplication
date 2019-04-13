@@ -28,7 +28,7 @@
                   <Pane fx:id="paneOperations" prefHeight="80.0" prefWidth="13.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                   <JFXButton fx:id="firstMenu" focusTraversable="false" prefHeight="85.0" prefWidth="230.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="OPERATIONS" textFill="#403a35">
                      <font>
-                        <Font name="Prelo W01 Bold" size="13.0" />
+                        <Font name="Fira Code Bold" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgOperations" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
@@ -43,42 +43,41 @@
                   </JFXButton>
                </children>
             </HBox>
-            <VBox fx:id="firstSubMenuList" prefHeight="102.0" prefWidth="230.0">
+            <VBox fx:id="firstSubMenuList" prefHeight="137.0" prefWidth="198.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="54.0" prefWidth="198.0">
                      <children>
                         <Pane fx:id="paneCmLogScripts" prefHeight="52.0" prefWidth="7.0" />
-                        <JFXButton fx:id="btnCmLogScripts" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="52.0" prefWidth="222.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="CM_LOG_SCRIPTS">
+                        <JFXButton fx:id="btnCmLogScripts" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="CM_LOG_SCRIPTS">
                            <font>
-                              <Font name="Prelo W01 Bold" size="11.0" />
+                              <Font name="Fira Code Bold" size="12.0" />
                            </font>
-                           <graphic>
-                              <ImageView fx:id="imgCmLogScripts" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/images/baseline_arrow_right_alt_black_24dp.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="hboxAbout" prefHeight="55.0" prefWidth="198.0">
                      <children>
-                        <Pane fx:id="paneSfwCmSchema" prefHeight="52.0" prefWidth="7.0" />
-                        <JFXButton fx:id="btnSizingCalculate" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="52.0" prefWidth="222.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="SIZING CALCULATE">
+                        <Pane fx:id="paneSizing" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                        <JFXButton fx:id="btnSizingCalculate" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="SIZING">
                            <font>
-                              <Font name="Prelo W01 Bold" size="11.0" />
+                              <Font name="Fira Code Bold" size="12.0" />
                            </font>
-                           <graphic>
-                              <ImageView fx:id="imgTrSizingCalculate" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/images/baseline_arrow_right_alt_black_24dp.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxAbout1" prefHeight="55.0" prefWidth="198.0">
+                     <children>
+                        <Pane fx:id="paneCompare" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                        <JFXButton fx:id="btnCompare" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="COMPARE">
+                           <font>
+                              <Font name="Fira Code Bold" size="12.0" />
+                           </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -91,12 +90,12 @@
       </VBox>
       <VBox prefHeight="85.0" prefWidth="230.0">
          <children>
-            <HBox fx:id="hboxAbout" prefHeight="90.0" prefWidth="228.0">
+            <HBox fx:id="hboxExt1" prefHeight="90.0" prefWidth="228.0">
                <children>
                   <Pane fx:id="paneAbout" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT               " textFill="#403a35">
+                  <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="198.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT" textFill="#403a35">
                      <font>
-                        <Font name="Prelo W01 Bold" size="13.0" />
+                        <Font name="Fira Code Bold" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgAbout" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
@@ -115,36 +114,12 @@
       </VBox>
       <VBox prefHeight="85.0" prefWidth="230.0">
          <children>
-            <HBox fx:id="hboxExt1" prefHeight="90.0" prefWidth="228.0">
-               <children>
-                  <Pane fx:id="paneExit1" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="btnCompare" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="Compare" textFill="#403a35">
-                     <font>
-                        <Font name="Prelo W01 Bold" size="13.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fx:id="imgExit1" fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" scaleZ="2.0" translateX="-10.0">
-                           <image>
-                              <Image url="@../application/util/compareLogo.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox prefHeight="85.0" prefWidth="230.0">
-         <children>
             <HBox fx:id="hboxExt" prefHeight="90.0" prefWidth="228.0">
                <children>
                   <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT                     " textFill="#403a35">
+                  <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT" textFill="#403a35">
                      <font>
-                        <Font name="Prelo W01 Bold" size="13.0" />
+                        <Font name="Fira Code Bold" size="14.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgExit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
