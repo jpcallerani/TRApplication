@@ -46,6 +46,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import animatefx.animation.BounceInDown;
 import application.entity.Objeto;
 import application.util.CVSUtil;
+import application.util.DatabaseConnection;
 import application.util.Install;
 import gui.enumeration.enumTelas;
 import javafx.application.Platform;
@@ -124,7 +125,7 @@ public class CompareScriptsController implements Initializable {
 			compareFolder.mkdirs();
 		} else {
 			try {
-				FileUtils.forceDelete(compareFolder);
+				FileUtils.cleanDirectory(compareFolder);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -226,7 +227,7 @@ public class CompareScriptsController implements Initializable {
 			if (e.getClickCount() > 1) {
 				if (this.tableCompare.getSelectionModel().getSelectedItem() != null) {
 					Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
-					this.executeCompare(objeto);
+					this.execute(objeto);
 				}
 			}
 		});
@@ -277,8 +278,7 @@ public class CompareScriptsController implements Initializable {
 			Document doc = dBuilder.parse(is);
 			doc.getDocumentElement().normalize();
 
-			// obtem os nodes para le-los, versao para obter o id e nodes para os
-			// objetos
+			// obtem os nodes para le-los, versao para obter o id e nodes para os objetos;
 			System.out.println("root of xml file" + doc.getDocumentElement().getNodeName());
 			NodeList versao = doc.getElementsByTagName("Versao");
 			NodeList nodes = doc.getElementsByTagName("Objeto");
@@ -309,8 +309,7 @@ public class CompareScriptsController implements Initializable {
 					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as com base no
 					 * codSistema delas
 					 */
-					String id = tagCerta(codSistema, versao);
-					objeto1.setId(id);
+					objeto1.setId(tagCerta(codSistema, versao));
 
 					// seta o valor do nome, codsistema,erro e codigo no objeto1 que em
 					// seguida
@@ -346,47 +345,66 @@ public class CompareScriptsController implements Initializable {
 		String id2 = "";
 		String id1 = "";
 
+		// base genérica;
 		if (cod.equals("0")) {
 			id2 = "tag_" + getValue("id", (Element) version.item(0));
+			// export;
 		} else if (cod.equals("2")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "ES");
+			// drawback
 		} else if (cod.equals("3")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "DB");
+			// recof
 		} else if (cod.equals("6")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "RF");
+			// import
 		} else if (cod.equals("9")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "IS");
+			// cambio imp
 		} else if (cod.equals("10")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "CI");
+			// cambio exp
 		} else if (cod.equals("11")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "CE");
+			// broker
 		} else if (cod.equals("21")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "BS");
+			// inout
 		} else if (cod.equals("500")) {
 			id1 = getValue("id", (Element) version.item(0));
 			id2 = "tag_" + id1.replace("BG", "IO");
 		}
-
 		return id2;
 	}
 
 	/**
 	 * Executa a comparação da linha selecionada;
 	 */
-	private void executeCompare(Objeto objeto) {
+	private void execute(Objeto objeto) {
 		Task<?> task = new Task<Object>() {
 			@Override
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);
-				try {
-					if (rdCVS.isSelected()) {
+				//
+				// Cria arquivo de origem para comparação;
+				File compareFolder = new File("Compare");
+
+				// Cria o arquivo de destino vindo pelo xml ou excel;
+				File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
+
+				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
+				// execução;
+				Install.createFile(toFile, objeto.getCodigo());
+				//
+				if (rdCVS.isSelected()) {
+					try {
 						File cvs = new File("W:");
 						if (cvs.exists()) {
 							// Busca arquivo CVS;
@@ -396,25 +414,11 @@ public class CompareScriptsController implements Initializable {
 							if (fromFile != null) {
 
 								try {
-									// Cria arquivo de origem para comparação;
-									File compareFolder = new File("Compare");
-
-									// Cria o arquivo de destino vindo pelo xml ou excel;
-									File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
-
-									// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
-									// execução;
-									Install.createFile(toFile, objeto.getCodigo());
-
 									// Baixa o arquivo do CVS;
 									File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
 
-									// Chama o examdiff para execução do compare;
-									File examDiff = new File("Diff");
-									//
-									Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  "
-											+ fromFileLocal.getAbsolutePath() + " " + toFile.getAbsolutePath());
-									//
+									// executa a comparação do examdiff;
+									executeCompare(fromFileLocal, toFile);
 
 								} catch (Exception e) {
 									new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(),
@@ -422,6 +426,7 @@ public class CompareScriptsController implements Initializable {
 								}
 
 							} else {
+								// se não encontrou o objeto mostra o erro;
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
@@ -431,6 +436,7 @@ public class CompareScriptsController implements Initializable {
 								});
 							}
 						} else {
+							// se nao achou o mapeamento do CVS mostra o erro;
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
@@ -438,22 +444,50 @@ public class CompareScriptsController implements Initializable {
 								}
 							});
 						}
-					} else {
+					} catch (Exception e) {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								new Alert(AlertType.ERROR, "Comparison using database not implemented!!", ButtonType.OK)
-										.showAndWait();
+								new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
 							}
 						});
 					}
-				} catch (Exception e) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
+				} else {
+					DatabaseConnection conn = new DatabaseConnection();
+					try {
+						conn.Connect();
+						// busca o objeto na base;
+						if (conn.verificaVersao(objeto)) {
+							Objeto objetoFrom = conn.returnObjectFromDatabase(objeto);
+							//
+							// Caminho do arquivo destino;
+							File arquivoDestino = new File(
+									"compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
+							// Cria o arquivo na pasta;
+							Install.createFile(arquivoDestino, objetoFrom.getCodigo());
+							// executa a comparaçã;o
+							executeCompare(arquivoDestino, toFile);
+						} else {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									new Alert(AlertType.ERROR,
+											"Database and selected object are from different version!", ButtonType.OK)
+													.showAndWait();
+								}
+							});
 						}
-					});
+					} catch (IOException e) {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK)
+										.showAndWait();
+							}
+						});
+					} finally {
+						conn.closeConnection();
+					}
 				}
 
 				return null;
@@ -618,5 +652,22 @@ public class CompareScriptsController implements Initializable {
 		}
 
 		return arquivoDestino;
+	}
+
+	/**
+	 * Função que executa a comparação e chama o examdiff;
+	 * 
+	 * @param fileFrom
+	 * @param fileTo
+	 * @throws IOException
+	 */
+	private void executeCompare(File fileFrom, File fileTo) throws IOException {
+
+		// Chama o examdiff para execução do compare;
+		File examDiff = new File("Diff");
+		//
+		Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fileFrom.getAbsolutePath() + " "
+				+ fileTo.getAbsolutePath());
+		//
 	}
 }

@@ -58,29 +58,29 @@ import javafx.util.Duration;
 
 public class Install {
 
-	public static String			username;
-	public static String			password;
-	public static String			tns;
-	public static String			cod_sistema	= "";
-	public static String			url;
-	public static String			driver			= "oracle.jdbc.driver.OracleDriver";
-	public static Stage				mainStage;
-	public static AnchorPane	mainRoot;
-	public static String			fileDefine;
-	public static String			filePackage;
-	public static String			fileToBeExecutedFrom;
-	public static String			fileToBeExecutedTo;
-	public static boolean			isFromZip		= false;
+	public static String username;
+	public static String password;
+	public static String tns;
+	public static String cod_sistema = "";
+	public static String url;
+	public static String driver = "oracle.jdbc.driver.OracleDriver";
+	public static Stage mainStage;
+	public static AnchorPane mainRoot;
+	public static String fileDefine;
+	public static String filePackage;
+	public static String fileToBeExecutedFrom;
+	public static String fileToBeExecutedTo;
+	public static boolean isFromZip = false;
 
-	private static double			xOffset			= 0;
-	private static double			yOffset			= 0;
+	private static double xOffset = 0;
+	private static double yOffset = 0;
 
 	/**
 	 * põe a tela em status de load;
 	 * 
 	 * @param parent
 	 */
-	
+
 	public static void loadStatus(AnchorPane parent) {
 		parent.setCursor(Cursor.WAIT);
 		for (int i = 0; i < parent.getChildren().size(); i++) {
@@ -122,7 +122,8 @@ public class Install {
 	 * @return
 	 */
 	public static Timeline blinkTranstition(Node node) {
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), evt -> node.setVisible(false)), new KeyFrame(Duration.seconds(0.1), evt -> node.setVisible(true)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), evt -> node.setVisible(false)),
+				new KeyFrame(Duration.seconds(0.1), evt -> node.setVisible(true)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		return timeline;
 	}
@@ -184,7 +185,7 @@ public class Install {
 	 */
 	public static void makeStageDrageable(Node node) {
 		node.setOnMousePressed(new EventHandler<MouseEvent>() {
-	
+
 			@Override
 			public void handle(MouseEvent event) {
 				xOffset = event.getSceneX();
@@ -210,12 +211,10 @@ public class Install {
 	/**
 	 * Função para copiar um arquivo.
 	 * 
-	 * @param in
-	 *          Arquivo de entrada.
-	 * @param out
-	 *          Arquivo de saída.
+	 * @param in  Arquivo de entrada.
+	 * @param out Arquivo de saída.
 	 * @throws IOException
-	 * @throws java.io.IOException
+	 * @throws             java.io.IOException
 	 */
 	@SuppressWarnings("resource")
 	public static boolean copyFile(String in, String out) throws IOException {
@@ -254,7 +253,7 @@ public class Install {
 		pfile = pfile.substring(pfile.lastIndexOf("\\") + 1);
 		Charset CP866 = Charset.forName("CP866");
 		try {
-			String[] extensions = {"sql", "zip", "sql,v"};
+			String[] extensions = { "sql", "zip", "sql,v" };
 			boolean recursive = true;
 
 			Collection files = FileUtils.listFiles(new File(folder), extensions, recursive);
@@ -299,8 +298,11 @@ public class Install {
 				ZipEntry entry = entries.nextElement();
 				if (!entry.isDirectory()) {
 					if (entry.getName().toUpperCase().contains(pfile.toUpperCase())) {
-						String entryFileName = entry.getName().substring(entry.getName().lastIndexOf("/") + 1, entry.getName().length());
-						try (InputStream inputStream = zip.getInputStream(entry); FileOutputStream outputStream = new FileOutputStream(folder + File.separator + entryFileName);) {
+						String entryFileName = entry.getName().substring(entry.getName().lastIndexOf("/") + 1,
+								entry.getName().length());
+						try (InputStream inputStream = zip.getInputStream(entry);
+								FileOutputStream outputStream = new FileOutputStream(
+										folder + File.separator + entryFileName);) {
 							int data = inputStream.read();
 							while (data != -1) {
 								outputStream.write(data);
@@ -581,7 +583,8 @@ public class Install {
 			}
 			v_bufferedwriter_startinstall = new BufferedWriter(new FileWriter(v_file_startinstall));
 
-			content = new StringBuilder(content.toString().replaceAll("&&VERSAO_ATUAL\\w*?.*?\\'", "EXECUTED_BY_SYSTEM'"));
+			content = new StringBuilder(
+					content.toString().replaceAll("&&VERSAO_ATUAL\\w*?.*?\\'", "EXECUTED_BY_SYSTEM'"));
 			v_bufferedwriter_startinstall.write(content.toString());
 			v_bufferedwriter_startinstall.newLine();
 			v_bufferedwriter_startinstall.newLine();

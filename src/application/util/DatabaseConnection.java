@@ -12,8 +12,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import application.entity.Objeto;
+import oracle.dbtools.db.DBUtil;
 import oracle.dbtools.raptor.newscriptrunner.ISQLCommand;
 import oracle.dbtools.raptor.newscriptrunner.ScriptExecutor;
 import oracle.dbtools.raptor.newscriptrunner.ScriptParser;
@@ -269,6 +272,119 @@ public class DatabaseConnection {
 		String results = bout.toString("ISO-8859-1");
 		results = results.replaceAll(" force_print\n", "");
 		//
+		conn.close();
 		return results;
+	}
+
+	/**
+	 * Verifica se a versão do XML é a mesma do banco de dados;
+	 * 
+	 * @param objeto
+	 * @return
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	public boolean verificaVersao(Objeto objeto) throws IOException, SQLException {
+		//
+		String contador = "";
+		//
+		DBUtil util = DBUtil.getInstance(this.con);
+		//
+		ResultSet rs = util.executeQuery(
+				"select count(1) as contador " + "from sfw_sistema_versao where valido = 'S' "
+						+ "and cod_versao like '%" + objeto.getId().replace("tag_", "") + "%'",
+				new ArrayList<String>());
+		// precisa tratar o nullpointer porque a função "executeQuery"do sqlcl não trata
+		// o SQLException;
+		if (rs == null) {
+			throw new IOException(
+					"Error to execute -> " + "select count(1) as contador from sfw_sistema_versao where valido = 'S' "
+							+ "and cod_versao like '%" + objeto.getId().replace("tag_", "") + "%'");
+		}
+		// verifica se achou a mesma versão do objeto;
+		if (rs.next()) {
+			contador = rs.getString("contador");
+		}
+		// se a versão for a mesma retorna verdadeiro;
+		if (contador.equalsIgnoreCase("1")) {
+			return true;
+		} else {
+			// caso contrário retorna falso;
+			return false;
+		}
+	}
+
+	/**
+	 * 
+	 * @param p_baseGenerica
+	 * @return
+	 * @throws SQLException
+	 */
+	public Objeto returnObjectFromDatabase(Objeto objeto) throws SQLException {
+		Objeto objeto1 = null;
+		try {
+			//
+			objeto1 = new Objeto();
+			objeto1.setNome(objeto.getNome());
+			objeto1.setTipo(objeto.getTipo());
+			objeto1.setId(objeto.getId());
+			objeto1.setCodSistema(objeto.getCodSistema());
+			//
+			if (objeto.getTipo().equals("VIEW")) {
+				String codview = "create or replace view as ";
+
+				ResultSet codv = this.Query(
+						"select * from all_views "
+						+ "where owner = "
+							+ "(select cm.s_schema_owner "
+							+ "from sfw_cm_schema cm where cod_sistema = '"+ objeto.getCodSistema() + "') "
+						+ "and view_name = '" + objeto.getNome() + "'");
+
+				while (codv.next()) {
+
+					codview = codview + codv.getString("TEXT");
+
+				}
+				codv.getStatement().close();
+				codview.trim();
+				codview = codview + "\n;";
+				//
+				objeto1.setCodigo(codview);
+
+			} else {
+				ResultSet rscodigo = this.Query("select TEXT" + 
+						"  from all_source" + 
+						" where name = '"+objeto.getNome()+"'" + 
+						"   and type = '"+objeto.getTipo()+"'" + 
+						"   and owner = " + 
+						"       (select cm.s_schema_owner from sfw_cm_schema cm where cod_sistema = '"+objeto.getCodSistema()+"')" + 
+						" order by line");
+
+				String cod = "create or replace ";
+
+				while (rscodigo.next()) {
+					cod = cod + rscodigo.getString("TEXT");
+
+				}
+				rscodigo.getStatement().close();
+				cod.trim();
+				cod = cod + "\n/";
+				//
+				objeto1.setCodigo(cod);
+			}
+			this.con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return objeto1;
+
+	}
+	
+	/**
+	 * close oracle connection;
+	 * @throws SQLException
+	 */
+	public void closeConnection() throws SQLException {
+		this.con.close();
 	}
 }
