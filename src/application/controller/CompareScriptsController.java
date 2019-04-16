@@ -1,6 +1,3 @@
-//Cópia do cmlogscriptscontroller, alterando a funcionalidade, o que foi alterado
-//será comentado
-//Por enquanto apenas o botão define foi alterado para ler o xml
 package application.controller;
 
 import java.io.File;
@@ -81,37 +78,37 @@ import javafx.util.Callback;
 public class CompareScriptsController implements Initializable {
 
 	@FXML
-	private AnchorPane frmCompare;
+	private AnchorPane								frmCompare;
 
 	@FXML
-	private Pane filtroCmLogScripts;
+	private Pane											filtroCmLogScripts;
 
 	@FXML
-	private ImageView btnHome;
+	private ImageView									btnHome;
 
 	@FXML
-	private JFXTreeTableView<Objeto> tableCompare;
+	private JFXTreeTableView<Objeto>	tableCompare;
 
 	@FXML
-	private ContextMenu cmDeletaLinha;
+	private ContextMenu								cmDeletaLinha;
 
 	@FXML
-	private JFXTextField txDefine;
+	private JFXTextField							txDefine;
 
 	@FXML
-	private Tooltip ttDefine;
+	private Tooltip										ttDefine;
 
 	@FXML
-	private JFXButton btnLoadFile;
+	private JFXButton									btnLoadFile;
 
 	@FXML
-	private RadioButton rdCVS;
+	private RadioButton								rdCVS;
 
 	@FXML
-	private ToggleGroup grupo;
+	private ToggleGroup								grupo;
 
 	@FXML
-	private RadioButton rdDatabase;
+	private RadioButton								rdDatabase;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -162,47 +159,39 @@ public class CompareScriptsController implements Initializable {
 				/////
 				JFXTreeTableColumn<Objeto, String> colCodSistema = new JFXTreeTableColumn<>("Sistema");
 				colCodSistema.setPrefWidth(100);
-				colCodSistema.setCellValueFactory(
-						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-							@Override
-							public ObservableValue<String> call(
-									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-								return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
-							}
-						});
+				colCodSistema.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+						return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
+					}
+				});
 
 				JFXTreeTableColumn<Objeto, String> colNome = new JFXTreeTableColumn<>("Nome do Objeto");
 				colNome.setPrefWidth(350);
-				colNome.setCellValueFactory(
-						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-							@Override
-							public ObservableValue<String> call(
-									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-								return new SimpleStringProperty(param.getValue().getValue().getNome());
-							}
-						});
+				colNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+						return new SimpleStringProperty(param.getValue().getValue().getNome());
+					}
+				});
 
 				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Erro");
 				colErro.setPrefWidth(200);
-				colErro.setCellValueFactory(
-						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-							@Override
-							public ObservableValue<String> call(
-									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-								return new SimpleStringProperty(param.getValue().getValue().getErro());
-							}
-						});
+				colErro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+						return new SimpleStringProperty(param.getValue().getValue().getErro());
+					}
+				});
 
 				JFXTreeTableColumn<Objeto, String> colTipo = new JFXTreeTableColumn<>("Tipo");
 				colTipo.setPrefWidth(300);
-				colTipo.setCellValueFactory(
-						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-							@Override
-							public ObservableValue<String> call(
-									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-								return new SimpleStringProperty(param.getValue().getValue().getTipo());
-							}
-						});
+				colTipo.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+						return new SimpleStringProperty(param.getValue().getValue().getTipo());
+					}
+				});
 
 				ObservableList<Objeto> obObjetos = FXCollections.observableArrayList();
 
@@ -210,8 +199,7 @@ public class CompareScriptsController implements Initializable {
 					obObjetos.add(objetos.get(i));
 				}
 
-				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos,
-						RecursiveTreeObject::getChildren);
+				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos, RecursiveTreeObject::getChildren);
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
 				tableCompare.getColumns().setAll(colCodSistema, colNome, colErro, colTipo);
@@ -278,7 +266,8 @@ public class CompareScriptsController implements Initializable {
 			Document doc = dBuilder.parse(is);
 			doc.getDocumentElement().normalize();
 
-			// obtem os nodes para le-los, versao para obter o id e nodes para os objetos;
+			// obtem os nodes para le-los, versao para obter o id e nodes para os
+			// objetos;
 			System.out.println("root of xml file" + doc.getDocumentElement().getNodeName());
 			NodeList versao = doc.getElementsByTagName("Versao");
 			NodeList nodes = doc.getElementsByTagName("Objeto");
@@ -306,8 +295,8 @@ public class CompareScriptsController implements Initializable {
 					codigo = codigo.replaceAll("&lt;", "<");
 					///
 					/*
-					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as com base no
-					 * codSistema delas
+					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as
+					 * com base no codSistema delas
 					 */
 					objeto1.setId(tagCerta(codSistema, versao));
 
@@ -399,7 +388,8 @@ public class CompareScriptsController implements Initializable {
 				// Cria o arquivo de destino vindo pelo xml ou excel;
 				File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
 
-				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a execução;
+				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
+				// execução;
 				Install.createFile(toFile, objeto.getCodigo());
 				//
 				// verifica se selecionou a comparação com o CVS;
@@ -421,8 +411,12 @@ public class CompareScriptsController implements Initializable {
 									executeCompare(fromFileLocal, toFile);
 
 								} catch (Exception e) {
-									new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(),
-											ButtonType.OK).showAndWait();
+									Platform.runLater(new Runnable() {
+										@Override
+										public void run() {
+											new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+										}
+									});
 								}
 
 							} else {
@@ -430,8 +424,7 @@ public class CompareScriptsController implements Initializable {
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
-										new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK)
-												.showAndWait();
+										new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
 									}
 								});
 							}
@@ -461,8 +454,7 @@ public class CompareScriptsController implements Initializable {
 							Objeto objetoFrom = conn.returnObjectFromDatabase(objeto);
 							//
 							// Caminho do arquivo destino;
-							File arquivoDestino = new File(
-									"compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
+							File arquivoDestino = new File("compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
 							// Cria o arquivo na pasta;
 							Install.createFile(arquivoDestino, objetoFrom.getCodigo());
 							// executa a comparaçã;o
@@ -471,9 +463,7 @@ public class CompareScriptsController implements Initializable {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR,
-											"Database and selected object are from different version!", ButtonType.OK)
-													.showAndWait();
+									new Alert(AlertType.ERROR, "Database and object are from different version!", ButtonType.OK).showAndWait();
 								}
 							});
 						}
@@ -481,8 +471,7 @@ public class CompareScriptsController implements Initializable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK)
-										.showAndWait();
+								new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK).showAndWait();
 							}
 						});
 					} finally {
@@ -582,13 +571,20 @@ public class CompareScriptsController implements Initializable {
 	private File findFileCVS(Objeto objeto) {
 		File arquivoEncontrado = null;
 		String repositorio = "";
-		try { 
+		try {
 
-			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\"
-					+ Install.returnModuloFromCodSistema(objeto.getCodSistema());
+			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\" + Install.returnModuloFromCodSistema(objeto.getCodSistema());
 
 			// Busca o arquivo na pasta PLSQL do CVS
-			arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\"+objeto.getTipo().replaceAll(" ", "")+"\\", objeto.getNome() + ".sql,v");
+			if (objeto.getTipo().equalsIgnoreCase("PACKAGE")) {
+
+				arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\Package\\", objeto.getNome() + ".sql,v");
+
+			} else {
+
+				arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\", objeto.getNome() + ".sql,v");
+
+			}
 
 			// se não achar busca na pasta de Integrações
 			if (arquivoEncontrado == null) {
@@ -612,14 +608,12 @@ public class CompareScriptsController implements Initializable {
 	 * @throws CommandException
 	 * @throws CommandAbortedException
 	 */
-	private File checkoutFileFromCVS(File arquivo, Objeto objeto)
-			throws CommandAbortedException, CommandException, Exception {
+	private File checkoutFileFromCVS(File arquivo, Objeto objeto) throws CommandAbortedException, CommandException, Exception {
 
 		File arquivoEncontrado = null;
 
 		// Monta o CVSRoot;
-		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/"
-				+ Install.returnRepoFromCodSistema(objeto.getCodSistema());
+		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/" + Install.returnRepoFromCodSistema(objeto.getCodSistema());
 
 		// Cria pasta onde serão feitos os checkouts;
 		File temp = new File("temp");
@@ -631,9 +625,7 @@ public class CompareScriptsController implements Initializable {
 		CVSUtil cvs = new CVSUtil(cvsRoot, temp.getAbsolutePath(), "SOFTWAYSA2014");
 
 		// monta arquivo para ser feito o checkout;
-		String arquivoCheckout = arquivo.getAbsolutePath().substring(
-				arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())),
-				arquivo.getAbsolutePath().length() - 2);
+		String arquivoCheckout = arquivo.getAbsolutePath().substring(arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())), arquivo.getAbsolutePath().length() - 2);
 		cvs.checkOut(arquivoCheckout, objeto.getId());
 
 		// busca se o arquivo foi baixado com sucesso;
@@ -666,8 +658,7 @@ public class CompareScriptsController implements Initializable {
 		// Chama o examdiff para execução do compare;
 		File examDiff = new File("Diff");
 		//
-		Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fileFrom.getAbsolutePath() + " "
-				+ fileTo.getAbsolutePath());
+		Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fileFrom.getAbsolutePath() + " " + fileTo.getAbsolutePath());
 		//
 	}
 }
