@@ -399,10 +399,10 @@ public class CompareScriptsController implements Initializable {
 				// Cria o arquivo de destino vindo pelo xml ou excel;
 				File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
 
-				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
-				// execução;
+				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a execução;
 				Install.createFile(toFile, objeto.getCodigo());
 				//
+				// verifica se selecionou a comparação com o CVS;
 				if (rdCVS.isSelected()) {
 					try {
 						File cvs = new File("W:");
@@ -582,13 +582,13 @@ public class CompareScriptsController implements Initializable {
 	private File findFileCVS(Objeto objeto) {
 		File arquivoEncontrado = null;
 		String repositorio = "";
-		try {
+		try { 
 
 			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\"
 					+ Install.returnModuloFromCodSistema(objeto.getCodSistema());
 
 			// Busca o arquivo na pasta PLSQL do CVS
-			arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL", objeto.getNome() + ".sql,v");
+			arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\"+objeto.getTipo().replaceAll(" ", "")+"\\", objeto.getNome() + ".sql,v");
 
 			// se não achar busca na pasta de Integrações
 			if (arquivoEncontrado == null) {

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="frmCompare" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CompareScriptsController">
+<AnchorPane fx:id="frmCompare" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CompareScriptsController">
 	<children>
 		<Pane fx:id="filtroCmLogScripts" layoutY="-5.0" prefHeight="764.0" prefWidth="70.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
 			<children>
@@ -83,9 +83,9 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Text fill="#904100" layoutX="879.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WOULD YOU LIKE COMPARE FROM?" wrappingWidth="210.00000858306885">
+      <Text fill="#f2740b" layoutX="851.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WOULD YOU LIKE COMPARE FROM?" wrappingWidth="266.0">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font name="Fira Code Bold" size="15.0" />
          </font>
       </Text>
 	</children>
