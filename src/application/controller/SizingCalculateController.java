@@ -954,6 +954,9 @@ public class SizingCalculateController implements Initializable {
 				return result;
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			protected void succeeded() {
 				Install.unLoadStatus(frmSizingCalculate);
@@ -966,6 +969,10 @@ public class SizingCalculateController implements Initializable {
 				}
 			}
 		};
+		
+		/**
+		 * 
+		 */
 		task.setOnFailed(e -> {
 			Install.unLoadStatus(frmSizingCalculate);
 			Throwable exception = e.getSource().getException();
