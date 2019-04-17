@@ -65,6 +65,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -109,6 +112,8 @@ public class CompareScriptsController implements Initializable {
 
 	@FXML
 	private RadioButton								rdDatabase;
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -217,9 +222,34 @@ public class CompareScriptsController implements Initializable {
 					Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
 					this.execute(objeto);
 				}
+				
 			}
+			
+			//permite copiar o nome do objeto
+			Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
+			String nome = objeto.getNome();
+			final Clipboard clipboard = Clipboard.getSystemClipboard();
+			final ClipboardContent content = new ClipboardContent();
+			content.putString(nome);
+			clipboard.setContent(content);
+			
+			
+			
 		});
-
+		
+		//abre o dialog selecionando a linha e pressionando ENTER
+		this.tableCompare.setOnKeyPressed(event -> {
+			   if(event.getCode() == KeyCode.ENTER){
+					if (this.tableCompare.getSelectionModel().getSelectedItem() != null) {
+						Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
+						this.execute(objeto);
+					}
+			   }
+			}); 
+ 
+	
+		
+		
 		//
 
 		/**
