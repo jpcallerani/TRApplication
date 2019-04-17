@@ -948,7 +948,7 @@ public class SizingCalculateController implements Initializable {
 			protected String call() throws Exception {
 				Install.loadStatus(frmSizingCalculate);
 				String result = DaSizingQuestionarioService.saveAll(awnsers);
-				//DaSizingQuestionarioService.sizingCalculate();
+				DaSizingQuestionarioService.sizingCalculate();
 				List<DaSizingEstimado> estimate = DaSizingEstimadoService.findAll();
 				createSizingWorkbook(estimate);
 				return result;
