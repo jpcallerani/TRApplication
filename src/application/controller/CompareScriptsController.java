@@ -225,16 +225,18 @@ public class CompareScriptsController implements Initializable {
 				
 			}
 			
-			//permite copiar o nome do objeto
-			Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
-			String nome = objeto.getNome();
-			final Clipboard clipboard = Clipboard.getSystemClipboard();
-			final ClipboardContent content = new ClipboardContent();
-			content.putString(nome);
-			clipboard.setContent(content);
-			
-			
-			
+			try {
+				//permite copiar o nome do objeto
+				Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
+				String nome = objeto.getNome();
+				final Clipboard clipboard = Clipboard.getSystemClipboard();
+				final ClipboardContent content = new ClipboardContent();
+				content.putString(nome);
+				clipboard.setContent(content);		
+			} catch (Exception e2) {
+				
+			}
+	
 		});
 		
 		//abre o dialog selecionando a linha e pressionando ENTER
