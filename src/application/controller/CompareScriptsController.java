@@ -112,8 +112,6 @@ public class CompareScriptsController implements Initializable {
 
 	@FXML
 	private RadioButton								rdDatabase;
-	
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -222,36 +220,33 @@ public class CompareScriptsController implements Initializable {
 					Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
 					this.execute(objeto);
 				}
-				
+
 			}
-			
+
 			try {
-				//permite copiar o nome do objeto
+				// permite copiar o nome do objeto
 				Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
 				String nome = objeto.getNome();
 				final Clipboard clipboard = Clipboard.getSystemClipboard();
 				final ClipboardContent content = new ClipboardContent();
 				content.putString(nome);
-				clipboard.setContent(content);		
+				clipboard.setContent(content);
 			} catch (Exception e2) {
-				
+
 			}
-	
+
 		});
-		
-		//abre o dialog selecionando a linha e pressionando ENTER
+
+		// abre o dialog selecionando a linha e pressionando ENTER
 		this.tableCompare.setOnKeyPressed(event -> {
-			   if(event.getCode() == KeyCode.ENTER){
-					if (this.tableCompare.getSelectionModel().getSelectedItem() != null) {
-						Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
-						this.execute(objeto);
-					}
-			   }
-			}); 
- 
-	
-		
-		
+			if (event.getCode() == KeyCode.ENTER) {
+				if (this.tableCompare.getSelectionModel().getSelectedItem() != null) {
+					Objeto objeto = this.tableCompare.getSelectionModel().getSelectedItem().getValue();
+					this.execute(objeto);
+				}
+			}
+		});
+
 		//
 
 		/**
@@ -609,11 +604,11 @@ public class CompareScriptsController implements Initializable {
 
 			// Busca o arquivo na pasta PLSQL do CVS
 			if (objeto.getTipo().equalsIgnoreCase("PACKAGE")) {
-
+				//
 				arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\Package\\", objeto.getNome() + ".sql,v");
 
 			} else {
-
+				//
 				arquivoEncontrado = Install.findFile(repositorio + "\\PLSQL\\", objeto.getNome() + ".sql,v");
 
 			}
