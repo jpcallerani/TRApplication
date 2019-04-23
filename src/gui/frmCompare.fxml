@@ -83,7 +83,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Text fill="#f2740b" layoutX="851.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WOULD YOU LIKE COMPARE FROM?" wrappingWidth="266.0">
+      <Text fill="#f2740b" layoutX="814.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHERE WOULD YOU LIKE TO COMPARE FROM?" wrappingWidth="341.0">
          <font>
             <Font name="Fira Code Bold" size="15.0" />
          </font>

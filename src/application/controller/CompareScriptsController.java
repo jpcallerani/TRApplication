@@ -685,7 +685,7 @@ public class CompareScriptsController implements Initializable {
 		// Chama o examdiff para execução do compare;
 		File examDiff = new File("Diff");
 		//
-		Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\ExamDiff.exe  " + fileFrom.getAbsolutePath() + " " + fileTo.getAbsolutePath());
+		Runtime.getRuntime().exec(examDiff.getAbsolutePath() + "\\wincmp3.exe  " + fileFrom.getAbsolutePath() + " " + fileTo.getAbsolutePath());
 		//
 	}
 }
