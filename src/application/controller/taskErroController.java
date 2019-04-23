@@ -1,7 +1,9 @@
 package application.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import application.entity.Erro;
-import application.util.DatabaseConnection;
 import application.util.Install;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -197,13 +198,12 @@ public class taskErroController implements Initializable {
 					} else {
 						if (Install.reWriteFile(new File(Install.fileToBeExecutedTo).getAbsolutePath(),
 								Install.readFile(new File(Install.fileToBeExecutedFrom).getAbsolutePath()))) {
-							// copia o define selecionado para pasta de execução;
+							// FileUtils.forceDelete(new File(Install.fileToBeExecutedFrom));
 							Install.copyFile(Install.fileDefine, copyTo + "define.sql");
-							// create o script para execução do script;
 							Install.createCharacterSetScripts(copyTo);
-							// recria o ordem instalação;
 							Install.createOrdemInstall(copyTo, writeOrdemInstall());
-							//
+							Install.createWinInstall(copyTo);
+							Install.createWindowsStartInstallBat(copyTo);
 							runExecWindows();
 						}
 					}
@@ -248,8 +248,16 @@ public class taskErroController implements Initializable {
 					hboxFind.setDisable(true);
 					shadowPane.setCursor(Cursor.WAIT);
 					txLog.setCursor(Cursor.WAIT);
-					DatabaseConnection conn = new DatabaseConnection();
-					txLog.appendText(conn.runOracleScript(new File(copyTo + "\\ordem_instalacao_win.sql")));
+					ProcessBuilder pb = new ProcessBuilder(new File(copyTo).getAbsoluteFile() + "\\Instala_win.bat");
+					pb = pb.directory(new File(copyTo).getAbsoluteFile());
+					Process down = pb.start();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(down.getInputStream()));
+					String line;
+					while ((line = reader.readLine()) != null) {
+						// System.out.println(line);
+						executeResult.append(line + "\n"); // Has no effect
+					}
+					down.waitFor();
 				} catch (IOException e) {
 					txLog.appendText(e.getMessage() + "\n");
 					return 1;
@@ -343,6 +351,7 @@ public class taskErroController implements Initializable {
 		StringBuilder ordemInstall = new StringBuilder();
 		ordemInstall.append("define COD_SISTEMA_INSTALACAO = " + Install.cod_sistema + "");
 		ordemInstall.append("\n");
+		ordemInstall.append("Conn " + Install.username + "/" + Install.password + "@" + Install.tns + ";");
 		ordemInstall.append("\n");
 		ordemInstall.append("prompt ==========================================");
 		ordemInstall.append("\n");

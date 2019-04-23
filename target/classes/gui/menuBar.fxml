@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="vBox" prefHeight="757.0" prefWidth="200.0" style="-fx-border-color: f2740b; -fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SliderController">
+<VBox fx:id="vBox" prefHeight="757.0" prefWidth="200.0" style="-fx-border-color: f2740b; -fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SliderController">
    <children>
       <Pane prefHeight="109.0" prefWidth="331.0" styleClass="menu_bar" stylesheets="@../resources/css/stylsheet.css">
          <children>
@@ -25,8 +25,8 @@
          <children>
             <HBox fx:id="hboxOperations" prefHeight="90.0" prefWidth="228.0">
                <children>
-                  <Pane fx:id="paneOperations" prefHeight="80.0" prefWidth="13.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="firstMenu" focusTraversable="false" prefHeight="85.0" prefWidth="230.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="OPERATIONS" textFill="#403a35">
+                  <Pane fx:id="paneOperations" prefHeight="90.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="firstMenu" focusTraversable="false" prefHeight="90.0" prefWidth="189.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="OPERATIONS" textFill="#403a35">
                      <font>
                         <Font name="Fira Code Bold" size="13.0" />
                      </font>
@@ -92,8 +92,8 @@
          <children>
             <HBox fx:id="hboxExt1" prefHeight="90.0" prefWidth="228.0">
                <children>
-                  <Pane fx:id="paneAbout" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="198.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT" textFill="#403a35">
+                  <Pane fx:id="paneAbout" prefHeight="85.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="182.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT" textFill="#403a35">
                      <font>
                         <Font name="Fira Code Bold" size="13.0" />
                      </font>
@@ -116,8 +116,8 @@
          <children>
             <HBox fx:id="hboxExt" prefHeight="90.0" prefWidth="228.0">
                <children>
-                  <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
-                  <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="221.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT" textFill="#403a35">
+                  <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
+                  <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="189.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT" textFill="#403a35">
                      <font>
                         <Font name="Fira Code Bold" size="14.0" />
                      </font>

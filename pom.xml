@@ -104,32 +104,12 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
-		<!-- MySQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connector.version}</version>
-		</dependency>
 
 		<!-- C3PO -->
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>${c3po.version}</version>
-		</dependency>
-
-		<!-- MySQL -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.45</version>
-		</dependency>
-
-		<!-- C3PO -->
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.5.2</version>
 		</dependency>
 
 		<dependency>
@@ -146,11 +126,6 @@
 			<version>2.3.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-core</artifactId>
-			<version>2.2.11</version>
-		</dependency>
 
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>

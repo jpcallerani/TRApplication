@@ -1,27 +1,46 @@
 package application.util;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import application.entity.Objeto;
+import oracle.dbtools.db.DBUtil;
+import oracle.dbtools.raptor.newscriptrunner.ISQLCommand;
+import oracle.dbtools.raptor.newscriptrunner.ScriptExecutor;
+import oracle.dbtools.raptor.newscriptrunner.ScriptParser;
+import oracle.dbtools.raptor.newscriptrunner.ScriptRunner;
+import oracle.dbtools.raptor.newscriptrunner.ScriptRunnerContext;
 import oracle.jdbc.OracleDriver;
+import oracle.jdbc.OraclePreparedStatement;
 
 public class DatabaseConnection {
 
 	private Connection con = null;
+	private OraclePreparedStatement _statement_st;
 
 	/**
 	 *
 	 * @return
+	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
 	public Connection Connect() {
 		try {
+
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+
 			Properties v_properties_prop;
 
 			v_properties_prop = new Properties();
@@ -29,8 +48,8 @@ public class DatabaseConnection {
 			v_properties_prop.put("password", Install.password);
 
 			con = DriverManager.getConnection(Install.url, v_properties_prop);
-		} catch (ClassNotFoundException e) {
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		return con;
 	}
@@ -48,6 +67,7 @@ public class DatabaseConnection {
 			String url = getURL(tns);
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+
 			Properties v_properties_prop;
 
 			v_properties_prop = new Properties();
@@ -56,7 +76,7 @@ public class DatabaseConnection {
 
 			DriverManager.registerDriver(new OracleDriver());
 
-			con = DriverManager.getConnection(url, v_properties_prop);
+			this.con = DriverManager.getConnection(url, v_properties_prop);
 
 			Install.username = username;
 			Install.password = password;
@@ -65,7 +85,7 @@ public class DatabaseConnection {
 
 			this.createViewCmLogScripts();
 
-			con.close();
+			this.con.close();
 			retorno = 1;
 		} catch (Exception e) {
 		}
@@ -115,11 +135,11 @@ public class DatabaseConnection {
 	public void createViewCmLogScripts() {
 		try {
 			this.Connect();
-			Statement statement = con.createStatement();
+			Statement statement = this.con.createStatement();
 			String code = "create or replace view  V_CM_LOG_SCRIPTS as select rownum as id, usuario as usuario, versao as versao, tipo as tipo, objeto as objeto, erro as erro, data as data, rm as rm from cm_log_scripts";
 			statement.executeUpdate(code);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -129,11 +149,242 @@ public class DatabaseConnection {
 	public void dropViewCmLogScripts() {
 		try {
 			this.Connect();
-			Statement statement = con.createStatement();
+			Statement statement = this.con.createStatement();
 			String code = "drop view V_CM_LOG_SCRIPTS";
 			statement.executeUpdate(code);
 		} catch (Exception e) {
 
 		}
+	}
+
+	/**
+	 * 
+	 * @param Query a ser executada
+	 * @return Resultset do select executado
+	 * @throws SQLException
+	 */
+	public ResultSet Query(String query) throws SQLException {
+		ResultSet v_resultset_result;
+
+		this._statement_st = (OraclePreparedStatement) this.con.prepareStatement(query);
+		v_resultset_result = this._statement_st.executeQuery();
+		return v_resultset_result;
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public boolean returnCodFromDatabase(String username) {
+		boolean resposta = true;
+		try {
+			ResultSet rs = this.Query("select cod_sistema from sfw_cm_schema where s_schema_owner = upper('" + username
+					+ "') and rownum = 1");
+			while (rs.next()) {
+				Install.cod_sistema = rs.getString("cod_sistema");
+			}
+			if (Install.cod_sistema == null || Install.cod_sistema.equalsIgnoreCase("")) {
+				if (username.toUpperCase().contains("RF")) {
+					Install.cod_sistema = "6";
+				} else {
+					resposta = false;
+				}
+			}
+		} catch (Exception e) {
+			resposta = false;
+		}
+		return resposta;
+	}
+
+	/**
+	 * Function to run a script into database;
+	 * 
+	 * @param script
+	 * @throws SQLException
+	 * @throws IOException
+	 */ // "@" + script.getAbsolutePath()
+	public String runOracleScriptWithLogs(File script) throws SQLException, IOException {
+		Connection conn = DriverManager.getConnection(Install.url, Install.username, Install.password);
+
+		FileInputStream fin = new FileInputStream(script.getAbsolutePath());
+		ScriptParser parser = new ScriptParser(fin);
+
+		ISQLCommand cmd;
+		// #setup the context
+		ScriptRunnerContext ctx = new ScriptRunnerContext();
+		ctx.setBaseConnection(conn);
+
+		// Capture the results without this it goes to STDOUT
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		BufferedOutputStream buf = new BufferedOutputStream(bout);
+
+		ScriptRunner sr = new ScriptRunner(conn, buf, ctx);
+		while ((cmd = parser.next()) != null) {
+			// do something fancy based on a cmd
+			sr.run(cmd);
+			// check success/failure of the command
+
+			String errMsg = (String) ctx.getProperty(ScriptRunnerContext.ERR_MESSAGE);
+			if (errMsg != null) {
+				// react to a failure
+				System.out.println("**FAILURE**" + errMsg);
+			}
+		}
+
+		String results = bout.toString("ISO-8859-1");
+		results = results.replaceAll(" force_print\n", "");
+		return results;
+	}
+
+	/**
+	 * Function to run a script into database;
+	 * 
+	 * @param script
+	 * @throws SQLException
+	 * @throws IOException
+	 */ // "@" + script.getAbsolutePath()
+	public String runOracleScript(File script) throws SQLException, IOException {
+		Connection conn = DriverManager.getConnection(Install.url, Install.username, Install.password);
+
+		// #get a DBUtil but won't actually use it in this example
+		// DBUtil util = DBUtil.getInstance(conn);
+
+		// #create sqlcl
+		ScriptExecutor sqlcl = new ScriptExecutor(conn);
+
+		// Capture the results without this it goes to STDOUT
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		BufferedOutputStream buf = new BufferedOutputStream(bout);
+		sqlcl.setOut(buf);
+
+		// #setup the context
+		ScriptRunnerContext ctx = new ScriptRunnerContext();
+
+		// #set the context
+		sqlcl.setScriptRunnerContext(ctx);
+		ctx.setBaseConnection(conn);
+
+		// # run a whole file
+		sqlcl.setStmt("@" + script.getAbsolutePath());
+		sqlcl.run();
+		//
+		String results = bout.toString("ISO-8859-1");
+		results = results.replaceAll(" force_print\n", "");
+		//
+		conn.close();
+		return results;
+	}
+
+	/**
+	 * Verifica se a versão do XML é a mesma do banco de dados;
+	 * 
+	 * @param objeto
+	 * @return
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	public boolean verificaVersao(Objeto objeto) throws IOException, SQLException {
+		//
+		String contador = "";
+		//
+		DBUtil util = DBUtil.getInstance(this.con);
+		//
+		ResultSet rs = util.executeQuery(
+				"select count(1) as contador " + "from sfw_sistema_versao where valido = 'S' "
+						+ "and cod_versao like '%" + objeto.getId().replace("tag_", "") + "%'",
+				new ArrayList<String>());
+		// precisa tratar o nullpointer porque a função "executeQuery"do sqlcl não trata
+		// o SQLException;
+		if (rs == null) {
+			throw new IOException(
+					"Error to execute -> " + "select count(1) as contador from sfw_sistema_versao where valido = 'S' "
+							+ "and cod_versao like '%" + objeto.getId().replace("tag_", "") + "%'");
+		}
+		// verifica se achou a mesma versão do objeto;
+		if (rs.next()) {
+			contador = rs.getString("contador");
+		}
+		// se a versão for a mesma retorna verdadeiro;
+		if (contador.equalsIgnoreCase("1")) {
+			return true;
+		} else {
+			// caso contrário retorna falso;
+			return false;
+		}
+	}
+
+	/**
+	 * 
+	 * @param p_baseGenerica
+	 * @return
+	 * @throws SQLException
+	 */
+	public Objeto returnObjectFromDatabase(Objeto objeto) throws SQLException {
+		Objeto objeto1 = null;
+		try {
+			//
+			objeto1 = new Objeto();
+			objeto1.setNome(objeto.getNome());
+			objeto1.setTipo(objeto.getTipo());
+			objeto1.setId(objeto.getId());
+			objeto1.setCodSistema(objeto.getCodSistema());
+			//
+			if (objeto.getTipo().equals("VIEW")) {
+				String codview = "create or replace view as ";
+
+				ResultSet codv = this.Query(
+						"select * from all_views "
+						+ "where owner = "
+							+ "(select cm.s_schema_owner "
+							+ "from sfw_cm_schema cm where cod_sistema = '"+ objeto.getCodSistema() + "') "
+						+ "and view_name = '" + objeto.getNome() + "'");
+
+				while (codv.next()) {
+
+					codview = codview + codv.getString("TEXT");
+
+				}
+				codv.getStatement().close();
+				codview.trim();
+				codview = codview + "\n;";
+				//
+				objeto1.setCodigo(codview);
+
+			} else {
+				ResultSet rscodigo = this.Query("select TEXT" + 
+						"  from all_source" + 
+						" where name = '"+objeto.getNome()+"'" + 
+						"   and type = '"+objeto.getTipo()+"'" + 
+						"   and owner = " + 
+						"       (select cm.s_schema_owner from sfw_cm_schema cm where cod_sistema = '"+objeto.getCodSistema()+"')" + 
+						" order by line");
+
+				String cod = "create or replace ";
+
+				while (rscodigo.next()) {
+					cod = cod + rscodigo.getString("TEXT");
+
+				}
+				rscodigo.getStatement().close();
+				cod.trim();
+				cod = cod + "\n/";
+				//
+				objeto1.setCodigo(cod);
+			}
+			this.con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return objeto1;
+
+	}
+	
+	/**
+	 * close oracle connection;
+	 * @throws SQLException
+	 */
+	public void closeConnection() throws SQLException {
+		this.con.close();
 	}
 }

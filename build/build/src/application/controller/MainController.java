@@ -2,6 +2,8 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import animatefx.animation.BounceInDown;
 import application.main.Launch;
 import application.util.Install;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -66,12 +70,17 @@ public class MainController implements Initializable {
 	@FXML
 	private Label lblReconnect;
 
+	@FXML
+	private Text txHora;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		this.loadMenu();
 
 		this.lblUsername.setText("Connected as: " + Install.username + "@" + Install.tns);
+
+		// this.showTime();
 
 		/**
 		 * Relogin Method
@@ -92,7 +101,6 @@ public class MainController implements Initializable {
 
 				Launch.stage = stage;
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -118,5 +126,29 @@ public class MainController implements Initializable {
 				drawMenu.open();
 			}
 		});
+	}
+
+	private void showTime() {
+		Task<?> task = new Task<Object>() {
+			@Override
+			protected Integer call() throws Exception {
+				SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
+				while (true) {
+					Date y = new Date();
+					txHora.setText(sdf.format(y));
+				}
+			}
+
+			@Override
+			protected void succeeded() {
+
+			}
+		};
+		task.setOnFailed(e -> {
+
+		});
+		Thread th = new Thread(task);
+		th.setDaemon(true);
+		th.start();
 	}
 }

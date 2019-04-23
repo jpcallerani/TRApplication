@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
+import java.io.Writer;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -37,8 +41,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -76,6 +80,7 @@ public class Install {
 	 * 
 	 * @param parent
 	 */
+
 	public static void loadStatus(AnchorPane parent) {
 		parent.setCursor(Cursor.WAIT);
 		for (int i = 0; i < parent.getChildren().size(); i++) {
@@ -180,6 +185,7 @@ public class Install {
 	 */
 	public static void makeStageDrageable(Node node) {
 		node.setOnMousePressed(new EventHandler<MouseEvent>() {
+
 			@Override
 			public void handle(MouseEvent event) {
 				xOffset = event.getSceneX();
@@ -242,12 +248,12 @@ public class Install {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("rawtypes")
-	public static boolean findFile(String folder, String pfile) {
-		boolean fileFound = false;
+	public static File findFile(String folder, String pfile) {
+		File arquivoEncontrado = null;
 		pfile = pfile.substring(pfile.lastIndexOf("\\") + 1);
 		Charset CP866 = Charset.forName("CP866");
 		try {
-			String[] extensions = { "sql", "zip" };
+			String[] extensions = { "sql", "zip", "sql,v" };
 			boolean recursive = true;
 
 			Collection files = FileUtils.listFiles(new File(folder), extensions, recursive);
@@ -258,14 +264,12 @@ public class Install {
 				if (file.getAbsolutePath().endsWith(".zip")) {
 					if (findInsideZipFile(new ZipFile(file, CP866), pfile, folder)) {
 						isFromZip = true;
-						fileFound = true;
 						break;
 					}
 				} else {
-					if (pfile.equalsIgnoreCase(file.getName())) {
-						Install.fileToBeExecutedFrom = file.getAbsolutePath();
+					if (pfile.toLowerCase().equalsIgnoreCase(file.getName().toLowerCase())) {
+						arquivoEncontrado = file;
 						isFromZip = false;
-						fileFound = true;
 						break;
 					}
 				}
@@ -273,7 +277,10 @@ public class Install {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return fileFound;
+		if (arquivoEncontrado != null) {
+			Install.fileToBeExecutedFrom = arquivoEncontrado.getAbsolutePath();
+		}
+		return arquivoEncontrado;
 	}
 
 	/**
@@ -470,7 +477,7 @@ public class Install {
 			}
 			v_bufferedwriter_startinstall = new BufferedWriter(new FileWriter(v_file_startinstall));
 
-			stringBuilderNovo.append("@\".\\define.sql\" \n");
+			stringBuilderNovo.append("@@\"define.sql\" \n");
 			stringBuilderNovo.append(content);
 			v_bufferedwriter_startinstall.write(stringBuilderNovo.toString());
 			v_bufferedwriter_startinstall.newLine();
@@ -586,6 +593,7 @@ public class Install {
 
 			fileCreated = true;
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw e;
 		} finally {
 			try {
@@ -617,5 +625,95 @@ public class Install {
 			awnser = true;
 		}
 		return awnser;
+	}
+
+	/**
+	 * escreve arquivo
+	 */
+	public void writeFile(File arquivo, String codigo) {
+		RandomAccessFile stream;
+		FileChannel channel;
+		try {
+			stream = new RandomAccessFile(arquivo, "rw");
+			channel = stream.getChannel();
+			String value = "Hello";
+			byte[] strBytes = value.getBytes();
+			ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
+			buffer.put(strBytes);
+			buffer.flip();
+			channel.write(buffer);
+			stream.close();
+			channel.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * retorna o módulo do sistema a partir do codSistema
+	 * 
+	 * @param codSistema
+	 * @return
+	 */
+	public static String returnModuloFromCodSistema(String codSistema) {
+		String modulo = "";
+
+		if (codSistema.equalsIgnoreCase("0")) {
+			modulo = "UNI_SoftComexBD";
+		} else if (codSistema.equalsIgnoreCase("2")) {
+			modulo = "UNI_ExportSYSBD";
+		} else if (codSistema.equalsIgnoreCase("3")) {
+			modulo = "UNI_DrawbackSYSBD";
+		} else if (codSistema.equalsIgnoreCase("6")) {
+			modulo = "UNI_RecofSYSBD";
+		} else if (codSistema.equalsIgnoreCase("9")) {
+			modulo = "UNI_ImportSYSBD";
+		} else if (codSistema.equalsIgnoreCase("21")) {
+			modulo = "UNI_BrokerSYSBD";
+		} else if (codSistema.equalsIgnoreCase("500")) {
+			modulo = "UNI_InOutSYSBD";
+		}
+		return modulo;
+	}
+
+	/**
+	 * retorna o repositório do sistema a partir do codSistema
+	 * 
+	 * @param codSistema
+	 * @return
+	 */
+	public static String returnRepoFromCodSistema(String codSistema) {
+		String repositorio = "";
+
+		if (codSistema.equalsIgnoreCase("0")) {
+			repositorio = "repositorio_classes_softway.cvs";
+		} else if (codSistema.equalsIgnoreCase("2")) {
+			repositorio = "excvsrep";
+		} else if (codSistema.equalsIgnoreCase("3")) {
+			repositorio = "dbcvsrep";
+		} else if (codSistema.equalsIgnoreCase("6")) {
+			repositorio = "Repositorio_RegEsp.cvs";
+		} else if (codSistema.equalsIgnoreCase("9")) {
+			repositorio = "iscvsrep";
+		} else if (codSistema.equalsIgnoreCase("21")) {
+			repositorio = "bscvsrep";
+		} else if (codSistema.equalsIgnoreCase("500")) {
+			repositorio = "integracao_cvs";
+		}
+		return repositorio;
+	}
+
+	/**
+	 * Cria o arquivo fisicamente na máquina;
+	 * 
+	 * @throws IOException
+	 */
+	public static void createFile(File arquivo, String conteudo) throws IOException {
+		if (arquivo.exists()) {
+			arquivo.delete();
+		}
+		Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(arquivo), "ISO-8859-1"));
+		out.write(conteudo);
+		out.close();
 	}
 }

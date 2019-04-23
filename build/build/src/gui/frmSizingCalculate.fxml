@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="frmSizingCalculate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SizingCalculateController">
+<AnchorPane fx:id="frmSizingCalculate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SizingCalculateController">
 	<children>
 		<Pane fx:id="filtroSizingCalculate" layoutY="-5.0" prefHeight="764.0" prefWidth="65.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
 			<children>

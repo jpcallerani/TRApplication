@@ -1,9 +1,7 @@
 package application.controller;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +9,13 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import application.entity.Erro;
+import application.util.DatabaseConnection;
 import application.util.Install;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -84,6 +82,9 @@ public class taskErroController implements Initializable {
 		Platform.runLater(() -> {
 			Install.fileToBeExecutedFrom = null;
 			Install.fileToBeExecutedTo = null;
+			if (!new File(copyTo).exists()) {
+				new File(copyTo).mkdirs();
+			}
 			this.findFile();
 		});
 
@@ -115,9 +116,8 @@ public class taskErroController implements Initializable {
 				txLog.setCursor(Cursor.WAIT);
 
 				// valida se o arquivo foi encontrado no caminho informado.
-				validFile = Install.findFile(Install.filePackage, erro.getObjeto());
-
-				if (validFile) {
+				if (Install.findFile(Install.filePackage, erro.getObjeto()) != null) {
+					validFile = true;
 					/**
 					 * Se achou o arquivo, chama o método para executalo no banco.
 					 */
@@ -195,14 +195,15 @@ public class taskErroController implements Initializable {
 						hboxFind.setDisable(false);
 						btnClose.setDisable(false);
 					} else {
-						if (Install.reWriteFile(new File(Install.fileToBeExecutedTo).getAbsolutePath(), 
-						    Install.readFile(new File(Install.fileToBeExecutedFrom).getAbsolutePath()))) {
-							FileUtils.forceDelete(new File(Install.fileToBeExecutedFrom));
+						if (Install.reWriteFile(new File(Install.fileToBeExecutedTo).getAbsolutePath(),
+								Install.readFile(new File(Install.fileToBeExecutedFrom).getAbsolutePath()))) {
+							// copia o define selecionado para pasta de execução;
 							Install.copyFile(Install.fileDefine, copyTo + "define.sql");
+							// create o script para execução do script;
 							Install.createCharacterSetScripts(copyTo);
+							// recria o ordem instalação;
 							Install.createOrdemInstall(copyTo, writeOrdemInstall());
-							Install.createWinInstall(copyTo);
-							Install.createWindowsStartInstallBat(copyTo);
+							//
 							runExecWindows();
 						}
 					}
@@ -247,16 +248,8 @@ public class taskErroController implements Initializable {
 					hboxFind.setDisable(true);
 					shadowPane.setCursor(Cursor.WAIT);
 					txLog.setCursor(Cursor.WAIT);
-					ProcessBuilder pb = new ProcessBuilder(new File(copyTo).getAbsoluteFile() + "\\Instala_win.bat");
-					pb = pb.directory(new File(copyTo).getAbsoluteFile());
-					Process down = pb.start();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(down.getInputStream()));
-					String line;
-					while ((line = reader.readLine()) != null) {
-						// System.out.println(line);
-						executeResult.append(line + "\n"); // Has no effect
-					}
-					down.waitFor();
+					DatabaseConnection conn = new DatabaseConnection();
+					txLog.appendText(conn.runOracleScript(new File(copyTo + "\\ordem_instalacao_win.sql")));
 				} catch (IOException e) {
 					txLog.appendText(e.getMessage() + "\n");
 					return 1;
@@ -302,15 +295,22 @@ public class taskErroController implements Initializable {
 	 * @throws IOException
 	 */
 	private List<String> findVariableError() throws IOException {
+		//
 		List<String> erroVariavel = new ArrayList<>();
+		//
 		List<String> scriptVariavel = new ArrayList<>();
+		//
 		StringBuilder defineVariable = new StringBuilder();
+
 		// find by oracle variables
 		Pattern p = Pattern.compile("\\&&(.*?)\\s");
+
 		// read the files to check incompatible variables
 		StringBuilder fileContent = Install.readFile(Install.fileToBeExecutedFrom);
+
 		// replace all non character minus &&
 		fileContent = new StringBuilder(fileContent.toString().replaceAll("[^\\w^&]", " "));
+
 		// find variables
 		Matcher m1 = p.matcher(fileContent.toString());
 		while (m1.find()) {
@@ -343,7 +343,6 @@ public class taskErroController implements Initializable {
 		StringBuilder ordemInstall = new StringBuilder();
 		ordemInstall.append("define COD_SISTEMA_INSTALACAO = " + Install.cod_sistema + "");
 		ordemInstall.append("\n");
-		ordemInstall.append("Conn " + Install.username + "/" + Install.password + "@" + Install.tns + ";");
 		ordemInstall.append("\n");
 		ordemInstall.append("prompt ==========================================");
 		ordemInstall.append("\n");
