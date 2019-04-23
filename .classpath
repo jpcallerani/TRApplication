@@ -6,7 +6,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-10"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-10">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -14,38 +18,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/antlr-runtime.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/commons-codec.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/commons-logging.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/dbtools-common.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/dbtools-http.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/dbtools-net.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/dbtools-sqlcl.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/httpclient.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/httpcore.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/httpmime.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jackson-annotations.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jackson-core.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jackson-databind.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jansi.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/javax.json.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jaxb-api.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jdbcrest.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jline.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jsch.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/jzlib.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/low-level-api.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/ojdbc8.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/oraclepki.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/orai18n.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/orai18n-mapping.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/orai18n-utility.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/orajsoda.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/osdt_cert.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/osdt_core.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/stringtemplate.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/xdb6.jar"/>
-	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/sqlcl/xmlparserv2-sans-jaxp-services.jar"/>
 	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/cvsclient.jar"/>
+	<classpathentry kind="lib" path="F:/Aulas/Java/eclipse-workspace/TRApplication/src/resources/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
