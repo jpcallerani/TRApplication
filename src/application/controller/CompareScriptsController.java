@@ -408,101 +408,111 @@ public class CompareScriptsController implements Initializable {
 			@Override
 			protected Integer call() throws Exception {
 				Install.loadStatus(frmCompare);
-				//
-				// Cria arquivo de origem para comparação;
-				File compareFolder = new File("Compare");
+				// Não executa a comparação para objetos a menos
+				if (objeto.getErro().toUpperCase().contains("MENOS")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							new Alert(AlertType.ERROR, "There are no comparison for this object. -> " + objeto.getErro(), ButtonType.OK).showAndWait();
+						}
+					});
+				} else {
+					//
+					// Cria arquivo de origem para comparação;
+					File compareFolder = new File("Compare");
 
-				// Cria o arquivo de destino vindo pelo xml ou excel;
-				File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
+					// Cria o arquivo de destino vindo pelo xml ou excel;
+					File toFile = new File(compareFolder + "\\" + objeto.getNome() + ".sql");
 
-				// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
-				// execução;
-				Install.createFile(toFile, objeto.getCodigo());
-				//
-				// verifica se selecionou a comparação com o CVS;
-				if (rdCVS.isSelected()) {
-					try {
-						File cvs = new File("W:");
-						if (cvs.exists()) {
-							// Busca arquivo CVS;
-							File fromFile = findFileCVS(objeto);
+					// Se o arquivo foi do XML/XLS foi criado com sucesso continua a
+					// execução;
+					Install.createFile(toFile, objeto.getCodigo());
+					//
+					// verifica se selecionou a comparação com o CVS;
+					if (rdCVS.isSelected()) {
+						try {
+							File cvs = new File("W:");
+							if (cvs.exists()) {
+								// Busca arquivo CVS;
+								File fromFile = findFileCVS(objeto);
 
-							// se encontrou o arquivo faz o checkout;
-							if (fromFile != null) {
+								// se encontrou o arquivo faz o checkout;
+								if (fromFile != null) {
 
-								try {
-									// Baixa o arquivo do CVS;
-									File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
+									try {
+										// Baixa o arquivo do CVS;
+										File fromFileLocal = checkoutFileFromCVS(fromFile, objeto);
 
-									// executa a comparação do examdiff;
-									executeCompare(fromFileLocal, toFile);
+										// executa a comparação do examdiff;
+										executeCompare(fromFileLocal, toFile);
 
-								} catch (Exception e) {
+									} catch (Exception e) {
+										Platform.runLater(new Runnable() {
+											@Override
+											public void run() {
+												new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+											}
+										});
+									}
+
+								} else {
+									// se não encontrou o objeto mostra o erro;
 									Platform.runLater(new Runnable() {
 										@Override
 										public void run() {
-											new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+											new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
 										}
 									});
 								}
-
 							} else {
-								// se não encontrou o objeto mostra o erro;
+								// se nao achou o mapeamento do CVS mostra o erro;
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
-										new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+										new Alert(AlertType.ERROR, "CVS unit not mapped", ButtonType.OK).showAndWait();
 									}
 								});
 							}
-						} else {
-							// se nao achou o mapeamento do CVS mostra o erro;
+						} catch (Exception e) {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR, "CVS unit not mapped", ButtonType.OK).showAndWait();
+									new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
 								}
 							});
 						}
-					} catch (Exception e) {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK).showAndWait();
+					} else {
+						DatabaseConnection conn = new DatabaseConnection();
+						try {
+							conn.Connect();
+							// busca o objeto na base;
+							if (conn.verificaVersao(objeto)) {
+								Objeto objetoFrom = conn.returnObjectFromDatabase(objeto);
+								//
+								// Caminho do arquivo destino;
+								File arquivoDestino = new File("compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
+								// Cria o arquivo na pasta;
+								Install.createFile(arquivoDestino, objetoFrom.getCodigo());
+								// executa a comparaçã;o
+								executeCompare(arquivoDestino, toFile);
+							} else {
+								Platform.runLater(new Runnable() {
+									@Override
+									public void run() {
+										new Alert(AlertType.ERROR, "Database and object are from different version!", ButtonType.OK).showAndWait();
+									}
+								});
 							}
-						});
-					}
-				} else {
-					DatabaseConnection conn = new DatabaseConnection();
-					try {
-						conn.Connect();
-						// busca o objeto na base;
-						if (conn.verificaVersao(objeto)) {
-							Objeto objetoFrom = conn.returnObjectFromDatabase(objeto);
-							//
-							// Caminho do arquivo destino;
-							File arquivoDestino = new File("compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
-							// Cria o arquivo na pasta;
-							Install.createFile(arquivoDestino, objetoFrom.getCodigo());
-							// executa a comparaçã;o
-							executeCompare(arquivoDestino, toFile);
-						} else {
+						} catch (IOException e) {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR, "Database and object are from different version!", ButtonType.OK).showAndWait();
+									new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK).showAndWait();
 								}
 							});
+						} finally {
+							conn.closeConnection();
 						}
-					} catch (IOException e) {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK).showAndWait();
-							}
-						});
-					} finally {
-						conn.closeConnection();
 					}
 				}
 
