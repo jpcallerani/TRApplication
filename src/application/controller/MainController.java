@@ -86,7 +86,7 @@ public class MainController implements Initializable {
 		// this.showTime();
 		
 		//Method to control application version;
-		this.lblVersion.setText("TRApplication Version 1.0.2");
+		this.lblVersion.setText("TRApplication Version 1.0.3");
 
 		/**
 		 * Relogin Method
