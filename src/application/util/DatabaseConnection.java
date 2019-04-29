@@ -373,7 +373,7 @@ public class DatabaseConnection {
 							"  from sfw_verific_integridade_obj sfw, sfw_cm_schema scm" + 
 							" where id_verificacao = (select max(id_verificacao) from sfw_verific_integridade)" + 
 							"   and sfw.s_owner_objeto = scm.s_schema_owner" + 
-							//"   and sfw.s_tipo_inconformidade != 'A MAIS'" + 
+							"   and sfw.s_tipo_inconformidade != 'A MAIS'" + 
 							"   and scm.cod_sistema in ('0', '2', '3', '6', '9', '10', '11', '21')" + 
 							"   and s_tipo_objeto in ('FUNCTION'," + 
 							"                         'PACKAGE'," + 
