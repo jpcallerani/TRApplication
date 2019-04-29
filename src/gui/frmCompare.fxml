@@ -32,7 +32,7 @@
 				</ImageView>
 			</children>
 		</Pane>
-		<JFXTreeTableView fx:id="tableCompare" layoutX="75.0" layoutY="9.0" prefHeight="661.0" prefWidth="1113.0" stylesheets="@../resources/css/stylsheet.css">
+		<JFXTreeTableView fx:id="tableCompare" layoutX="75.0" layoutY="9.0" prefHeight="622.0" prefWidth="1113.0" stylesheets="@../resources/css/stylsheet.css">
 			<cursor>
 				<Cursor fx:constant="HAND" />
 			</cursor>
@@ -44,7 +44,7 @@
             </ContextMenu>
          </contextMenu>
 		</JFXTreeTableView>
-      <JFXTextField fx:id="txDefine" editable="false" focusColor="#ff7700" layoutX="318.0" layoutY="699.0" prefHeight="30.0" prefWidth="425.0" styleClass="text_folder" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#b55400" viewOrder="1.0">
+      <JFXTextField fx:id="txDefine" editable="false" focusColor="#ff7700" layoutX="321.0" layoutY="650.0" prefHeight="30.0" prefWidth="425.0" styleClass="text_folder" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#b55400" viewOrder="1.0">
          <font>
             <Font name="Prelo W01 Bold" size="12.0" />
          </font>
@@ -52,7 +52,7 @@
             <Tooltip fx:id="ttDefine" text="select xml file" />
          </tooltip>
       </JFXTextField>
-      <JFXButton fx:id="btnLoadFile" buttonType="RAISED" layoutX="98.0" layoutY="696.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="LOAD XML / XLS / XLSX" textFill="WHITE" viewOrder="3.0">
+      <JFXButton fx:id="btnLoadFile" buttonType="RAISED" layoutX="97.0" layoutY="644.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="LOAD XML / XLS / XLSX" textFill="WHITE" viewOrder="3.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -61,32 +61,35 @@
          </font>
       </JFXButton>
       <HBox layoutX="882.0" layoutY="720.0" prefHeight="18.0" prefWidth="204.0" AnchorPane.rightAnchor="105.0">
-         <children>
-            <RadioButton fx:id="rdCVS" mnemonicParsing="false" selected="true" text="CVS">
-               <font>
-                  <Font name="Prelo W01 Bold" size="13.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="grupo" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="rdDatabase" mnemonicParsing="false" text="DATABASE" toggleGroup="$grupo">
-               <font>
-                  <Font name="Prelo W01 Bold" size="13.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </RadioButton>
-         </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Text fill="#f2740b" layoutX="814.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHERE WOULD YOU LIKE TO COMPARE FROM?" wrappingWidth="341.0">
+      <Text fill="#f2740b" layoutX="836.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHERE WOULD YOU LIKE TO COMPARE FROM?" wrappingWidth="297.0">
          <font>
-            <Font name="Fira Code Bold" size="15.0" />
+            <Font name="Ubuntu Bold" size="13.0" />
          </font>
       </Text>
+      <RadioButton fx:id="rdCVS" layoutX="891.0" layoutY="687.0" mnemonicParsing="false" selected="true" text="CVS">
+         <font>
+            <Font name="Prelo W01 Bold" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="grupo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rdDatabase" layoutX="985.0" layoutY="687.0" mnemonicParsing="false" text="DATABASE" toggleGroup="$grupo">
+         <font>
+            <Font name="Prelo W01 Bold" size="13.0" />
+         </font>
+      </RadioButton>
+      <JFXButton fx:id="btnXMLCreate" buttonType="RAISED" layoutX="97.0" layoutY="702.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="CREATE XML" textFill="WHITE" viewOrder="3.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Prelo W01 Bold" size="13.0" />
+         </font>
+      </JFXButton>
 	</children>
 </AnchorPane>

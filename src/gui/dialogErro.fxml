@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="shadowPane" prefHeight="573.0" prefWidth="889.0" styleClass="shadowPane" stylesheets="@../resources/css/stylsheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ErroController">
+<AnchorPane fx:id="shadowPane" prefHeight="573.0" prefWidth="889.0" styleClass="shadowPane" stylesheets="@../resources/css/stylsheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ErroController">
 	<children>
 		<AnchorPane fx:id="rootPane" layoutX="6.0" layoutY="5.0" prefHeight="563.0" prefWidth="878.0" styleClass="rootPane" stylesheets="@../resources/css/stylsheet.css">
 			<children>
@@ -22,7 +22,7 @@
 				<JFXTextField fx:id="txUsuario" editable="false" focusColor="WHITE" layoutX="15.0" layoutY="106.0" prefHeight="30.0" prefWidth="267.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="1.0" />
 				<Label layoutX="305.0" layoutY="82.0" text="PRODUCT VERSION" textFill="WHITE">
 					<font>
-						<Font name="Prelo W01 Bold" size="15.0" />
+						<Font name="Bitstream Vera Serif Bold" size="15.0" />
 					</font>
 				</Label>
 				<JFXTextField fx:id="txVersao" editable="false" focusColor="WHITE" layoutX="306.0" layoutY="106.0" prefHeight="30.0" prefWidth="267.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="1.0" />

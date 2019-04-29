@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import application.entity.Objeto;
@@ -343,7 +345,133 @@ public class DatabaseConnection {
 	 * 
 	 * @throws SQLException
 	 */
-	public void closeConnection() throws SQLException {
-		this.con.close();
+	public void closeConnection(){
+		try {
+			this.con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Objeto> returnObjectsFromDatabase() throws SQLException {
+		Objeto objeto1;
+
+		// Versao versao1;
+		List<Objeto> v_list_usuario = new ArrayList<Objeto>();
+
+		ResultSet rs = this.Query("select sfw.s_nome_objeto," + 
+							"       sfw.s_owner_objeto," + 
+							"       scm.cod_sistema," + 
+							"       sfw.s_tipo_objeto," + 
+							"       sfw.s_tipo_inconformidade," + 
+							"       sfw.s_conteudo_objeto" + 
+							"  from sfw_verific_integridade_obj sfw, sfw_cm_schema scm" + 
+							" where id_verificacao = (select max(id_verificacao) from sfw_verific_integridade)" + 
+							"   and sfw.s_owner_objeto = scm.s_schema_owner" + 
+							//"   and sfw.s_tipo_inconformidade != 'A MAIS'" + 
+							"   and scm.cod_sistema in ('0', '2', '3', '6', '9', '10', '11', '21')" + 
+							"   and s_tipo_objeto in ('FUNCTION'," + 
+							"                         'PACKAGE'," + 
+							"                         'PACKAGE BODY'," + 
+							"                         'VIEW'," + 
+							"                         'TRIGGER'," + 
+							"                         'PROCEDURE')");
+
+		while (rs.next()) {
+
+			// popula objeto1
+			objeto1 = new Objeto();
+			objeto1.setNome(rs.getString("s_nome_objeto"));
+			objeto1.setCodSistema(rs.getString("cod_sistema"));
+			objeto1.setTipo(rs.getString("s_tipo_objeto"));
+			objeto1.setErro(rs.getString("s_tipo_inconformidade"));
+
+			String nome = rs.getString("s_nome_objeto");
+			String tipo = rs.getString("s_tipo_objeto");
+			// System.out.println(nome);
+
+			if (tipo.equals("VIEW")) {
+				String codview = "create or replace view as ";
+
+				ResultSet codv = this.Query("select TEXT from all_views where view_name = '" + nome + "' "
+						+ "and owner = '" + rs.getString("s_owner_objeto") + "'");
+
+				while (codv.next()) {
+
+					codview = codview + codv.getString("TEXT");
+
+				}
+				codv.getStatement().close();
+				codview.trim();
+				codview = codview + "\n;";
+				objeto1.setCodigo(codview);
+
+			} else {
+				ResultSet rscodigo = this.Query("select TEXT from all_source where name = '" + nome + "' and owner = '"
+						+ rs.getString("s_owner_objeto") + "' and type =  '" + tipo + "' order by line");
+
+				String cod = "create or replace ";
+
+				while (rscodigo.next()) {
+					cod = cod + rscodigo.getString("TEXT");
+
+				}
+				rscodigo.getStatement().close();
+				cod.trim();
+				cod = cod + "\n/";
+				objeto1.setCodigo(cod);
+			}
+
+			System.out.println("adicionando objeto " + objeto1.getNome());
+			v_list_usuario.add(objeto1);
+
+		}
+		rs.getStatement().close();
+		return v_list_usuario;
+
+	}
+
+	/**
+	 * 
+	 * 
+	 * @throws Exception
+	 */
+
+	//
+	public String pegarVersao() throws SQLException {
+
+		String v2 = null;
+		ResultSet ver = this
+				.Query("select cod_versao from sfw_sistema_versao where valido = 'S' and cod_sistema = '0'");
+
+		while (ver.next()) {
+			v2 = ver.getString("cod_versao");
+		}
+		System.out.println(v2);
+		return v2;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean verificaSistemaVersao() {
+		try {
+			ResultSet rs = this
+					.Query("SELECT 1 FROM USER_OBJECTS WHERE OBJECT_NAME = 'SFW_SISTEMA_VERSAO' AND ROWNUM = 1");
+
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

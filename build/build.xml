@@ -25,28 +25,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="httpcore.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="antlr-runtime.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-expression\5.1.3.RELEASE">
 				<filename name="spring-expression-5.1.3.RELEASE.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="commons-logging.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="orajsoda.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -55,23 +35,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="xmlparserv2-sans-jaxp-services.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="dbtools-net.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\mchange\c3p0\0.9.5.2">
 				<filename name="c3p0-0.9.5.2.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jackson-annotations.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -80,18 +45,18 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
+			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib">
+				<filename name="ojdbc8.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-jdbc\5.1.3.RELEASE">
 				<filename name="spring-jdbc-5.1.3.RELEASE.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jsch.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jackson-core.jar"/>
+			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib">
+				<filename name="lib.cvsclient.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -135,11 +100,6 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="osdt_cert.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\springframework\spring-jcl\5.1.3.RELEASE">
 				<filename name="spring-jcl-5.1.3.RELEASE.jar"/>
 			</fileset>
@@ -167,16 +127,6 @@
 		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\apache\commons\commons-math3\3.6.1">
 				<filename name="commons-math3-3.6.1.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jzlib.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="orai18n.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -215,28 +165,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="stringtemplate.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib">
-				<filename name="cvsclient.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jaxb-api.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\dom4j\dom4j\1.6.1">
 				<filename name="dom4j-1.6.1.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="xdb6.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -245,23 +175,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="oraclepki.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="commons-codec.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-fxml\11">
 				<filename name="javafx-fxml-11.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="dbtools-common.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -272,11 +187,6 @@
 		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\apache\commons\commons-collections4\4.2">
 				<filename name="commons-collections4-4.2.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="javax.json.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -295,38 +205,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="ojdbc8.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jansi.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jackson-databind.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-controls\11">
 				<filename name="javafx-controls-11-win.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="dbtools-http.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="httpclient.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="httpmime.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -345,11 +225,6 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="osdt_core.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\commons-codec\commons-codec\1.11">
 				<filename name="commons-codec-1.11.jar"/>
 			</fileset>
@@ -360,18 +235,8 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="orai18n-mapping.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\openjfx\javafx-graphics\11">
 				<filename name="javafx-graphics-11.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="low-level-api.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -387,11 +252,6 @@
 		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\apache\poi\poi\4.0.1">
 				<filename name="poi-4.0.1.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jline.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -415,28 +275,13 @@
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="dbtools-sqlcl.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\org\aspectj\aspectjrt\1.9.1">
 				<filename name="aspectjrt-1.9.1.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="jdbcrest.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
 			<fileset dir="C:\Users\Jp-PC\.m2\repository\com\github\virtuald\curvesapi\1.05">
 				<filename name="curvesapi-1.05.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="F:\Aulas\Java\eclipse-workspace\TRApplication\src\resources\lib\sqlcl">
-				<filename name="orai18n-utility.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
@@ -463,43 +308,25 @@
 		<!-- Copy project-libs references -->
 		<copy todir="build/libs">
 			<fileset dir="externalLibs">
-				<include name="osdt_core.jar"/>
 				<include name="spring-jdbc-5.1.3.RELEASE.jar"/>
-				<include name="stringtemplate.jar"/>
-				<include name="orai18n-mapping.jar"/>
 				<include name="javafx-base-11.jar"/>
-				<include name="jzlib.jar"/>
 				<include name="AnimateFX-1.2.0.jar"/>
 				<include name="spring-data-jpa-2.1.3.RELEASE.jar"/>
-				<include name="httpmime.jar"/>
 				<include name="xmlbeans-3.0.2.jar"/>
-				<include name="low-level-api.jar"/>
 				<include name="classmate-1.3.0.jar"/>
 				<include name="dom4j-1.6.1.jar"/>
-				<include name="jline.jar"/>
 				<include name="jfoenix-9.0.8.jar"/>
-				<include name="javax.json.jar"/>
 				<include name="javafx-fxml-11-win.jar"/>
 				<include name="activation-1.1.1.jar"/>
 				<include name="spring-tx-5.1.3.RELEASE.jar"/>
 				<include name="jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
-				<include name="commons-codec.jar"/>
-				<include name="dbtools-net.jar"/>
 				<include name="jandex-2.0.3.Final.jar"/>
-				<include name="jackson-annotations.jar"/>
 				<include name="slf4j-api-1.7.25.jar"/>
-				<include name="dbtools-http.jar"/>
-				<include name="httpclient.jar"/>
 				<include name="curvesapi-1.05.jar"/>
 				<include name="javafx-controls-11.jar"/>
 				<include name="spring-context-5.1.3.RELEASE.jar"/>
 				<include name="c3p0-0.9.5.2.jar"/>
-				<include name="xmlparserv2-sans-jaxp-services.jar"/>
-				<include name="jackson-core.jar"/>
 				<include name="spring-orm-5.1.3.RELEASE.jar"/>
-				<include name="jdbcrest.jar"/>
-				<include name="osdt_cert.jar"/>
-				<include name="cvsclient.jar"/>
 				<include name="javafx-graphics-11.jar"/>
 				<include name="spring-jcl-5.1.3.RELEASE.jar"/>
 				<include name="aspectjrt-1.9.1.jar"/>
@@ -507,42 +334,29 @@
 				<include name="byte-buddy-1.6.14.jar"/>
 				<include name="javafx-graphics-11-win.jar"/>
 				<include name="mchange-commons-java-0.2.11.jar"/>
-				<include name="orai18n.jar"/>
 				<include name="hibernate-entitymanager-5.2.16.Final.jar"/>
-				<include name="orajsoda.jar"/>
 				<include name="javafx-controls-11-win.jar"/>
 				<include name="mysql-connector-java-6.0.6.jar"/>
-				<include name="httpcore.jar"/>
 				<include name="jaxb-impl-2.2.11.jar"/>
 				<include name="commons-io-1.3.2.jar"/>
 				<include name="javassist-3.24.0-GA.jar"/>
-				<include name="commons-logging.jar"/>
 				<include name="commons-codec-1.11.jar"/>
 				<include name="spring-expression-5.1.3.RELEASE.jar"/>
 				<include name="jaxb-api-2.3.0.jar"/>
-				<include name="orai18n-utility.jar"/>
 				<include name="ojdbc8.jar"/>
 				<include name="spring-core-5.1.3.RELEASE.jar"/>
 				<include name="hibernate-core-5.2.16.Final.jar"/>
 				<include name="commons-compress-1.18.jar"/>
-				<include name="dbtools-sqlcl.jar"/>
 				<include name="javafx-base-11-win.jar"/>
 				<include name="hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
-				<include name="antlr-runtime.jar"/>
 				<include name="poi-ooxml-schemas-4.0.1.jar"/>
-				<include name="oraclepki.jar"/>
 				<include name="spring-data-commons-2.1.3.RELEASE.jar"/>
-				<include name="jackson-databind.jar"/>
 				<include name="javafx-fxml-11.jar"/>
 				<include name="poi-ooxml-4.0.1.jar"/>
 				<include name="commons-collections4-4.2.jar"/>
-				<include name="jansi.jar"/>
-				<include name="xdb6.jar"/>
+				<include name="lib.cvsclient.jar"/>
 				<include name="fontawesomefx-8.1.jar"/>
-				<include name="dbtools-common.jar"/>
-				<include name="jsch.jar"/>
 				<include name="spring-aop-5.1.3.RELEASE.jar"/>
-				<include name="jaxb-api.jar"/>
 				<include name="antlr-2.7.7.jar"/>
 				<include name="commons-math3-3.6.1.jar"/>
 				<include name="poi-4.0.1.jar"/>
