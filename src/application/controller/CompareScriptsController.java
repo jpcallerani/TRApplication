@@ -600,6 +600,8 @@ public class CompareScriptsController implements Initializable {
 								// get código objeto;
 							} else if (cell.getColumnIndex() == 5) {
 								obj.setCodigo(cellValue);
+							} else if (cell.getColumnIndex() == 6) {
+								obj.setCodSistema(cellValue);
 							}
 						}
 					} else {

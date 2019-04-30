@@ -50,7 +50,7 @@
                         <Pane fx:id="paneCmLogScripts" prefHeight="52.0" prefWidth="7.0" />
                         <JFXButton fx:id="btnCmLogScripts" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="CM_LOG_SCRIPTS">
                            <font>
-                              <Font name="Ubuntu Regular" size="13.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -63,7 +63,7 @@
                         <Pane fx:id="paneSizing" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                         <JFXButton fx:id="btnSizingCalculate" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="SIZING">
                            <font>
-                              <Font name="Ubuntu Regular" size="13.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -76,7 +76,7 @@
                         <Pane fx:id="paneCompare" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                         <JFXButton fx:id="btnCompare" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="COMPARE">
                            <font>
-                              <Font name="Ubuntu Regular" size="13.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
