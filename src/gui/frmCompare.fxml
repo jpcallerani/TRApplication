@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -15,13 +16,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="frmCompare" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CompareScriptsController">
+<AnchorPane fx:id="frmCompare" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1191.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CompareScriptsController">
 	<children>
-		<Pane fx:id="filtroCmLogScripts" layoutY="-5.0" prefHeight="764.0" prefWidth="70.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
+		<Pane fx:id="filtroCmLogScripts" layoutY="2.0" prefHeight="757.0" prefWidth="292.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
 			<children>
+            <JFXButton fx:id="btnSearchComp" layoutX="38.0" layoutY="334.0" prefHeight="36.0" prefWidth="194.0" styleClass="button_search" text="Search" viewOrder="3.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Prelo W01 Bold" size="13.0" />
+               </font>
+            </JFXButton>
 				<ImageView fx:id="btnHome" fitHeight="36.0" fitWidth="36.0" layoutX="15.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" styleClass="home">
 					<image>
 						<Image url="@../resources/images/home.png" />
@@ -30,9 +40,33 @@
 						<Cursor fx:constant="HAND" />
 					</cursor>
 				</ImageView>
+            <JFXButton fx:id="btnClearComp" layoutX="38.0" layoutY="394.0" prefHeight="36.0" prefWidth="194.0" styleClass="button_search" text="Clear Search" viewOrder="4.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Prelo W01 Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txFileNameComp" focusColor="WHITE" layoutX="38.0" layoutY="221.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="Prelo W01 Bold" size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="38.0" layoutY="185.0" text="FILE NAME" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="90.0" text="SEARCH" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="32.0" />
+               </font>
+            </Label>
+            <Line endX="113.0" endY="-2.0" layoutX="145.0" layoutY="139.0" startX="-111.0" startY="-2.0" stroke="WHITE" />
 			</children>
 		</Pane>
-		<JFXTreeTableView fx:id="tableCompare" layoutX="75.0" layoutY="9.0" prefHeight="622.0" prefWidth="1113.0" stylesheets="@../resources/css/stylsheet.css">
+		<JFXTreeTableView fx:id="tableCompare" layoutX="296.0" layoutY="9.0" prefHeight="622.0" prefWidth="892.0" stylesheets="@../resources/css/stylsheet.css">
 			<cursor>
 				<Cursor fx:constant="HAND" />
 			</cursor>
@@ -44,7 +78,7 @@
             </ContextMenu>
          </contextMenu>
 		</JFXTreeTableView>
-      <JFXTextField fx:id="txDefine" editable="false" focusColor="#ff7700" layoutX="321.0" layoutY="650.0" prefHeight="30.0" prefWidth="425.0" styleClass="text_folder" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#b55400" viewOrder="1.0">
+      <JFXTextField fx:id="txDefine" editable="false" focusColor="#ff7700" layoutX="514.0" layoutY="650.0" prefHeight="30.0" prefWidth="353.0" styleClass="text_folder" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#b55400" viewOrder="1.0">
          <font>
             <Font name="Prelo W01 Bold" size="12.0" />
          </font>
@@ -52,7 +86,7 @@
             <Tooltip fx:id="ttDefine" text="select xml file" />
          </tooltip>
       </JFXTextField>
-      <JFXButton fx:id="btnLoadFile" buttonType="RAISED" layoutX="97.0" layoutY="644.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="LOAD XML / XLS / XLSX" textFill="WHITE" viewOrder="3.0">
+      <JFXButton fx:id="btnLoadFile" buttonType="RAISED" layoutX="311.0" layoutY="644.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="LOAD XML / XLS / XLSX" textFill="WHITE" viewOrder="3.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -65,12 +99,12 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Text fill="#f2740b" layoutX="836.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHERE WOULD YOU LIKE TO COMPARE FROM?" wrappingWidth="297.0">
+      <Text fill="#f2740b" layoutX="878.0" layoutY="667.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WHERE WOULD YOU LIKE TO COMPARE FROM?" wrappingWidth="302.0">
          <font>
             <Font name="Ubuntu Bold" size="13.0" />
          </font>
       </Text>
-      <RadioButton fx:id="rdCVS" layoutX="891.0" layoutY="687.0" mnemonicParsing="false" selected="true" text="CVS">
+      <RadioButton fx:id="rdCVS" layoutX="958.0" layoutY="687.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="53.0" selected="true" text="CVS">
          <font>
             <Font name="Prelo W01 Bold" size="13.0" />
          </font>
@@ -78,12 +112,12 @@
             <ToggleGroup fx:id="grupo" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="rdDatabase" layoutX="985.0" layoutY="687.0" mnemonicParsing="false" text="DATABASE" toggleGroup="$grupo">
+      <RadioButton fx:id="rdDatabase" layoutX="1043.0" layoutY="687.0" mnemonicParsing="false" text="DATABASE" toggleGroup="$grupo">
          <font>
             <Font name="Prelo W01 Bold" size="13.0" />
          </font>
       </RadioButton>
-      <JFXButton fx:id="btnXMLCreate" buttonType="RAISED" layoutX="97.0" layoutY="702.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="CREATE XML" textFill="WHITE" viewOrder="3.0">
+      <JFXButton fx:id="btnXMLCreate" buttonType="RAISED" layoutX="311.0" layoutY="702.0" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: derive(#f2740b,30.0%), linear-gradient(to bottom, derive(#f2740b,-3.0%), derive(#f2740b,5.0%) 50.0%, derive(#f2740b,-3.0%)); -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" text="CREATE XML" textFill="WHITE" viewOrder="3.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

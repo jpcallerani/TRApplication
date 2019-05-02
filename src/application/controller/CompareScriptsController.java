@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -54,6 +55,7 @@ import application.util.Install;
 import gui.enumeration.enumTelas;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,6 +88,11 @@ import javafx.util.Callback;
 @Controller
 public class CompareScriptsController implements Initializable {
 
+	
+	//
+	@FXML
+	private JFXTextField txFileNameComp;
+	//
 	@FXML
 	private AnchorPane								frmCompare;
 
@@ -217,6 +224,26 @@ public class CompareScriptsController implements Initializable {
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
 				tableCompare.getColumns().setAll(colCodSistema, colNome, colErro, colTipo);
+				
+				txFileNameComp.textProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue,
+							String newValue) {
+						tableCompare.setPredicate((Predicate<TreeItem<Objeto>>) new Predicate<TreeItem<Objeto>>() {
+
+							@Override
+							public boolean test(TreeItem<Objeto> objeto) {
+							Boolean flag = objeto.getValue().nome.toUpperCase().contains(newValue.toUpperCase());
+							return flag;
+							}
+							
+						});
+					}
+					
+				});
+				
+				
 
 			}
 
