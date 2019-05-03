@@ -1,3 +1,19 @@
+@font-face {
+    src: url('../fonts/Ubuntu-Bold.ttf');
+}
+
+.login_text_field {
+    -fx-font-family: 'Ubuntu';
+    -fx-font-weight: bold
+}
+
+.label {
+    -fx-font-family: 'Ubuntu';
+}
+
+.button .text {
+    -fx-font-family: 'Ubuntu';
+}
 
 .root {
     -fx-accent: #ffb548;
@@ -66,6 +82,8 @@
 	-fx-border-color: transparent transparent #f2740b transparent;
 	-fx-border-style: hidden hidden solid hidden;
 	-fx-background-color:  #FFFFFF;
+	-fx-font-family: 'Ubuntu';
+    -fx-font-weight: bold
 }
 
 .panel_menu {

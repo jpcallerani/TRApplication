@@ -28,7 +28,7 @@
                   <Pane fx:id="paneOperations" prefHeight="90.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                   <JFXButton fx:id="firstMenu" focusTraversable="false" prefHeight="90.0" prefWidth="189.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="OPERATIONS" textFill="#403a35">
                      <font>
-                        <Font name="Fira Code Bold" size="13.0" />
+                        <Font name="Ubuntu Medium" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgOperations" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
@@ -50,7 +50,7 @@
                         <Pane fx:id="paneCmLogScripts" prefHeight="52.0" prefWidth="7.0" />
                         <JFXButton fx:id="btnCmLogScripts" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="198.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="CM_LOG_SCRIPTS">
                            <font>
-                              <Font name="Fira Code Bold" size="12.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -63,7 +63,7 @@
                         <Pane fx:id="paneSizing" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                         <JFXButton fx:id="btnSizingCalculate" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="SIZING">
                            <font>
-                              <Font name="Fira Code Bold" size="12.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -76,7 +76,7 @@
                         <Pane fx:id="paneCompare" prefHeight="85.0" prefWidth="7.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                         <JFXButton fx:id="btnCompare" contentDisplay="CENTER" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="195.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="COMPARE">
                            <font>
-                              <Font name="Fira Code Bold" size="12.0" />
+                              <Font size="11.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -95,7 +95,7 @@
                   <Pane fx:id="paneAbout" prefHeight="85.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                   <JFXButton fx:id="btnAbout" focusTraversable="false" prefHeight="85.0" prefWidth="182.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="ABOUT" textFill="#403a35">
                      <font>
-                        <Font name="Fira Code Bold" size="13.0" />
+                        <Font name="Ubuntu Regular" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgAbout" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
@@ -119,7 +119,7 @@
                   <Pane fx:id="paneExit" prefHeight="85.0" prefWidth="6.0" scaleY="-1.0" styleClass="panel_menu" stylesheets="@../resources/css/stylsheet.css" />
                   <JFXButton fx:id="btnExit" focusTraversable="false" prefHeight="85.0" prefWidth="189.0" styleClass="button_menu" stylesheets="@../resources/css/stylsheet.css" text="EXIT" textFill="#403a35">
                      <font>
-                        <Font name="Fira Code Bold" size="14.0" />
+                        <Font name="Ubuntu Regular" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fx:id="imgExit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">

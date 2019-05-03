@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="1126.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginUIController">
+<AnchorPane fx:id="apLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="1126.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginUIController">
    <children>
       <ImageView fitHeight="115.0" fitWidth="440.0" layoutX="34.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,36 +20,36 @@
          </image>
       </ImageView>
       <Line endX="-16.0" endY="300.0" layoutX="524.0" layoutY="202.0" startX="-16.0" startY="-90.0" />
-      <JFXTextField fx:id="txUsuario" focusColor="#f2740b" layoutX="576.0" layoutY="206.0" prefHeight="33.0" prefWidth="298.0" styleClass="text-field" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
+      <JFXTextField fx:id="txUsuario" focusColor="#f2740b" layoutX="576.0" layoutY="206.0" prefHeight="33.0" prefWidth="298.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font size="14.0" />
          </font></JFXTextField>
-      <Label layoutX="576.0" layoutY="188.0" prefHeight="17.0" prefWidth="71.0" text="Username:" textFill="#f2740b">
+      <Label layoutX="576.0" layoutY="188.0" prefHeight="17.0" prefWidth="86.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" text="USERNAME" textFill="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font name="Calibri Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="576.0" layoutY="256.0" prefHeight="17.0" prefWidth="71.0" text="Password" textFill="#f2740b">
+      <Label layoutX="576.0" layoutY="256.0" prefHeight="17.0" prefWidth="86.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" text="PASSWORD" textFill="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Label>
-      <JFXPasswordField fx:id="txPassword" focusColor="#f2740b" layoutX="576.0" layoutY="274.0" prefHeight="33.0" prefWidth="298.0" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
+      <JFXPasswordField fx:id="txPassword" focusColor="#f2740b" layoutX="576.0" layoutY="274.0" prefHeight="33.0" prefWidth="298.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font size="14.0" />
          </font>
       </JFXPasswordField>
-      <JFXTextField fx:id="txTNS" focusColor="#f2740b" layoutX="576.0" layoutY="341.0" prefHeight="33.0" prefWidth="298.0" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
+      <JFXTextField fx:id="txTNS" focusColor="#f2740b" layoutX="576.0" layoutY="341.0" prefHeight="33.0" prefWidth="298.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" unFocusColor="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font size="14.0" />
          </font>
       </JFXTextField>
-      <Label layoutX="576.0" layoutY="323.0" prefHeight="17.0" prefWidth="71.0" text="TNS" textFill="#f2740b">
+      <Label layoutX="576.0" layoutY="323.0" prefHeight="17.0" prefWidth="71.0" styleClass="login_text_field" stylesheets="@../resources/css/stylsheet.css" text="TNS" textFill="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnConectar" layoutX="573.0" layoutY="424.0" prefHeight="33.0" prefWidth="305.0" styleClass="button_login" stylesheets="@../resources/css/stylsheet.css" text="Conectar" textFill="WHITE">
+      <JFXButton fx:id="btnConectar" layoutX="573.0" layoutY="424.0" prefHeight="33.0" prefWidth="305.0" styleClass="button_login" stylesheets="@../resources/css/stylsheet.css" text="CONECTAR" textFill="WHITE">
          <font>
-            <Font name="Prelo W01 Bold" size="14.0" />
+            <Font size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -57,7 +57,7 @@
       </JFXButton>
       <JFXButton fx:id="btnCancelar" layoutX="573.0" layoutY="470.0" onMouseClicked="#close_app" prefHeight="33.0" prefWidth="305.0" styleClass="button_cancel" stylesheets="@../resources/css/stylsheet.css" text="Cancelar" textFill="#f2740b">
          <font>
-            <Font name="Prelo W01 Bold" size="13.0" />
+            <Font size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

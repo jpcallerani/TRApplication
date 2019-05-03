@@ -71,7 +71,10 @@ public class MainController implements Initializable {
 	private Label lblReconnect;
 
 	@FXML
-	private Text txHora;
+	private Text txHora;	
+
+    @FXML
+    private Label lblVersion;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -81,6 +84,9 @@ public class MainController implements Initializable {
 		this.lblUsername.setText("Connected as: " + Install.username + "@" + Install.tns);
 
 		// this.showTime();
+		
+		//Method to control application version;
+		this.lblVersion.setText("TRApplication Version 1.0.3");
 
 		/**
 		 * Relogin Method
@@ -128,6 +134,7 @@ public class MainController implements Initializable {
 		});
 	}
 
+	@SuppressWarnings("unused")
 	private void showTime() {
 		Task<?> task = new Task<Object>() {
 			@Override

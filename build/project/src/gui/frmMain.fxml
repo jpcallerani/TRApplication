@@ -39,5 +39,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
+      <Label fx:id="lblVersion" layoutX="875.0" layoutY="431.0" prefHeight="20.0" prefWidth="224.0" text="TRApplication Version: 1.0.1">
+         <font>
+            <Font name="Prelo W01 Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

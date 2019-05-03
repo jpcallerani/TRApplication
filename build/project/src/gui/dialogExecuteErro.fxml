@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="shadowPane" prefHeight="460.0" prefWidth="627.0" styleClass="shadowPane" stylesheets="@../resources/css/stylsheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.taskErroController">
+<AnchorPane fx:id="shadowPane" prefHeight="460.0" prefWidth="627.0" styleClass="shadowPane" stylesheets="@../resources/css/stylsheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.taskErroController">
    <children>
       <AnchorPane fx:id="rootPane" layoutX="6.0" layoutY="5.0" prefHeight="450.0" prefWidth="615.0" styleClass="taskRootPane" stylesheets="@../resources/css/stylsheet.css">
          <children>
@@ -25,7 +25,7 @@
                   </ImageView>
                   <Label prefHeight="26.0" prefWidth="138.0" text="FINDING SCRIPT" textFill="WHITE" translateX="25.0">
                      <font>
-                        <Font name="Prelo W01 Bold" size="18.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="progressFind" prefHeight="17.0" prefWidth="252.0" progress="0.0" style="-fx-control-inner-background: #f2740b; -fx-text-box-border: #6b3c16;" translateX="59.0" translateY="5.0" />
@@ -40,7 +40,7 @@
                   </ImageView>
                   <Label prefHeight="26.0" prefWidth="147.0" text="RUNNING SCRIPT" textFill="WHITE" translateX="25.0">
                      <font>
-                        <Font name="Prelo W01 Bold" size="18.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="progressExec" prefHeight="17.0" prefWidth="253.0" progress="0.0" style="-fx-control-inner-background: #f2740b; -fx-text-box-border: #6b3c16;" translateX="50.0" translateY="5.0" />
