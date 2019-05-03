@@ -24,14 +24,11 @@
 	<children>
 		<Pane fx:id="filtroCmLogScripts" layoutY="2.0" prefHeight="757.0" prefWidth="292.0" styleClass="panel_filtro" stylesheets="@../resources/css/stylsheet.css">
 			<children>
-            <JFXButton fx:id="btnSearchComp" layoutX="38.0" layoutY="334.0" prefHeight="36.0" prefWidth="194.0" styleClass="button_search" text="Search" viewOrder="3.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+            <Label layoutX="33.0" layoutY="210.0" text="SYSTEM CODE" textFill="WHITE">
                <font>
-                  <Font name="Prelo W01 Bold" size="13.0" />
+                  <Font name="Prelo W01 Bold" size="15.0" />
                </font>
-            </JFXButton>
+            </Label>
 				<ImageView fx:id="btnHome" fitHeight="36.0" fitWidth="36.0" layoutX="15.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" styleClass="home">
 					<image>
 						<Image url="@../resources/images/home.png" />
@@ -40,7 +37,48 @@
 						<Cursor fx:constant="HAND" />
 					</cursor>
 				</ImageView>
-            <JFXButton fx:id="btnClearComp" layoutX="38.0" layoutY="394.0" prefHeight="36.0" prefWidth="194.0" styleClass="button_search" text="Clear Search" viewOrder="4.0">
+            <JFXTextField fx:id="txFileNameComp" focusColor="WHITE" layoutX="33.0" layoutY="151.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="Prelo W01 Bold" size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="35.0" layoutY="130.0" text="FILE NAME" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="41.0" layoutY="67.0" text="SEARCH" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="32.0" />
+               </font>
+            </Label>
+            <Line endX="113.0" endY="-2.0" layoutX="145.0" layoutY="116.0" startX="-111.0" startY="-2.0" stroke="WHITE" />
+            <JFXTextField fx:id="txCodSistemaComp" focusColor="WHITE" layoutX="33.0" layoutY="231.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="Prelo W01 Bold" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txErroComp" focusColor="WHITE" layoutX="32.0" layoutY="307.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="Prelo W01 Bold" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txTipoComp" focusColor="WHITE" layoutX="32.0" layoutY="389.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="Prelo W01 Bold" size="14.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="34.0" layoutY="286.0" prefHeight="21.0" prefWidth="60.0" text="ERROR" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="368.0" text="TYPE" textFill="WHITE">
+               <font>
+                  <Font name="Prelo W01 Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnClearComp" layoutX="25.0" layoutY="460.0" prefHeight="47.0" prefWidth="210.0" styleClass="button_search" text="CLEAR SEARCH" viewOrder="4.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -48,22 +86,6 @@
                   <Font name="Prelo W01 Bold" size="13.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="txFileNameComp" focusColor="WHITE" layoutX="38.0" layoutY="221.0" prefHeight="30.0" prefWidth="194.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FFFFFF; -fx-effect: dropshadow( gaussian , rgba(0.0,0.0,0.0,0.7) , 12, 0.0 , 0.0 , 4.0 );" unFocusColor="WHITE" viewOrder="2.0">
-               <font>
-                  <Font name="Prelo W01 Bold" size="14.0" />
-               </font>
-            </JFXTextField>
-            <Label layoutX="38.0" layoutY="185.0" text="FILE NAME" textFill="WHITE">
-               <font>
-                  <Font name="Prelo W01 Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="38.0" layoutY="90.0" text="SEARCH" textFill="WHITE">
-               <font>
-                  <Font name="Prelo W01 Bold" size="32.0" />
-               </font>
-            </Label>
-            <Line endX="113.0" endY="-2.0" layoutX="145.0" layoutY="139.0" startX="-111.0" startY="-2.0" stroke="WHITE" />
 			</children>
 		</Pane>
 		<JFXTreeTableView fx:id="tableCompare" layoutX="296.0" layoutY="9.0" prefHeight="622.0" prefWidth="892.0" stylesheets="@../resources/css/stylsheet.css">

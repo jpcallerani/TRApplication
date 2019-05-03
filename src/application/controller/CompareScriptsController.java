@@ -88,48 +88,61 @@ import javafx.util.Callback;
 @Controller
 public class CompareScriptsController implements Initializable {
 
-	
 	//
 	@FXML
 	private JFXTextField txFileNameComp;
+
+	@FXML
+	private JFXButton btnClearComp;
+	
+
+	
+	@FXML
+	private JFXTextField txCodSistemaComp;
+
+	@FXML
+	private JFXTextField txErroComp;
+
+	@FXML
+	private JFXTextField txTipoComp;
 	//
 	@FXML
-	private AnchorPane								frmCompare;
+	private AnchorPane frmCompare;
 
 	@FXML
-	private Pane											filtroCmLogScripts;
+	private Pane filtroCmLogScripts;
 
 	@FXML
-	private ImageView									btnHome;
+	private ImageView btnHome;
 
 	@FXML
-	private JFXTreeTableView<Objeto>	tableCompare;
+	private JFXTreeTableView<Objeto> tableCompare;
 
 	@FXML
-	private ContextMenu								cmDeletaLinha;
+	private ContextMenu cmDeletaLinha;
 
 	@FXML
-	private JFXTextField							txDefine;
+	private JFXTextField txDefine;
 
 	@FXML
-	private Tooltip										ttDefine;
+	private Tooltip ttDefine;
 
 	@FXML
-	private JFXButton									btnLoadFile;
+	private JFXButton btnLoadFile;
 
 	@FXML
-	private RadioButton								rdCVS;
+	private RadioButton rdCVS;
 
 	@FXML
-	private ToggleGroup								grupo;
+	private ToggleGroup grupo;
 
 	@FXML
-	private RadioButton								rdDatabase;
+	private RadioButton rdDatabase;
 
 	@FXML
-	private JFXButton									btnXMLCreate;
+	private JFXButton btnXMLCreate;
 
-	private File											xmlPath;
+	private File xmlPath;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -158,7 +171,23 @@ public class CompareScriptsController implements Initializable {
 				}
 			}
 		});
+		/**
+		 * Limpa o filtro
+		 */
+		this.btnClearComp.setOnMouseClicked(e -> {
+			this.clearFiltersComp();
+		});
 
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
 		this.btnLoadFile.setOnMouseClicked(e -> {
 			// ao selecionar o arquivo .xml irá lê-lo
 			List<Objeto> objetos = null;
@@ -178,41 +207,49 @@ public class CompareScriptsController implements Initializable {
 					objetos = this.LerExcel(selectedFile);
 				}
 				/////
-				JFXTreeTableColumn<Objeto, String> colCodSistema = new JFXTreeTableColumn<>("Sistema");
+				JFXTreeTableColumn<Objeto, String> colCodSistema = new JFXTreeTableColumn<>("System");
 				colCodSistema.setPrefWidth(100);
-				colCodSistema.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
-					}
-				});
-
-				JFXTreeTableColumn<Objeto, String> colNome = new JFXTreeTableColumn<>("Nome do Objeto");
+				colCodSistema.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
+							}
+						});
+				//
+				JFXTreeTableColumn<Objeto, String> colNome = new JFXTreeTableColumn<>("Object Name");
 				colNome.setPrefWidth(350);
-				colNome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getNome());
-					}
-				});
-
-				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Erro");
+				colNome.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getNome());
+							}
+						});
+				//
+				JFXTreeTableColumn<Objeto, String> colErro = new JFXTreeTableColumn<>("Error");
 				colErro.setPrefWidth(200);
-				colErro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getErro());
-					}
-				});
-
-				JFXTreeTableColumn<Objeto, String> colTipo = new JFXTreeTableColumn<>("Tipo");
+				colErro.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getErro());
+							}
+						});
+				//
+				JFXTreeTableColumn<Objeto, String> colTipo = new JFXTreeTableColumn<>("Type");
 				colTipo.setPrefWidth(300);
-				colTipo.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Objeto, String> param) {
-						return new SimpleStringProperty(param.getValue().getValue().getTipo());
-					}
-				});
+				colTipo.setCellValueFactory(
+						new Callback<TreeTableColumn.CellDataFeatures<Objeto, String>, ObservableValue<String>>() {
+							@Override
+							public ObservableValue<String> call(
+									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
+								return new SimpleStringProperty(param.getValue().getValue().getTipo());
+							}
+						});
 
 				ObservableList<Objeto> obObjetos = FXCollections.observableArrayList();
 
@@ -220,10 +257,18 @@ public class CompareScriptsController implements Initializable {
 					obObjetos.add(objetos.get(i));
 				}
 
-				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos, RecursiveTreeObject::getChildren);
+				final TreeItem<Objeto> root = new RecursiveTreeItem<Objeto>(obObjetos,
+						RecursiveTreeObject::getChildren);
 				tableCompare.setRoot(root);
 				tableCompare.setShowRoot(false);
 				tableCompare.getColumns().setAll(colCodSistema, colNome, colErro, colTipo);
+
+				/*
+				 * cria os filtros para facilitar a navegacao entre os objetos, utilizou-se uma
+				 * flag, para que quando algum objeto for parecido com o que está inserido nos
+				 * campos, ele apareça
+				 */
+				// filtro do nome
 				
 				txFileNameComp.textProperty().addListener(new ChangeListener<String>() {
 
@@ -234,16 +279,71 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-							Boolean flag = objeto.getValue().nome.toUpperCase().contains(newValue.toUpperCase());
-							return flag;
+								Boolean flag = objeto.getValue().nome.toUpperCase().contains(newValue.toUpperCase());
+								return flag;
 							}
-							
+
+						});
+					}
+
+				});
+				// filtro do codigo do sistema
+				txCodSistemaComp.textProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue,
+							String newValue) {
+						tableCompare.setPredicate((Predicate<TreeItem<Objeto>>) new Predicate<TreeItem<Objeto>>() {
+
+							@Override
+							public boolean test(TreeItem<Objeto> objeto) {
+								Boolean flag = objeto.getValue().codSistema.toUpperCase()
+										.contains(newValue.toUpperCase());
+								return flag;
+							}
+
 						});
 					}
 					
 				});
-				
-				
+				// filtro pelo erro
+				txErroComp.textProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue,
+							String newValue) {
+						tableCompare.setPredicate((Predicate<TreeItem<Objeto>>) new Predicate<TreeItem<Objeto>>() {
+
+							@Override
+							public boolean test(TreeItem<Objeto> objeto) {
+								Boolean flag = objeto.getValue().erro.toUpperCase().contains(newValue.toUpperCase());
+								return flag;
+							}
+
+						});
+					}
+
+				});
+
+				// filtro pelo tipo
+				txTipoComp.textProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue,
+							String newValue) {
+						tableCompare.setPredicate((Predicate<TreeItem<Objeto>>) new Predicate<TreeItem<Objeto>>() {
+
+							@Override
+							public boolean test(TreeItem<Objeto> objeto) {
+								Boolean flag = objeto.getValue().tipo.toUpperCase().contains(newValue.toUpperCase());
+								return flag;
+							}
+
+						});
+					}
+
+				});
+				/////////
 
 			}
 
@@ -364,10 +464,10 @@ public class CompareScriptsController implements Initializable {
 					String codigo = element.getElementsByTagName("codigo").item(0).getTextContent();
 					codigo = codigo.replaceAll("&gt;", ">");
 					codigo = codigo.replaceAll("&lt;", "<");
-					
+
 					/*
-					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as
-					 * com base no codSistema delas
+					 * as tags do xml estao todas como BG, a funçao tagCerta corrige-as com base no
+					 * codSistema delas
 					 */
 					objeto1.setId(tagCerta(codSistema, versao));
 
@@ -457,7 +557,9 @@ public class CompareScriptsController implements Initializable {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							new Alert(AlertType.ERROR, "There are no comparison for this object. -> " + objeto.getErro(), ButtonType.OK).showAndWait();
+							new Alert(AlertType.ERROR,
+									"There are no comparison for this object. -> " + objeto.getErro(), ButtonType.OK)
+											.showAndWait();
 						}
 					});
 				} else {
@@ -494,7 +596,8 @@ public class CompareScriptsController implements Initializable {
 										Platform.runLater(new Runnable() {
 											@Override
 											public void run() {
-												new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(), ButtonType.OK).showAndWait();
+												new Alert(AlertType.ERROR, "Error in CVS checkout -> " + e.getMessage(),
+														ButtonType.OK).showAndWait();
 											}
 										});
 									}
@@ -505,7 +608,8 @@ public class CompareScriptsController implements Initializable {
 
 										@Override
 										public void run() {
-											new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!", ButtonType.OK).showAndWait();
+											new Alert(AlertType.ERROR, objeto.getNome() + " -> Not Found!!",
+													ButtonType.OK).showAndWait();
 										}
 									});
 								}
@@ -535,7 +639,8 @@ public class CompareScriptsController implements Initializable {
 								Objeto objetoFrom = conn.returnObjectFromDatabase(objeto);
 								//
 								// Caminho do arquivo destino;
-								File arquivoDestino = new File("compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
+								File arquivoDestino = new File(
+										"compare\\" + objetoFrom.getNome().toLowerCase() + "_VB.sql");
 								// Cria o arquivo na pasta;
 								Install.createFile(arquivoDestino, objetoFrom.getCodigo());
 								// executa a comparaçã;o
@@ -544,7 +649,8 @@ public class CompareScriptsController implements Initializable {
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
-										new Alert(AlertType.ERROR, "Database and object are from different version!", ButtonType.OK).showAndWait();
+										new Alert(AlertType.ERROR, "Database and object are from different version!",
+												ButtonType.OK).showAndWait();
 									}
 								});
 							}
@@ -552,7 +658,8 @@ public class CompareScriptsController implements Initializable {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK).showAndWait();
+									new Alert(AlertType.ERROR, "Compare error -> " + e.getMessage(), ButtonType.OK)
+											.showAndWait();
 								}
 							});
 						} finally {
@@ -658,7 +765,8 @@ public class CompareScriptsController implements Initializable {
 		String repositorio = "";
 		try {
 
-			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\" + Install.returnModuloFromCodSistema(objeto.getCodSistema());
+			repositorio = "W:\\" + Install.returnRepoFromCodSistema(objeto.getCodSistema()) + "\\"
+					+ Install.returnModuloFromCodSistema(objeto.getCodSistema());
 
 			// Busca o arquivo na pasta PLSQL do CVS
 			if (objeto.getTipo().equalsIgnoreCase("PACKAGE")) {
@@ -693,12 +801,14 @@ public class CompareScriptsController implements Initializable {
 	 * @throws CommandException
 	 * @throws CommandAbortedException
 	 */
-	private File checkoutFileFromCVS(File arquivo, Objeto objeto) throws CommandAbortedException, CommandException, Exception {
+	private File checkoutFileFromCVS(File arquivo, Objeto objeto)
+			throws CommandAbortedException, CommandException, Exception {
 
 		File arquivoEncontrado = null;
 
 		// Monta o CVSRoot;
-		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/" + Install.returnRepoFromCodSistema(objeto.getCodSistema());
+		String cvsRoot = ":pserver:jopaulo@cvs01.desenv.cps.sfw.com.br:/export01/cvs/"
+				+ Install.returnRepoFromCodSistema(objeto.getCodSistema());
 
 		// Cria pasta onde serão feitos os checkouts;
 		File temp = new File("temp");
@@ -710,7 +820,9 @@ public class CompareScriptsController implements Initializable {
 		CVSUtil cvs = new CVSUtil(cvsRoot, temp.getAbsolutePath(), "SOFTWAYSA2014");
 
 		// monta arquivo para ser feito o checkout;
-		String arquivoCheckout = arquivo.getAbsolutePath().substring(arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())), arquivo.getAbsolutePath().length() - 2);
+		String arquivoCheckout = arquivo.getAbsolutePath().substring(
+				arquivo.getAbsolutePath().indexOf(Install.returnModuloFromCodSistema(objeto.getCodSistema())),
+				arquivo.getAbsolutePath().length() - 2);
 		cvs.checkOut(arquivoCheckout, objeto.getId());
 
 		// busca se o arquivo foi baixado com sucesso;
@@ -735,13 +847,13 @@ public class CompareScriptsController implements Initializable {
 	 * Method to created xml from database;
 	 */
 	private void createXML() {
-		
+
 		Stage stage = (Stage) frmCompare.getScene().getWindow();
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select a path to save a file!");
 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("xml file (*.xml)", "*.xml"));
 		xmlPath = fileChooser.showSaveDialog(stage);
-		
+
 		Task<?> task = new Task<Object>() {
 			@Override
 			protected Integer call() throws Exception {
@@ -750,8 +862,6 @@ public class CompareScriptsController implements Initializable {
 				List<Objeto> objects = null;
 				Versao novaVersao = new Versao();
 				DatabaseConnection con = null;
-
-				
 
 				if (xmlPath == null) {
 					Platform.runLater(new Runnable() {
@@ -846,7 +956,8 @@ public class CompareScriptsController implements Initializable {
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
-										new Alert(AlertType.ERROR, "XML ERROR -> " + e.getMessage(), ButtonType.OK).showAndWait();
+										new Alert(AlertType.ERROR, "XML ERROR -> " + e.getMessage(), ButtonType.OK)
+												.showAndWait();
 									}
 								});
 								return 1;
@@ -855,14 +966,17 @@ public class CompareScriptsController implements Initializable {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.CONFIRMATION, "XML was generated successfully -> " + xmlPath.getAbsolutePath(), ButtonType.OK).showAndWait();
+									new Alert(AlertType.CONFIRMATION,
+											"XML was generated successfully -> " + xmlPath.getAbsolutePath(),
+											ButtonType.OK).showAndWait();
 								}
 							});
 						} else {
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
-									new Alert(AlertType.ERROR, "SFW_SISTEMA_VERSAO does not exist ", ButtonType.OK).showAndWait();
+									new Alert(AlertType.ERROR, "SFW_SISTEMA_VERSAO does not exist ", ButtonType.OK)
+											.showAndWait();
 								}
 							});
 							return 1;
@@ -872,7 +986,8 @@ public class CompareScriptsController implements Initializable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								new Alert(AlertType.ERROR, "couldn't connect !! -> " + e.getMessage(), ButtonType.OK).showAndWait();
+								new Alert(AlertType.ERROR, "couldn't connect !! -> " + e.getMessage(), ButtonType.OK)
+										.showAndWait();
 							}
 						});
 						return 1;
@@ -912,7 +1027,20 @@ public class CompareScriptsController implements Initializable {
 		// Chama o examdiff para execução do compare;
 		File wincmp3 = new File("Diff");
 		//
-		Runtime.getRuntime().exec(wincmp3.getAbsolutePath() + "\\wincmp3.exe  " + fileFrom.getAbsolutePath() + " " + fileTo.getAbsolutePath());
+		Runtime.getRuntime().exec(wincmp3.getAbsolutePath() + "\\wincmp3.exe  " + fileFrom.getAbsolutePath() + " "
+				+ fileTo.getAbsolutePath());
 		//
 	}
+
+	/**
+	 * clear fields
+	 */
+	private void clearFiltersComp() {
+		this.txFileNameComp.setText("");
+		this.txCodSistemaComp.setText("");
+		this.txErroComp.setText("");
+		this.txTipoComp.setText("");
+
+	}
+
 }
