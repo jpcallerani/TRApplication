@@ -279,7 +279,7 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().nome.toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getNome().toUpperCase().contains(newValue.toUpperCase());
 								return flag;
 							}
 
@@ -297,7 +297,7 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().codSistema.toUpperCase()
+								Boolean flag = objeto.getValue().getCodSistema().toUpperCase()
 										.contains(newValue.toUpperCase());
 								return flag;
 							}
@@ -316,7 +316,7 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().erro.toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getErro().toUpperCase().contains(newValue.toUpperCase());
 								return flag;
 							}
 
@@ -335,7 +335,7 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().tipo.toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getTipo().toUpperCase().contains(newValue.toUpperCase());
 								return flag;
 							}
 
