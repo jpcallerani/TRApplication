@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="vBox" prefHeight="757.0" prefWidth="200.0" style="-fx-border-color: f2740b; -fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SliderController">
+<VBox fx:id="vBox" prefHeight="757.0" prefWidth="200.0" style="-fx-border-color: f2740b; -fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SliderControllerAuto">
    <children>
       <Pane prefHeight="109.0" prefWidth="331.0" styleClass="menu_bar" stylesheets="@../resources/css/stylsheet.css">
          <children>

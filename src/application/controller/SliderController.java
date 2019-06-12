@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import animatefx.animation.BounceInDown;
+import animatefx.animation.FadeOut;
+import animatefx.animation.FadeOutDown;
 import application.main.Launch;
 import application.util.DatabaseConnection;
 import application.util.Install;
@@ -217,6 +220,7 @@ public class SliderController implements Initializable {
 			DatabaseConnection con = new DatabaseConnection();
 			con.Connect();
 			con.dropViewCmLogScripts();
+			
 			Timeline timeline = new Timeline();
 			KeyFrame key = new KeyFrame(Duration.millis(500),
 					new KeyValue(Install.mainStage.getScene().getRoot().opacityProperty(), 0));

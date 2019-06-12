@@ -266,7 +266,7 @@ public class DatabaseConnection {
 		String contador = "";
 		//
 		ResultSet rs = this.Query("select count(1) as contador " + "from sfw_sistema_versao where valido = 'S' "
-				+ "and cod_versao like '%" + objeto.getId().replace("tag_", "") + "%'");
+				+ "and cod_versao like '%" + objeto.getId().replace("TAG_", "") + "%'");
 		// verifica se achou a mesma versão do objeto;
 		if (rs.next()) {
 			contador = rs.getString("contador");

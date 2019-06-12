@@ -94,9 +94,7 @@ public class CompareScriptsController implements Initializable {
 
 	@FXML
 	private JFXButton btnClearComp;
-	
 
-	
 	@FXML
 	private JFXTextField txCodSistemaComp;
 
@@ -178,16 +176,6 @@ public class CompareScriptsController implements Initializable {
 			this.clearFiltersComp();
 		});
 
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
 		this.btnLoadFile.setOnMouseClicked(e -> {
 			// ao selecionar o arquivo .xml irá lê-lo
 			List<Objeto> objetos = null;
@@ -215,6 +203,7 @@ public class CompareScriptsController implements Initializable {
 							public ObservableValue<String> call(
 									TreeTableColumn.CellDataFeatures<Objeto, String> param) {
 								return new SimpleStringProperty(param.getValue().getValue().getCodSistema());
+
 							}
 						});
 				//
@@ -269,7 +258,7 @@ public class CompareScriptsController implements Initializable {
 				 * campos, ele apareça
 				 */
 				// filtro do nome
-				
+
 				txFileNameComp.textProperty().addListener(new ChangeListener<String>() {
 
 					@Override
@@ -279,7 +268,8 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().getNome().toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getNome().toUpperCase()
+										.contains(newValue.toUpperCase());
 								return flag;
 							}
 
@@ -304,7 +294,7 @@ public class CompareScriptsController implements Initializable {
 
 						});
 					}
-					
+
 				});
 				// filtro pelo erro
 				txErroComp.textProperty().addListener(new ChangeListener<String>() {
@@ -316,7 +306,8 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().getErro().toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getErro().toUpperCase()
+										.contains(newValue.toUpperCase());
 								return flag;
 							}
 
@@ -335,7 +326,8 @@ public class CompareScriptsController implements Initializable {
 
 							@Override
 							public boolean test(TreeItem<Objeto> objeto) {
-								Boolean flag = objeto.getValue().getTipo().toUpperCase().contains(newValue.toUpperCase());
+								Boolean flag = objeto.getValue().getTipo().toUpperCase()
+										.contains(newValue.toUpperCase());
 								return flag;
 							}
 
@@ -507,39 +499,39 @@ public class CompareScriptsController implements Initializable {
 
 		// base genérica;
 		if (cod.equals("0")) {
-			id2 = "tag_" + getValue("id", (Element) version.item(0));
+			id2 = "TAG_" + getValue("id", (Element) version.item(0));
 			// export;
 		} else if (cod.equals("2")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "ES");
+			id2 = "TAG_" + id1.replace("BG", "ES");
 			// drawback
 		} else if (cod.equals("3")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "DB");
+			id2 = "TAG_" + id1.replace("BG", "DB");
 			// recof
 		} else if (cod.equals("6")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "RF");
+			id2 = "TAG_" + id1.replace("BG", "RF");
 			// import
 		} else if (cod.equals("9")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "IS");
+			id2 = "TAG_" + id1.replace("BG", "IS");
 			// cambio imp
 		} else if (cod.equals("10")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "CI");
+			id2 = "TAG_" + id1.replace("BG", "CI");
 			// cambio exp
 		} else if (cod.equals("11")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "CE");
+			id2 = "TAG_" + id1.replace("BG", "CE");
 			// broker
 		} else if (cod.equals("21")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "BS");
+			id2 = "TAG_" + id1.replace("BG", "BS");
 			// inout
 		} else if (cod.equals("500")) {
 			id1 = getValue("id", (Element) version.item(0));
-			id2 = "tag_" + id1.replace("BG", "IO");
+			id2 = "TAG_" + id1.replace("BG", "IO");
 		}
 		return id2;
 	}
@@ -699,7 +691,7 @@ public class CompareScriptsController implements Initializable {
 	 * @throws InvalidFormatException
 	 */
 	private List<Objeto> LerExcel(File arquivo) {
-
+		Objeto obj = new Objeto();
 		List<Objeto> objetos = new ArrayList<>();
 
 		try {
@@ -709,20 +701,27 @@ public class CompareScriptsController implements Initializable {
 			// Getting the Sheet at index zero
 			Sheet sheet = workbook.getSheetAt(0);
 
+			// janela para o usuário inserir a tag
+			String inputTag = application.util.tagExcel.display("", "Insert the tag from the Genegic Base")
+					.toUpperCase();
+			System.out.println(inputTag);
+
 			// Create a DataFormatter to format and get each cell's value as String
 			DataFormatter dataFormatter = new DataFormatter();
 
 			String cellValue;
 			for (Row row : sheet) {
-				Objeto obj = new Objeto();
+				obj = new Objeto();
 				for (Cell cell : row) {
 					if (row.getRowNum() > 0) {
 						if (cell.getColumnIndex() > 0) {
 							cellValue = dataFormatter.formatCellValue(cell);
-							// get cod sistema;
+							// get ID;
 							if (cell.getColumnIndex() == 1) {
-								obj.setId(cellValue);
-								// get tipo objeto;
+								obj.setCodSistema(cellValue);
+								// função para achar a tag certa pelo excel
+								obj.setId(tagCertaExcel(cellValue, inputTag));
+								System.out.println(obj.getId());
 							} else if (cell.getColumnIndex() == 2) {
 								obj.setTipo(cellValue);
 								// get nome objeto;
@@ -734,8 +733,6 @@ public class CompareScriptsController implements Initializable {
 								// get código objeto;
 							} else if (cell.getColumnIndex() == 5) {
 								obj.setCodigo(cellValue);
-							} else if (cell.getColumnIndex() == 6) {
-								obj.setCodSistema(cellValue);
 							}
 						}
 					} else {
@@ -753,6 +750,41 @@ public class CompareScriptsController implements Initializable {
 			new Alert(AlertType.ERROR, "Excel invalid format!! -> " + e.getMessage(), ButtonType.OK).showAndWait();
 		}
 		return objetos;
+	}
+
+//////função para criar a tag certa no caso de arquivo Excel
+	private String tagCertaExcel(String cod, String tagOld) {
+		String idCerto = "";
+		// base genérica;
+		if (cod.equals("0")) {
+			idCerto = tagOld;
+			// export;
+		} else if (cod.equals("2")) {
+			idCerto = tagOld.replace("BG", "ES");
+			// drawback
+		} else if (cod.equals("3")) {
+			idCerto = tagOld.replace("BG", "DB");
+			// recof
+		} else if (cod.equals("6")) {
+			idCerto = tagOld.replace("BG", "RF");
+			// import
+		} else if (cod.equals("9")) {
+			idCerto = tagOld.replace("BG", "IS");
+			// cambio imp
+		} else if (cod.equals("10")) {
+			idCerto = tagOld.replace("BG", "CI");
+			// cambio exp
+		} else if (cod.equals("11")) {
+			idCerto = tagOld.replace("BG", "CE");
+			// broker
+		} else if (cod.equals("21")) {
+			idCerto = tagOld.replace("BG", "BS");
+			// inout
+		} else if (cod.equals("500")) {
+			idCerto = tagOld.replace("BG", "IO");
+		}
+
+		return idCerto;
 	}
 
 	/**

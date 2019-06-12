@@ -64,7 +64,7 @@ public class Install {
 	public static String cod_sistema = "";
 	public static String url;
 	public static String driver = "oracle.jdbc.driver.OracleDriver";
-	public static Stage mainStage;
+	public static Stage mainStage=null;
 	public static AnchorPane mainRoot;
 	public static String fileDefine;
 	public static String filePackage;
