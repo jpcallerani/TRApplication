@@ -10,7 +10,7 @@
 		<springframework.version>5.0.6.RELEASE</springframework.version>
 		<hibernate.version>5.2.16.Final</hibernate.version>
 		<mysql.connector.version>5.1.45</mysql.connector.version>
-		<c3po.version>0.9.5.2</c3po.version>
+		<c3po.version>0.12.0</c3po.version>
 		<javafx.version>11</javafx.version>
 	</properties>
 
